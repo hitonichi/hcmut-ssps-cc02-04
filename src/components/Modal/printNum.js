@@ -19,11 +19,11 @@ function printNum() {
   };
 
   return (
-    <div className='h-[30px] flex justify-center w-[70px] items-center border-[1px] border-gray-600'>
-      <img onClick={decrementCopies} className='w-[17px] cursor-pointer h-[17px] object-cover' src={down}>
+    <div className='h-[30px] flex mt-[50px] justify-center w-[70px] items-center border-[1px] border-gray-600'>
+      <img onClick={decrementCopies} className='w-[17px] cursor-pointer h-[17px]  object-cover' src={down}>
       </img>
-      <input className='h-full w-[25px] text-center outline-none' type="text" value={numCopies} readOnly />
-      <img onClick={incrementCopies} className='w-[17px] cursor-pointer h-[17px] object-cover' src={up}></img>
+      <input className='h-full w-[25px] text-center self-center   outline-none' type="text" value={numCopies} readOnly />
+      <img onClick={incrementCopies} className='w-[18px] cursor-pointer h-[18px] object-cover' src={up}></img>
     </div>
   );
 }

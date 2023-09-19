@@ -142,10 +142,12 @@ const index = () => {
                 setIsCustomPrintSelected={setIsCustomPrintSelected} // Pass the setter function here
               />
             ))}
-            <div className="h-auto mt-3 w-[300px] items-center flex flex-row gap-2">
-              <h4 className="text-start roboto text-base text-black">Copies</h4>
+            <div className="h-auto  mt-3 w-[300px] items-end flex flex-row gap-5">
+              <h4 className="roboto items-center text-base text-black">Copies</h4>
             <PrintNum />
+            
             </div>
+            <button className="button mt-10">Print</button>
             
           </div>
           
