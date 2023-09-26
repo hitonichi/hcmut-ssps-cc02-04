@@ -1,7 +1,7 @@
 
 import "./App.css";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Modal from "./components/Modal/index"
+import Modal from "./components/Modal"
 
 
 function App() {
