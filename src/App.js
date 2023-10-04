@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/Login';
+import Homepage from './pages/Homepage';
+import ProtectedLayout from './components/ProtectedLayout';
+import HomeLayout from './components/HomeLayout';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        {/* TODO: implement a not-found page */}
+        <Route path="*" element={<div>Not found</div>} />
+
+        {/* routes when not logged in */}
+        <Route element={<HomeLayout />}>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Route>
+
+        {/* routes after login */}
+        <Route path="/dashboard" element={<ProtectedLayout />}>
+          <Route path="profile" element={<div>This is Profile Page</div>} />
+          <Route
+            path="printing"
+            element={<div>This is Printing Management Page</div>}
+          />
+          <Route
+            path="management"
+            element={<div>This is Management Page</div>}
+          />
+        </Route>
+      </Routes>
     </div>
   );
 }
