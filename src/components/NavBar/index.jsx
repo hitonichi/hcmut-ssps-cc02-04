@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../hooks/auth';
+import { ToastService } from '../../services/ToastService';
 
 const NavBar = ({ pages }) => {
   const { user, logout } = useAuth();
@@ -19,7 +20,16 @@ const NavBar = ({ pages }) => {
           {page.label}
         </NavLink>
       ))}
-      {!!user && <button onClick={logout}>Logout</button>}
+      {!!user && (
+        <button
+          onClick={async () => {
+            await logout();
+            ToastService.createToast({ title: 'Logout Toast' });
+          }}
+        >
+          Logout
+        </button>
+      )}
     </nav>
   );
 };

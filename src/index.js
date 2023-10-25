@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './hooks/auth';
+import Toaster from './components/Toast/Toaster';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,6 +13,7 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <App />
+        <Toaster />
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,

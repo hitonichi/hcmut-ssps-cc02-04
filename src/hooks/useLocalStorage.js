@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+// TODO: considering using sessionStorage over localStorage
 export const useLocalStorage = (keyName, defaultValue) => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
