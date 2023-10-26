@@ -97,7 +97,7 @@ const SideBar = () => {
                 key={path}
                 to={path}
                 className={({ isActive }) =>
-                  isActive ? 'bg-primaryContainer ' + linkStyle : linkStyle 
+                  isActive ? 'bg-primaryContainer text-customBlue ' + linkStyle : linkStyle 
                 }
               >
                 <img
@@ -106,9 +106,9 @@ const SideBar = () => {
                   src={icon}
                 ></img>
                 <h2
-                  className={`h-full w-auto text-base text-customBlue ${
+                  className={`h-full w-auto text-base  ${
                     isExpanded ? 'block' : ' hidden'
-                  }`}
+                  } `}
                 >
                   {label}
                 </h2>
