@@ -4,6 +4,8 @@ import LoginPage from './pages/Login';
 import Homepage from './pages/Homepage';
 import ProtectedLayout from './components/ProtectedLayout';
 import HomeLayout from './components/HomeLayout';
+import Printing from './pages/Printing';
+import Records from './pages/Records';
 
 function App() {
   return (
@@ -26,20 +28,8 @@ function App() {
               <div className="h-[100vh] bg-slate-300">This is Profile Page</div>
             }
           />
-          <Route
-            path="printing"
-            element={
-              <div className="h-[100vh] bg-slate-300">
-                This is Printing Page
-              </div>
-            }
-          />
-          <Route
-            path="records"
-            element={
-              <div className="h-[100vh] bg-slate-300">This is Records Page</div>
-            }
-          />
+          <Route path="printing" element={<Printing />} />
+          <Route path="records" element={<Records />} />
           <Route
             path="policies"
             element={
