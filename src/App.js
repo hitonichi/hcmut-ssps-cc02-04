@@ -4,10 +4,12 @@ import LoginPage from './pages/Login';
 import Homepage from './pages/Homepage';
 import ProtectedLayout from './components/ProtectedLayout';
 import HomeLayout from './components/HomeLayout';
-
+import SideBar from './components/SideBar';
 function App() {
   return (
     <div>
+      <SideBar />
+
       <Routes>
         {/* TODO: implement a not-found page */}
         <Route path="*" element={<div>Not found</div>} />
