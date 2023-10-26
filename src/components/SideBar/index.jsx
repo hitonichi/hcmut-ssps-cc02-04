@@ -68,7 +68,7 @@ const SideBar = () => {
             </h2>
           </div>
           <div
-            className={`flex h-auto w-full flex-col gap-1 py-2 ${
+            className={`flex h-auto w-full flex-col gap-1 py-2  ${
               isExpanded ? 'block' : ' hidden'
             }`}
           >
