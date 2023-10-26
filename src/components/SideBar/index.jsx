@@ -58,7 +58,7 @@ const SideBar = () => {
               className="aspect-square w-[36px] self-center object-cover"
               src={logo}
               alt=""
-            ></img>
+            />
             <h2
               className={`flex h-full w-full items-center text-start font-serif text-2xl uppercase  text-black ${
                 isExpanded ? 'block' : ' hidden'
