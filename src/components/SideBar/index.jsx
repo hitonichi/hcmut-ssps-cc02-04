@@ -26,9 +26,6 @@ const SPSOroutes = [
 ];
 
 const SideBar = () => {
-  
-  
-
   const { user, logout } = useAuth();
   let routes;
   if (user.role === 'student') {
@@ -87,7 +84,7 @@ const SideBar = () => {
           </div>
         </div>
 
-        <div className="h-auto w-full px-4 flex  ">
+        <div className="flex h-auto w-full px-4  ">
           <div className="flex h-full  w-full flex-col gap-4  border-y-2 border-black py-2 ">
             {routes.map(({ path, label, icon }) => (
               // <div
@@ -97,7 +94,9 @@ const SideBar = () => {
                 key={path}
                 to={path}
                 className={({ isActive }) =>
-                  isActive ? 'bg-primaryContainer text-customBlue ' + linkStyle : linkStyle 
+                  isActive
+                    ? 'bg-primaryContainer text-customBlue ' + linkStyle
+                    : linkStyle
                 }
               >
                 <img
