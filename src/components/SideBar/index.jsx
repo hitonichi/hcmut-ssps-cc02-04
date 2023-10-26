@@ -56,42 +56,42 @@ const SideBar = () => {
 
         <div className="h-auto w-full px-4 ">
           <div className="flex h-full  w-full flex-col gap-4  border-y-2 border-black py-2 ">
-            <div className="flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 hover:bg-blue-200">
+            <div className="hover:bg-primaryContainer hover:text-customBlue flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
               <img
                 className="h-[24px] w-[24px] object-cover p-1"
                 alt=""
                 src={printing}
               ></img>
               <h2
-                className={`h-full w-auto text-base text-black ${
+                className={`h-full w-auto text-base  ${
                   isExpanded ? 'block' : ' hidden'
                 }`}
               >
                 In tài liệu
               </h2>
             </div>
-            <div className="flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 hover:bg-blue-200">
+            <div className="hover:bg-primaryContainer hover:text-customBlue flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
               <img
                 className="h-[24px] w-[24px] object-cover p-1"
                 alt=""
                 src={undo}
               ></img>
               <h2
-                className={`h-full w-auto text-base text-black ${
+                className={`h-full w-auto text-base  ${
                   isExpanded ? 'block' : ' hidden'
                 }`}
               >
                 Lịch sử in
               </h2>
             </div>
-            <div className="flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 hover:bg-blue-200">
+            <div className="hover:bg-primaryContainer hover:text-customBlue flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
               <img
                 className="h-[24px] w-[24px] object-cover p-1"
                 alt=""
                 src={settings}
               ></img>
               <h2
-                className={`h-full w-auto text-base text-black ${
+                className={`h-full w-auto text-base ${
                   isExpanded ? 'block' : ' hidden'
                 }`}
               >
@@ -102,14 +102,14 @@ const SideBar = () => {
         </div>
 
         <div className="h-auto w-full px-4 ">
-          <div className="mt-2 flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 hover:bg-blue-200">
+          <div className="hover:bg-primaryContainer hover:text-customBlue mt-2 flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
             <img
               className="h-[24px] w-[24px] object-cover p-1"
               alt=""
               src={logout}
             ></img>
             <h2
-              className={`h-full w-auto text-base text-black ${
+              className={`h-full w-auto text-base ${
                 isExpanded ? 'block' : ' hidden'
               }`}
             >
