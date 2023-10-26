@@ -26,8 +26,8 @@ const SPSOroutes = [
 ];
 
 const SideBar = () => {
-  const linkStyle =
-    'flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue';
+  
+  
 
   const { user, logout } = useAuth();
   let routes;
@@ -46,7 +46,9 @@ const SideBar = () => {
   const handleMouseLeave = () => {
     setIsExpanded(false);
   };
-
+  const linkStyle = `flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue ${
+    isExpanded ? '' : 'justify-center'
+  }`;
   return (
     <div className="footer">
       <div
@@ -85,7 +87,7 @@ const SideBar = () => {
           </div>
         </div>
 
-        <div className="h-auto w-full px-4 ">
+        <div className="h-auto w-full px-4 flex  ">
           <div className="flex h-full  w-full flex-col gap-4  border-y-2 border-black py-2 ">
             {routes.map(({ path, label, icon }) => (
               // <div
@@ -95,7 +97,7 @@ const SideBar = () => {
                 key={path}
                 to={path}
                 className={({ isActive }) =>
-                  isActive ? 'bg-primaryContainer ' + linkStyle : linkStyle
+                  isActive ? 'bg-primaryContainer ' + linkStyle : linkStyle 
                 }
               >
                 <img
@@ -119,7 +121,9 @@ const SideBar = () => {
         <div className="h-auto w-full px-4 ">
           <div
             onClick={logout}
-            className="mt-2 flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue"
+            className={`mt-2 flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue ${
+              isExpanded ? '' : 'justify-center'
+            }`}
           >
             <img
               className="h-[24px] w-[24px] object-cover p-1"
