@@ -7,7 +7,7 @@ import logoutIcon from '../../assets/icon/logout.png';
 import { useAuth } from '../../hooks/auth';
 import { NavLink } from 'react-router-dom';
 
-const routes = [
+const SPSOroutes = [
   {
     path: 'printing',
     label: 'In tài liệu',
@@ -30,6 +30,12 @@ const SideBar = () => {
     'flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue';
 
   const { user, logout } = useAuth();
+  let routes;
+  if (user.role === 'student') {
+    routes = SPSOroutes.filter((route) => route.path !== 'policies');
+  } else {
+    routes = SPSOroutes;
+  }
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -89,7 +95,7 @@ const SideBar = () => {
                 key={path}
                 to={path}
                 className={({ isActive }) =>
-                  isActive ? 'bg-slate-300 ' + linkStyle : linkStyle
+                  isActive ? 'bg-primaryContainer ' + linkStyle : linkStyle
                 }
               >
                 <img
@@ -98,7 +104,7 @@ const SideBar = () => {
                   src={icon}
                 ></img>
                 <h2
-                  className={`h-full w-auto text-base  ${
+                  className={`h-full w-auto text-base text-customBlue ${
                     isExpanded ? 'block' : ' hidden'
                   }`}
                 >
