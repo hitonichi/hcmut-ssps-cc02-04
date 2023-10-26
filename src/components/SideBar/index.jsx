@@ -16,6 +16,12 @@ const SideBar = () => {
     setIsExpanded(false);
   };
 
+  const sidebarData = [
+    { icon: printing, title: 'In tài liệu' },
+    { icon: undo, title: 'Lịch sử in' },
+    { icon: settings, title: 'Thay đổi chính sách' },
+  ];
+
   return (
     <div className="footer">
       <div
@@ -33,7 +39,7 @@ const SideBar = () => {
               className="aspect-square w-[36px] self-center object-cover"
               src={logo}
               alt=""
-            ></img>
+            />
             <h2
               className={`flex h-full w-full items-center text-start font-serif text-2xl uppercase  text-black ${
                 isExpanded ? 'block' : ' hidden'
@@ -47,67 +53,44 @@ const SideBar = () => {
               isExpanded ? 'block' : ' hidden'
             }`}
           >
-            <h3 className="ml-2 w-auto text-black  ">Sinh viên</h3>
+            <h3 className="ml-2 w-auto text-black">Sinh viên</h3>
             <h3 className="ml-2 w-auto font-bold uppercase text-black">
               NGUYEN VAN A - 2152XXX
             </h3>
           </div>
         </div>
 
-        <div className="h-auto w-full px-4 ">
-          <div className="flex h-full  w-full flex-col gap-4  border-y-2 border-black py-2 ">
-            <div className="hover:bg-primaryContainer hover:text-customBlue flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
-              <img
-                className="h-[24px] w-[24px] object-cover p-1"
-                alt=""
-                src={printing}
-              ></img>
-              <h2
-                className={`h-full w-auto text-base  ${
-                  isExpanded ? 'block' : ' hidden'
-                }`}
+        <div className="h-auto w-full px-4">
+          <div className="flex h-full  w-full flex-col gap-4  border-y-2 border-black py-2">
+            {sidebarData.map((item, index) => (
+              <div
+                key={index}
+                className="hover:bg-primaryContainer hover:text-customBlue flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black"
               >
-                In tài liệu
-              </h2>
-            </div>
-            <div className="hover:bg-primaryContainer hover:text-customBlue flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
-              <img
-                className="h-[24px] w-[24px] object-cover p-1"
-                alt=""
-                src={undo}
-              ></img>
-              <h2
-                className={`h-full w-auto text-base  ${
-                  isExpanded ? 'block' : ' hidden'
-                }`}
-              >
-                Lịch sử in
-              </h2>
-            </div>
-            <div className="hover:bg-primaryContainer hover:text-customBlue flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
-              <img
-                className="h-[24px] w-[24px] object-cover p-1"
-                alt=""
-                src={settings}
-              ></img>
-              <h2
-                className={`h-full w-auto text-base ${
-                  isExpanded ? 'block' : ' hidden'
-                }`}
-              >
-                Thay đổi chính sách
-              </h2>
-            </div>
+                <img
+                  className="h-[24px] w-[24px] object-cover p-1"
+                  alt=""
+                  src={item.icon}
+                />
+                <h2
+                  className={`h-full w-auto text-base ${
+                    isExpanded ? 'block' : ' hidden'
+                  }`}
+                >
+                  {item.title}
+                </h2>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="h-auto w-full px-4 ">
+        <div className="h-auto w-full px-4">
           <div className="hover:bg-primaryContainer hover:text-customBlue mt-2 flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
             <img
               className="h-[24px] w-[24px] object-cover p-1"
               alt=""
               src={logout}
-            ></img>
+            />
             <h2
               className={`h-full w-auto text-base ${
                 isExpanded ? 'block' : ' hidden'
