@@ -3,9 +3,34 @@ import logo from '../../assets/images/HCMUT_logo.png';
 import printing from '../../assets/icon/printing.png';
 import undo from '../../assets/icon/undo.png';
 import settings from '../../assets/icon/settings.png';
-import logout from '../../assets/icon/logout.png';
+import logoutIcon from '../../assets/icon/logout.png';
+import { useAuth } from '../../hooks/auth';
+import { NavLink } from 'react-router-dom';
+
+const routes = [
+  {
+    path: 'printing',
+    label: 'In tài liệu',
+    icon: printing,
+  },
+  {
+    path: 'records',
+    label: 'Lịch sử in',
+    icon: undo,
+  },
+  {
+    path: 'policies',
+    label: 'Thay đổi chính sách',
+    icon: settings,
+  },
+];
 
 const SideBar = () => {
+  const linkStyle =
+    'flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue';
+
+  const { user, logout } = useAuth();
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleMouseEnter = () => {
@@ -47,66 +72,53 @@ const SideBar = () => {
               isExpanded ? 'block' : ' hidden'
             }`}
           >
-            <h3 className="ml-2 w-auto text-black  ">Sinh viên</h3>
+            <h3 className="ml-2 w-auto text-black  ">{user.role}</h3>
             <h3 className="ml-2 w-auto font-bold uppercase text-black">
-              NGUYEN VAN A - 2152XXX
+              {`${user.name} - ${user.uid}`}
             </h3>
           </div>
         </div>
 
         <div className="h-auto w-full px-4 ">
           <div className="flex h-full  w-full flex-col gap-4  border-y-2 border-black py-2 ">
-            <div className="hover:bg-primaryContainer hover:text-customBlue flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
-              <img
-                className="h-[24px] w-[24px] object-cover p-1"
-                alt=""
-                src={printing}
-              ></img>
-              <h2
-                className={`h-full w-auto text-base  ${
-                  isExpanded ? 'block' : ' hidden'
-                }`}
+            {routes.map(({ path, label, icon }) => (
+              // <div
+              // className="flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue"
+              // >
+              <NavLink
+                key={path}
+                to={path}
+                className={({ isActive }) =>
+                  isActive ? 'bg-slate-300 ' + linkStyle : linkStyle
+                }
               >
-                In tài liệu
-              </h2>
-            </div>
-            <div className="hover:bg-primaryContainer hover:text-customBlue flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
-              <img
-                className="h-[24px] w-[24px] object-cover p-1"
-                alt=""
-                src={undo}
-              ></img>
-              <h2
-                className={`h-full w-auto text-base  ${
-                  isExpanded ? 'block' : ' hidden'
-                }`}
-              >
-                Lịch sử in
-              </h2>
-            </div>
-            <div className="hover:bg-primaryContainer hover:text-customBlue flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
-              <img
-                className="h-[24px] w-[24px] object-cover p-1"
-                alt=""
-                src={settings}
-              ></img>
-              <h2
-                className={`h-full w-auto text-base ${
-                  isExpanded ? 'block' : ' hidden'
-                }`}
-              >
-                Thay đổi chính sách
-              </h2>
-            </div>
+                <img
+                  className="h-[24px] w-[24px] object-cover p-1"
+                  alt=""
+                  src={icon}
+                ></img>
+                <h2
+                  className={`h-full w-auto text-base  ${
+                    isExpanded ? 'block' : ' hidden'
+                  }`}
+                >
+                  {label}
+                </h2>
+              </NavLink>
+              // </div>
+            ))}
           </div>
         </div>
 
         <div className="h-auto w-full px-4 ">
-          <div className="hover:bg-primaryContainer hover:text-customBlue mt-2 flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black">
+          <div
+            onClick={logout}
+            className="mt-2 flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue"
+          >
             <img
               className="h-[24px] w-[24px] object-cover p-1"
               alt=""
-              src={logout}
+              src={logoutIcon}
             ></img>
             <h2
               className={`h-full w-auto text-base ${

@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
-import NavBar from '../NavBar';
+// import NavBar from '../NavBar';
+import SideBar from '../SideBar';
 
 const ProtectedLayout = () => {
   const { user } = useAuth();
@@ -10,19 +11,22 @@ const ProtectedLayout = () => {
   }
   return (
     <div>
-      <NavBar
+      <SideBar />
+      {/* <NavBar
         pages={[
           { label: 'Profile', path: '/dashboard/profile' },
           { label: 'Printing', path: '/dashboard/printing' },
           { label: 'Management', path: '/dashboard/management' },
         ]}
-      />
+      /> */}
       {/* <nav>
         // <Link to="/dashboard/profile">Profile</Link>
         // <Link to="/dashboard/settings">Setting</Link>
         //{' '}
       </nav> */}
-      <Outlet />
+      <div className="pl-[80px]">
+        <Outlet />
+      </div>
     </div>
   );
 };
