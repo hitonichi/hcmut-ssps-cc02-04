@@ -7,7 +7,7 @@ import logoutIcon from '../../assets/icon/logout.png';
 import { useAuth } from '../../hooks/auth';
 import { NavLink } from 'react-router-dom';
 
-const routes = [
+const SPSOroutes = [
   {
     path: 'printing',
     label: 'In tài liệu',
@@ -26,10 +26,13 @@ const routes = [
 ];
 
 const SideBar = () => {
-  const linkStyle =
-    'flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue';
-
   const { user, logout } = useAuth();
+  let routes;
+  if (user.role === 'student') {
+    routes = SPSOroutes.filter((route) => route.path !== 'policies');
+  } else {
+    routes = SPSOroutes;
+  }
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -40,7 +43,9 @@ const SideBar = () => {
   const handleMouseLeave = () => {
     setIsExpanded(false);
   };
-
+  const linkStyle = `flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue ${
+    isExpanded ? '' : 'justify-center'
+  }`;
   return (
     <div className="footer">
       <div
@@ -68,7 +73,7 @@ const SideBar = () => {
             </h2>
           </div>
           <div
-            className={`flex h-auto w-full flex-col gap-1 py-2 ${
+            className={`flex h-auto w-full flex-col gap-1 py-2  ${
               isExpanded ? 'block' : ' hidden'
             }`}
           >
@@ -79,7 +84,7 @@ const SideBar = () => {
           </div>
         </div>
 
-        <div className="h-auto w-full px-4 ">
+        <div className="flex h-auto w-full px-4  ">
           <div className="flex h-full  w-full flex-col gap-4  border-y-2 border-black py-2 ">
             {routes.map(({ path, label, icon }) => (
               // <div
@@ -89,7 +94,9 @@ const SideBar = () => {
                 key={path}
                 to={path}
                 className={({ isActive }) =>
-                  isActive ? 'bg-slate-300 ' + linkStyle : linkStyle
+                  isActive
+                    ? 'bg-primaryContainer text-customBlue ' + linkStyle
+                    : linkStyle
                 }
               >
                 <img
@@ -100,7 +107,7 @@ const SideBar = () => {
                 <h2
                   className={`h-full w-auto text-base  ${
                     isExpanded ? 'block' : ' hidden'
-                  }`}
+                  } `}
                 >
                   {label}
                 </h2>
@@ -113,7 +120,9 @@ const SideBar = () => {
         <div className="h-auto w-full px-4 ">
           <div
             onClick={logout}
-            className="mt-2 flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue"
+            className={`mt-2 flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue ${
+              isExpanded ? '' : 'justify-center'
+            }`}
           >
             <img
               className="h-[24px] w-[24px] object-cover p-1"
