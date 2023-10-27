@@ -6,6 +6,7 @@ import ProtectedLayout from './components/ProtectedLayout';
 import HomeLayout from './components/HomeLayout';
 import Printing from './pages/Printing';
 import Records from './pages/Records';
+import PrinterManagement from './pages/PrinterManagement';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             }
           />
           <Route path="printing" element={<Printing />} />
+          <Route path="printers" element={<PrinterManagement />} />
           <Route path="records" element={<Records />} />
           <Route
             path="policies"
