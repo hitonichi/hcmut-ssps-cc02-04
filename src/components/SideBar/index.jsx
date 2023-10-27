@@ -1,38 +1,14 @@
 import { useState } from 'react';
 import logo from '../../assets/images/HCMUT_logo.png';
-import printing from '../../assets/icon/printing.png';
-import undo from '../../assets/icon/undo.png';
-import settings from '../../assets/icon/settings.png';
 import logoutIcon from '../../assets/icon/logout.png';
 import { useAuth } from '../../hooks/auth';
 import { NavLink } from 'react-router-dom';
 
-const SPSOroutes = [
-  {
-    path: 'printing',
-    label: 'In tài liệu',
-    icon: printing,
-  },
-  {
-    path: 'records',
-    label: 'Lịch sử in',
-    icon: undo,
-  },
-  {
-    path: 'policies',
-    label: 'Thay đổi chính sách',
-    icon: settings,
-  },
-];
+import { DEFAULT_ROUTES } from './constants';
 
 const SideBar = () => {
   const { user, logout } = useAuth();
-  let routes;
-  if (user.role === 'student') {
-    routes = SPSOroutes.filter((route) => route.path !== 'policies');
-  } else {
-    routes = SPSOroutes;
-  }
+  const routes = DEFAULT_ROUTES[user.role];
 
   const [isExpanded, setIsExpanded] = useState(false);
 
