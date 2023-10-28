@@ -10,7 +10,7 @@ import PrinterManagement from './pages/PrinterManagement';
 
 function App() {
   return (
-    <div>
+    <div className='overflow-hidden'>
       <Routes>
         {/* TODO: implement a not-found page */}
         <Route path="*" element={<div>Not found</div>} />
