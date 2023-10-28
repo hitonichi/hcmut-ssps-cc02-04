@@ -31,12 +31,12 @@ const SideBar = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="flex h-[176px] w-full flex-col justify-between p-2">
+        <div className="flex h-[126px] w-full flex-col  p-2">
           <div
             className={`flex h-auto w-full flex-row items-center justify-center gap-4 p-2`}
           >
             <img
-              className="aspect-square w-[36px] self-center object-cover"
+              className="aspect-square w-[36px] self-center object-cover ml-2"
               src={logo}
               alt=""
             />
@@ -53,8 +53,8 @@ const SideBar = () => {
               isExpanded ? 'block' : ' hidden'
             }`}
           >
-            <h3 className="ml-2 w-auto text-black  ">{user.role}</h3>
-            <h3 className="ml-2 w-auto font-bold uppercase text-black">
+            <h3 className="ml-4 w-auto text-black  ">{user.role}</h3>
+            <h3 className="ml-4 w-auto font-bold uppercase text-black">
               {`${user.name} - ${user.uid}`}
             </h3>
           </div>
