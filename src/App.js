@@ -4,6 +4,9 @@ import LoginPage from './pages/Login';
 import Homepage from './pages/Homepage';
 import ProtectedLayout from './components/ProtectedLayout';
 import HomeLayout from './components/HomeLayout';
+import Printing from './pages/Printing';
+import Records from './pages/Records';
+import PrinterManagement from './pages/PrinterManagement';
 
 function App() {
   return (
@@ -20,10 +23,22 @@ function App() {
 
         {/* routes after login */}
         <Route path="/dashboard" element={<ProtectedLayout />}>
-          <Route path="profile" element={<div>This is Profile Page</div>} />
           <Route
-            path="printing"
-            element={<div>This is Printing Management Page</div>}
+            path="profile"
+            element={
+              <div className="h-[100vh] bg-slate-300">This is Profile Page</div>
+            }
+          />
+          <Route path="printing" element={<Printing />} />
+          <Route path="printers" element={<PrinterManagement />} />
+          <Route path="records" element={<Records />} />
+          <Route
+            path="policies"
+            element={
+              <div className="h-[100vh] bg-slate-300">
+                This is Policies Page
+              </div>
+            }
           />
           <Route
             path="management"

@@ -10,7 +10,14 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (data) => {
     setUser(data);
-    navigate('/dashboard/profile');
+    switch (data.role) {
+      case 'student':
+        navigate('/dashboard/printing');
+        break;
+      default:
+        navigate('/dashboard/printers');
+        break;
+    }
   };
 
   const logout = async () => {
