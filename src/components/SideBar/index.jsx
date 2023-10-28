@@ -61,7 +61,7 @@ const SideBar = () => {
         </div>
 
         <div className="flex h-auto w-full px-4  ">
-          <div className="flex h-full  w-full flex-col gap-4  border-y-2 border-black py-2 ">
+          <div className="flex h-full  w-full flex-col gap-4 font-bold  border-y-2 border-black py-2 ">
             {routes.map(({ path, label, icon }) => (
               // <div
               // className="flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue"
@@ -106,7 +106,7 @@ const SideBar = () => {
               src={logoutIcon}
             ></img>
             <h2
-              className={`h-full w-auto text-base ${
+              className={`h-full w-auto text-base font-bold ${
                 isExpanded ? 'block' : ' hidden'
               }`}
             >
