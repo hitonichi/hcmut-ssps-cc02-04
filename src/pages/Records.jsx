@@ -8,6 +8,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { mockData } from '../components/recordConstant';
 const Records = () => {
   const [paperSize, setPaperSize] = React.useState(null);
   const [startDate, setStartDate] = React.useState(null);
@@ -15,16 +16,22 @@ const Records = () => {
   const handleChange = (event) => {
     setPaperSize(event.target.value);
   };
+
   return (
-    <div className="flex h-screen w-screen flex-col gap-[40px] overflow-hidden bg-green-200 pl-[40px] pr-[150px] py-[50px]">
-      <div className="flex h-[80px] w-full flex-row justify-between">
-        <h2 className="text-bold roboto ml-8 w-[200px] text-3xl text-black">
+    <div className="flex h-screen w-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[150px]">
+      <div className="flex h-[60px] w-full flex-row justify-between">
+        <h2 className="roboto ml-8 w-[270px] text-5xl font-bold text-black">
           Lịch sử in{' '}
         </h2>
-        <div className="flex w-[800px] flex-row justify-end gap-3">
+        <div className="flex w-[800px] flex-row justify-end ">
           <div className="h-full w-[200px]">
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Khổ giấy</InputLabel>
+              <InputLabel
+                id="demo-simple-select-label"
+                style={{ fontFamily: 'Work Sans, sans-serif' }}
+              >
+                Khổ giấy
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -45,7 +52,7 @@ const Records = () => {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker
-                  label="Ngày bắt đầu"
+                  label={<span className="work">Ngày bắt đầu</span>}
                   slotProps={{
                     textField: {
                       helperText: 'MM/DD/YYYY',
@@ -61,7 +68,7 @@ const Records = () => {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['DatePicker']}>
                 <DatePicker
-                  label="Ngày kết thúc"
+                  label={<span className="work">Ngày kết thúc</span>}
                   slotProps={{
                     textField: {
                       helperText: 'MM/DD/YYYY',
@@ -73,10 +80,72 @@ const Records = () => {
               </DemoContainer>
             </LocalizationProvider>
           </div>
+          <button className="work h-[56px] w-[120px] bg-customBlue px-5 py-2 text-sm font-bold uppercase  text-white">
+            tìm kiếm
+          </button>
         </div>
       </div>
-      <div className="h-[80px] w-[500px]"></div>
-      <div className="h-full w-full bg-blue-200 mx-4"></div>
+      <div className="roboto mx-4 flex h-[85px] w-[500px] flex-col bg-secondaryContainer">
+        <div className="flex h-1/2 w-full flex-row bg-customBlue text-base font-bold text-white">
+          <div className="flex w-[200px] items-center justify-start py-2 pl-5  ">
+            Khổ giấy
+          </div>
+          <div className="flex h-full w-[100px] items-center justify-center ">
+            A3
+          </div>
+          <div className="flex h-full w-[100px] items-center justify-center">
+            A4
+          </div>
+          <div className="flex h-full w-[100px] items-center justify-center ">
+            A5
+          </div>
+        </div>
+        <div className="flex h-1/2 w-full flex-row text-base font-bold text-customBlue">
+          {' '}
+          <div className="flex w-[200px] items-center justify-start py-2 pl-5  ">
+            Tổng số trang đã in{' '}
+          </div>
+          <div className=" flex h-full w-[100px] items-center justify-center  ">
+            0
+          </div>
+          <div className="flex h-full w-[100px] items-center justify-center ">
+            5
+          </div>
+          <div className="flex h-full w-[100px] items-center justify-center  ">
+            0
+          </div>
+        </div>
+      </div>
+      <div className="mx-4 h-[625px] w-full bg-secondaryContainer text-base tracking-wide">
+        <table className="w-full whitespace-nowrap">
+          <thead>
+            <tr className="roboto border-b bg-customBlue text-left font-bold  text-white">
+              <th className="px-4 py-3">Ngày in</th>
+              <th className="px-4 py-3">Thời gian in</th>
+              <th className="px-4 py-3">MSSV</th>
+              <th className="px-4 py-3">Máy in</th>
+              <th className="px-4 py-3">Tên file</th>
+              <th className="px-4 py-3">Khổ giấy</th>
+              <th className="px-4 py-3">Số bản in</th>
+              <th className="px-4 py-3">Số trang</th>
+            </tr>
+          </thead>
+          <tbody className="roboto divide-y">
+            {mockData.map((row, index) => (
+              <tr key={index} className="text-customBlue ">
+                <td className="px-4 py-3 font-bold">{row.ngayIn}</td>
+                <td className="px-4 py-3 font-bold">{row.thoiGianIn}</td>
+                <td className="px-4 py-3">{row.mssv}</td>
+                <td className="px-4 py-3">{row.mayIn}</td>
+                <td className="px-4 py-3">{row.tenFile}</td>
+                <td className="px-4 py-3">{row.khoGiay}</td>
+                <td className="px-4 py-3">{row.soBanIn}</td>
+                <td className="px-4 py-3">{row.soTrang}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

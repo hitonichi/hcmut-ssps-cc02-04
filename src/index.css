@@ -21,3 +21,7 @@ code {
 .roboto{
   font-family: 'Roboto', sans-serif;
 }
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+.work{
+  font-family: 'Work Sans', sans-serif;
+}
