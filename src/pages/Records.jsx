@@ -132,16 +132,17 @@ const Records = () => {
           </thead>
           <tbody className="roboto divide-y">
             {mockData.map((row, index) => (
-              <tr key={index} className="text-customBlue ">
-                <td className="px-4 py-3 font-bold">{row.ngayIn}</td>
-                <td className="px-4 py-3 font-bold">{row.thoiGianIn}</td>
-                <td className="px-4 py-3">{row.mssv}</td>
-                <td className="px-4 py-3">{row.mayIn}</td>
-                <td className="px-4 py-3">{row.tenFile}</td>
-                <td className="px-4 py-3">{row.khoGiay}</td>
-                <td className="px-4 py-3">{row.soBanIn}</td>
-                <td className="px-4 py-3">{row.soTrang}</td>
-              </tr>
+             <tr key={index} className="text-customBlue">
+             <td className="px-4 py-3 font-bold">{row.date}</td>
+             <td className="px-4 py-3 font-bold">{row.time}</td>
+             <td className="px-4 py-3">{row.studentID}</td>
+             <td className="px-4 py-3">{row.printer}</td>
+             <td className="px-4 py-3">{row.fileName}</td>
+             <td className="px-4 py-3">{row.paperSize}</td>
+             <td className="px-4 py-3">{row.printCount}</td>
+             <td className="px-4 py-3">{row.pageCount}</td>
+           </tr>
+           
             ))}
           </tbody>
         </table>
