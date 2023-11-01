@@ -9,16 +9,27 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { mockData } from '../components/recordConstant';
+import dayjs from 'dayjs';
+import 'dayjs/locale/en'; 
 const Records = () => {
   const [paperSize, setPaperSize] = React.useState(null);
-  const [startDate, setStartDate] = React.useState(null);
-  const [endDate, setEndDate] = React.useState(null);
+  const [startDate, setStartDate] = React.useState(dayjs());
+  const [endDate, setEndDate] = React.useState(dayjs());
   const handleChange = (event) => {
     setPaperSize(event.target.value);
+
   };
+  const startdate = startDate.format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
+  const enddate = endDate.format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
+  const handleClick = ()=>{
+    console.log("Size: ", paperSize);
+    console.log("Start Date:", startdate);
+    console.log("End date: ",enddate);
+  }
+  const widthValue = `calc(100vw - 80px)`;
 
   return (
-    <div className="flex h-screen w-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[150px]">
+    <div style={{ width: widthValue }}  className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[150px]">
       <div className="flex h-[60px] w-full flex-row justify-between">
         <h2 className="roboto ml-8 w-[270px] text-5xl font-bold text-black">
           Lịch sử in{' '}
@@ -80,7 +91,7 @@ const Records = () => {
               </DemoContainer>
             </LocalizationProvider>
           </div>
-          <button className="work h-[56px] w-[120px] bg-customBlue px-5 py-2 text-sm font-bold uppercase  text-white">
+          <button className="work h-[56px]  w-[120px] bg-customBlue px-5 py-2 text-sm font-bold uppercase  text-white" onClick={handleClick}>
             tìm kiếm
           </button>
         </div>
