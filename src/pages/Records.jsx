@@ -10,26 +10,40 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { mockData } from '../components/recordConstant';
 import dayjs from 'dayjs';
-import 'dayjs/locale/en'; 
+import 'dayjs/locale/en';
 const Records = () => {
   const [paperSize, setPaperSize] = React.useState(null);
   const [startDate, setStartDate] = React.useState(dayjs());
   const [endDate, setEndDate] = React.useState(dayjs());
   const handleChange = (event) => {
     setPaperSize(event.target.value);
-
   };
   const startdate = startDate.format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
   const enddate = endDate.format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
-  const handleClick = ()=>{
-    console.log("Size: ", paperSize);
-    console.log("Start Date:", startdate);
-    console.log("End date: ",enddate);
-  }
+  const handleClick = () => {
+    console.log('Size: ', paperSize);
+    console.log('Start Date:', startdate);
+    console.log('End date: ', enddate);
+  };
   const widthValue = `calc(100vw - 80px)`;
+  const countPages = (data, paperSize) => {
+    let pageCount = 0;
+    data.forEach((item) => {
+      if (item.paperSize === paperSize) {
+        pageCount += item.pageCount * item.printCount;
+      }
+    });
+    return pageCount;
+  };
+  const totalCountA3 = countPages(mockData, 'A3');
+  const totalCountA4 = countPages(mockData, 'A4');
+  const totalCountA5 = countPages(mockData, 'A5');
 
   return (
-    <div style={{ width: widthValue }}  className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[150px]">
+    <div
+      style={{ width: widthValue }}
+      className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[150px]"
+    >
       <div className="flex h-[60px] w-full flex-row justify-between">
         <h2 className="roboto ml-8 w-[270px] text-5xl font-bold text-black">
           Lịch sử in{' '}
@@ -91,7 +105,10 @@ const Records = () => {
               </DemoContainer>
             </LocalizationProvider>
           </div>
-          <button className="work h-[56px]  w-[120px] bg-customBlue px-5 py-2 text-sm font-bold uppercase  text-white" onClick={handleClick}>
+          <button
+            className="work h-[56px]  w-[120px] bg-customBlue px-5 py-2 text-sm font-bold uppercase  text-white"
+            onClick={handleClick}
+          >
             tìm kiếm
           </button>
         </div>
@@ -117,20 +134,20 @@ const Records = () => {
             Tổng số trang đã in{' '}
           </div>
           <div className=" flex h-full w-[100px] items-center justify-center  ">
-            0
+            {totalCountA3}
           </div>
           <div className="flex h-full w-[100px] items-center justify-center ">
-            5
+            {totalCountA4}
           </div>
           <div className="flex h-full w-[100px] items-center justify-center  ">
-            0
+            {totalCountA5}
           </div>
         </div>
       </div>
-      <div className="mx-4 h-[625px] w-full bg-secondaryContainer text-base tracking-wide">
+      <div className="mx-4 h-[625px] w-full overflow-y-auto bg-secondaryContainer text-base tracking-wide">
         <table className="w-full whitespace-nowrap">
-          <thead>
-            <tr className="roboto border-b bg-customBlue text-left font-bold  text-white">
+          <thead className="sticky top-0">
+            <tr className="roboto border-b bg-customBlue text-left font-bold text-white">
               <th className="px-4 py-3">Ngày in</th>
               <th className="px-4 py-3">Thời gian in</th>
               <th className="px-4 py-3">MSSV</th>
@@ -141,19 +158,18 @@ const Records = () => {
               <th className="px-4 py-3">Số trang</th>
             </tr>
           </thead>
-          <tbody className="roboto divide-y">
+          <tbody className="roboto h-auto divide-y">
             {mockData.map((row, index) => (
-             <tr key={index} className="text-customBlue">
-             <td className="px-4 py-3 font-bold">{row.date}</td>
-             <td className="px-4 py-3 font-bold">{row.time}</td>
-             <td className="px-4 py-3">{row.studentID}</td>
-             <td className="px-4 py-3">{row.printer}</td>
-             <td className="px-4 py-3">{row.fileName}</td>
-             <td className="px-4 py-3">{row.paperSize}</td>
-             <td className="px-4 py-3">{row.printCount}</td>
-             <td className="px-4 py-3">{row.pageCount}</td>
-           </tr>
-           
+              <tr key={index} className="text-customBlue">
+                <td className="px-4 py-3 font-bold">{row.date}</td>
+                <td className="px-4 py-3 font-bold">{row.time}</td>
+                <td className="px-4 py-3">{row.studentID}</td>
+                <td className="px-4 py-3">{row.printer}</td>
+                <td className="px-4 py-3">{row.fileName}</td>
+                <td className="px-4 py-3">{row.paperSize}</td>
+                <td className="px-4 py-3">{row.printCount}</td>
+                <td className="px-4 py-3">{row.pageCount}</td>
+              </tr>
             ))}
           </tbody>
         </table>
