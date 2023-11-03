@@ -42,7 +42,7 @@ const StudentRecords = () => {
   return (
     <div
       style={{ width: widthValue }}
-      className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[150px]"
+      className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[60px]"
     >
       <div className="flex h-[60px] w-full flex-row justify-between">
         <h2 className="roboto ml-8 w-[270px] text-5xl font-bold text-black">
