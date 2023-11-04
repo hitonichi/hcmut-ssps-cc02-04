@@ -1,4 +1,5 @@
 import { mockData } from '../components/recordConstant';
+import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import PaperSizeFilter from '../components/Records/paperSizeFilter';
 import RecordTable from '../components/Records/recordTable';
@@ -9,9 +10,11 @@ import { useLocation } from 'react-router-dom';
 const StudentRecords = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const defaultPaperSize = searchParams.get('paperSize');
-  const defaultStartDate = searchParams.get('startDate');
-  const defaultEndDate = searchParams.get('endDate');
+  const defaultPaperSize = searchParams.get('paperSize') || 'A3';
+  const defaultStartDate =
+    searchParams.get('startDate') || dayjs().format('YYYY-MM-DD');
+  const defaultEndDate =
+    searchParams.get('endDate') || dayjs().format('YYYY-MM-DD');
   const handleClick = () => {
     console.log('PaperSize: ', defaultPaperSize);
     console.log('Start Date: ', defaultStartDate);
