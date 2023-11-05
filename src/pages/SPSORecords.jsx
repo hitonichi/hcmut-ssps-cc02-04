@@ -72,7 +72,7 @@ const SPSORecords = () => {
             className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[60px]"
           >
             <div className="flex h-[60px] w-full flex-row justify-between">
-              <h2 className="roboto ml-8 w-[270px] text-5xl font-bold text-black">
+              <h2 className="roboto ml-8 w-auto text-5xl font-bold text-black">
                 Lịch sử in{' '}
               </h2>
               <div className="flex w-[800px] flex-row justify-end ">
@@ -103,8 +103,8 @@ const SPSORecords = () => {
             className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[60px]"
           >
             <div className="flex h-[60px] w-full flex-row justify-between">
-              <h2 className="roboto ml-8 w-[270px] text-5xl font-bold text-black">
-                Lịch sử in{' '}
+              <h2 className="roboto ml-8 w-auto text-5xl font-bold text-black">
+                Báo cáo in tháng{' '}
               </h2>
               <div className="flex w-[800px] flex-row justify-end ">
                 <PaperMonth />
@@ -132,8 +132,8 @@ const SPSORecords = () => {
             className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[60px]"
           >
             <div className="flex h-[60px] w-full flex-row justify-between">
-              <h2 className="roboto ml-8 w-[270px] text-5xl font-bold text-black">
-                Lịch sử in{' '}
+              <h2 className="roboto ml-8 w-auto text-5xl font-bold text-black">
+                Báo cáo in năm{' '}
               </h2>
               <div className="flex w-[800px] flex-row justify-end ">
                 <PaperYear />

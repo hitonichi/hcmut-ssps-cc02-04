@@ -2,8 +2,8 @@
 
 const paperSizeFilter = ({totalCountA3,totalCountA4,totalCountA5}) => {
   return (
-    <div className="roboto mx-4 flex h-[85px] w-[500px] flex-col bg-secondaryContainer">
-        <div className="flex h-1/2 w-full flex-row bg-customBlue text-base font-bold text-white">
+    <div className="roboto mx-4 flex h-[85px] w-[500px] flex-col bg-secondaryContainer rounded-lg">
+        <div className="flex h-1/2 w-full flex-row bg-customBlue text-base font-bold text-white rounded-t-lg">
           <div className="flex w-[200px] items-center justify-start py-2 pl-4  ">
             Khổ giấy
           </div>

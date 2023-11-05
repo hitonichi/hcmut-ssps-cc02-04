@@ -1,7 +1,7 @@
 
 const recordTable = ({mockData}) => {
   return (
-    <div className="mx-4 h-[625px] w-full overflow-y-auto bg-secondaryContainer text-base tracking-wide">
+    <div className="mx-4 h-[625px] w-full overflow-y-scroll bg-secondaryContainer text-base tracking-wide rounded-lg scroll">
         <table className="w-full whitespace-nowrap">
           <thead className="sticky top-0">
             <tr className="roboto border-b bg-customBlue text-left font-bold text-white">
@@ -17,7 +17,7 @@ const recordTable = ({mockData}) => {
           </thead>
           <tbody className="roboto h-auto divide-y">
             {mockData.map((row, index) => (
-              <tr key={index} className="text-customBlue">
+              <tr key={index} className="text-customBlue hover:bg-customBlue hover:text-white" >
                 <td className="px-4 py-3 font-bold">{row.date}</td>
                 <td className="px-4 py-3 font-bold">{row.time}</td>
                 <td className="px-4 py-3">{row.studentID}</td>

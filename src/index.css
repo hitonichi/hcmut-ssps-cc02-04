@@ -25,3 +25,7 @@ code {
 .work{
   font-family: 'Work Sans', sans-serif;
 }
+
+.scroll::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
