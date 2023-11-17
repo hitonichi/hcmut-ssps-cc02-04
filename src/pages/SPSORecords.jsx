@@ -1,12 +1,11 @@
 import { useSearchParams } from 'react-router-dom';
 import { Button } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { PaperSize } from '../components/Records/inputForm';
 import { StartDate } from '../components/Records/inputForm';
 import { EndDate } from '../components/Records/inputForm';
 import { mockData } from '../components/recordConstant';
-import dayjs from 'dayjs';
 import 'dayjs/locale/en';
 import PaperSizeFilter from '../components/Records/paperSizeFilter';
 import RecordTable from '../components/Records/recordTable';
@@ -16,14 +15,12 @@ import { PaperYear } from '../components/Records/inputForm';
 const SPSORecords = () => {
   const location = useLocation();
   const searchParamss = new URLSearchParams(location.search);
-  const defaultPaperSize = searchParamss.get('paperSize') || 'A3';
-  const defaultStartDate =
-    searchParamss.get('startDate') || dayjs().format('YYYY-MM-DD');
-  const defaultEndDate =
-    searchParamss.get('endDate') || dayjs().format('YYYY-MM-DD');
-  const defaultStudentID = searchParamss.get('StudentID');
-  const defaultselectMonth = searchParamss.get('month') || 'Tháng Một';
-  const defaultselectYear = searchParamss.get('year') || '2023';
+  const defaultPaperSize = searchParamss.get('paperSize') || null;
+  const defaultStartDate = searchParamss.get('startDate') || null;
+  const defaultEndDate = searchParamss.get('endDate') || null;
+  const defaultStudentID = searchParamss.get('StudentID') || null;
+  const defaultselectMonth = searchParamss.get('month') || null;
+  const defaultselectYear = searchParamss.get('year') || null;
 
   const countPages = (data, paperSize) => {
     let pageCount = 0;
@@ -62,6 +59,12 @@ const SPSORecords = () => {
         break;
     }
   };
+  const [resetCounter, setResetCounter] = useState(0);
+
+  const handleReset = () => {
+    // Incrementing the counter triggers a reset in child components
+    setResetCounter((prev) => prev + 1);
+  };
 
   const renderRecordScreen = (type) => {
     switch (type) {
@@ -71,28 +74,44 @@ const SPSORecords = () => {
             style={{ width: widthValue }}
             className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[60px]"
           >
-            <div className="flex h-[60px] w-full flex-row justify-between">
+            <div className="flex h-[60px] w-full flex-row justify-between ">
               <h2 className="roboto ml-8 w-auto text-5xl font-bold text-black">
                 Lịch sử in{' '}
               </h2>
-              <div className="flex w-[800px] flex-row justify-end ">
-                <StudentID />
-                <PaperSize />
-                <StartDate />
-                <EndDate />
-                <button
-                  onClick={handleClick}
-                  className="work h-[56px]  w-[120px] bg-customBlue px-5 py-2 text-sm font-bold uppercase  text-white"
-                >
-                  tìm kiếm
-                </button>
-              </div>
             </div>
-            <PaperSizeFilter
-              totalCountA3={totalCountA3}
-              totalCountA4={totalCountA4}
-              totalCountA5={totalCountA5}
-            />
+            <div className="flex w-full flex-row justify-between items-start">
+              <div className="flex w-auto ml-4 rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-3 ">
+                <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
+                  <StudentID resetCounter={resetCounter} />
+                  <PaperSize resetCounter={resetCounter} />
+                  
+                  <button
+                    onClick={handleClick}
+                    className="work h-[40px]  w-[126px] rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
+                  >
+                    Tìm kiếm
+                  </button>
+                  
+                </div>
+                <div className="ml-4 flex w-full flex-row gap-3 items-end h-auto ">
+                  
+                  <StartDate resetCounter={resetCounter} />
+                  <EndDate resetCounter={resetCounter} />
+                  
+                  <button
+                    onClick={handleReset}
+                    className="work h-[40px]  w-[126px] rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white"
+                  >
+                    Đặt lại
+                  </button>
+                </div>
+              </div>
+              <PaperSizeFilter
+                totalCountA3={totalCountA3}
+                totalCountA4={totalCountA4}
+                totalCountA5={totalCountA5}
+              />
+            </div>
             <RecordTable mockData={mockData} />
           </div>
         );
@@ -102,26 +121,44 @@ const SPSORecords = () => {
             style={{ width: widthValue }}
             className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[60px]"
           >
-            <div className="flex h-[60px] w-full flex-row justify-between">
+            <div className="flex h-[60px] w-full flex-row justify-between ">
               <h2 className="roboto ml-8 w-auto text-5xl font-bold text-black">
-                Báo cáo in tháng{' '}
+                Lịch sử in{' '}
               </h2>
-              <div className="flex w-[800px] flex-row justify-end ">
-                <PaperMonth />
-                <PaperSize />
-                <button
-                  onClick={handleClick}
-                  className="work h-[56px]  w-[120px] bg-customBlue px-5 py-2 text-sm font-bold uppercase  text-white"
-                >
-                  tìm kiếm
-                </button>
-              </div>
             </div>
-            <PaperSizeFilter
-              totalCountA3={totalCountA3}
-              totalCountA4={totalCountA4}
-              totalCountA5={totalCountA5}
-            />
+            <div className="flex w-full flex-row justify-between items-start">
+              <div className="flex w-auto ml-4 rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-2">
+                <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
+                  <PaperMonth resetCounter={resetCounter} />
+                  <PaperSize resetCounter={resetCounter} />
+                  
+                  <button
+                    onClick={handleClick}
+                    className="work h-[40px]  w-[126px] rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
+                  >
+                    Tìm kiếm
+                  </button>
+                  
+                </div>
+                <div className="ml-4 flex w-full flex-row gap-3  items-center h-auto  ">
+                  
+                
+                  <div className='w-[200px]'></div>
+                  <div className='w-[200px]'></div>
+                  <button
+                    onClick={handleReset}
+                    className="work h-[40px]   w-[126px] rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white"
+                  >
+                    Đặt lại
+                  </button>
+                </div>
+              </div>
+              <PaperSizeFilter
+                totalCountA3={totalCountA3}
+                totalCountA4={totalCountA4}
+                totalCountA5={totalCountA5}
+              />
+            </div>
             <RecordTable mockData={mockData} />
           </div>
         );
@@ -131,26 +168,44 @@ const SPSORecords = () => {
             style={{ width: widthValue }}
             className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[60px]"
           >
-            <div className="flex h-[60px] w-full flex-row justify-between">
+            <div className="flex h-[60px] w-full flex-row justify-between ">
               <h2 className="roboto ml-8 w-auto text-5xl font-bold text-black">
-                Báo cáo in năm{' '}
+                Lịch sử in{' '}
               </h2>
-              <div className="flex w-[800px] flex-row justify-end ">
-                <PaperYear />
-                <PaperSize />
-                <button
-                  onClick={handleClick}
-                  className="work h-[56px]  w-[120px] bg-customBlue px-5 py-2 text-sm font-bold uppercase  text-white"
-                >
-                  tìm kiếm
-                </button>
-              </div>
             </div>
-            <PaperSizeFilter
-              totalCountA3={totalCountA3}
-              totalCountA4={totalCountA4}
-              totalCountA5={totalCountA5}
-            />
+            <div className="flex w-full flex-row justify-between items-start">
+              <div className="flex w-auto ml-4 rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-2">
+                <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
+                  <PaperYear resetCounter={resetCounter} />
+                  <PaperSize resetCounter={resetCounter} />
+                  
+                  <button
+                    onClick={handleClick}
+                    className="work h-[40px]  w-[126px] rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
+                  >
+                    Tìm kiếm
+                  </button>
+                  
+                </div>
+                <div className="ml-4 flex w-full flex-row gap-3  items-center h-auto  ">
+                  
+                
+                  <div className='w-[200px]'></div>
+                  <div className='w-[200px]'></div>
+                  <button
+                    onClick={handleReset}
+                    className="work h-[40px]   w-[126px] rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white"
+                  >
+                    Đặt lại
+                  </button>
+                </div>
+              </div>
+              <PaperSizeFilter
+                totalCountA3={totalCountA3}
+                totalCountA4={totalCountA4}
+                totalCountA5={totalCountA5}
+              />
+            </div>
             <RecordTable mockData={mockData} />
           </div>
         );
