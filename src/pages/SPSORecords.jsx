@@ -65,6 +65,7 @@ const SPSORecords = () => {
     // Incrementing the counter triggers a reset in child components
     setResetCounter((prev) => prev + 1);
   };
+  const [reset, setResetState] = useState(false);
 
   const renderRecordScreen = (type) => {
     switch (type) {
@@ -82,8 +83,8 @@ const SPSORecords = () => {
             <div className="flex w-full flex-row justify-between items-start">
               <div className="flex w-auto ml-4 rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-3 ">
                 <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
-                  <StudentID resetCounter={resetCounter} />
-                  <PaperSize resetCounter={resetCounter} />
+                  <StudentID resetCounter={resetCounter} setResetState={setResetState} />
+                  <PaperSize resetCounter={resetCounter} setResetState={setResetState} />
                   
                   <button
                     onClick={handleClick}
@@ -95,12 +96,12 @@ const SPSORecords = () => {
                 </div>
                 <div className="ml-4 flex w-full flex-row gap-3 items-end h-auto ">
                   
-                  <StartDate resetCounter={resetCounter} />
-                  <EndDate resetCounter={resetCounter} />
+                  <StartDate resetCounter={resetCounter} setResetState={setResetState}  />
+                  <EndDate resetCounter={resetCounter} setResetState={setResetState} />
                   
                   <button
                     onClick={handleReset}
-                    className="work h-[40px]  w-[126px] rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white"
+                    className={`work h-[40px]  w-[126px] rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white ${reset ? "block" : "hidden"}`}
                   >
                     Đặt lại
                   </button>
@@ -129,8 +130,8 @@ const SPSORecords = () => {
             <div className="flex w-full flex-row justify-between items-start">
               <div className="flex w-auto ml-4 rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-2">
                 <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
-                  <PaperMonth resetCounter={resetCounter} />
-                  <PaperSize resetCounter={resetCounter} />
+                  <PaperMonth resetCounter={resetCounter} setResetState={setResetState} />
+                  <PaperSize resetCounter={resetCounter} setResetState={setResetState}/>
                   
                   <button
                     onClick={handleClick}
@@ -176,8 +177,8 @@ const SPSORecords = () => {
             <div className="flex w-full flex-row justify-between items-start">
               <div className="flex w-auto ml-4 rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-2">
                 <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
-                  <PaperYear resetCounter={resetCounter} />
-                  <PaperSize resetCounter={resetCounter} />
+                  <PaperYear resetCounter={resetCounter} setResetState={setResetState}/>
+                  <PaperSize resetCounter={resetCounter} setResetState={setResetState}/>
                   
                   <button
                     onClick={handleClick}

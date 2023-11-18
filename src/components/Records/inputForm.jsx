@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 
 import 'dayjs/locale/en';
 
-export const PaperSize = ({ resetCounter }) => {
+export const PaperSize = ({ resetCounter,setResetState }) => {
   const [paperSize, setPaperSize] = useState(null);
   useEffect(() => {
     setPaperSize('');
@@ -23,6 +23,12 @@ export const PaperSize = ({ resetCounter }) => {
       setPaperSize(null);
     }, 0);
   }, [resetCounter]);
+  useEffect(() => {
+    if (paperSize !== null && paperSize !== '') {
+    setResetState(true);
+  }
+  else setResetState(false);
+}, [paperSize, setResetState]); 
 
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -40,8 +46,10 @@ export const PaperSize = ({ resetCounter }) => {
     setPaperSize(initialPaperSize);
   }, []);
   PaperSize.propTypes = {
-    resetCounter: PropTypes.bool.isRequired, // Use boolean type for resetCounter
+    resetCounter: PropTypes.bool.isRequired,
+    setResetState: PropTypes.bool.isRequired,
   };
+  
 
   return (
     <div className="w-[200px]">
@@ -75,7 +83,7 @@ export const PaperSize = ({ resetCounter }) => {
   );
 };
 
-export const PaperMonth = ({ resetCounter }) => {
+export const PaperMonth = ({ resetCounter,setResetState }) => {
   const [month, setPaperSize] = useState(null);
   useEffect(() => {
     setPaperSize('');
@@ -83,6 +91,12 @@ export const PaperMonth = ({ resetCounter }) => {
       setPaperSize(null);
     }, 0);
   }, [resetCounter]);
+  useEffect(() => {
+    if (month !== null && month !== '') {
+    setResetState(true);
+  }
+  else setResetState(false);
+}, [month, setResetState]); 
 
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -100,7 +114,8 @@ export const PaperMonth = ({ resetCounter }) => {
     setPaperSize(initialPaperSize);
   }, []);
   PaperMonth.propTypes = {
-    resetCounter: PropTypes.bool.isRequired, // Use boolean type for resetCounter
+    resetCounter: PropTypes.bool.isRequired, 
+    setResetState: PropTypes.bool.isRequired,
   };
 
   return (
@@ -141,7 +156,7 @@ export const PaperMonth = ({ resetCounter }) => {
     </div>
   );
 };
-export const PaperYear = ({ resetCounter }) => {
+export const PaperYear = ({ resetCounter,setResetState }) => {
   const [year, setPaperSize] = useState(null);
   useEffect(() => {
     setPaperSize('');
@@ -149,6 +164,12 @@ export const PaperYear = ({ resetCounter }) => {
       setPaperSize(null);
     }, 0);
   }, [resetCounter]);
+  useEffect(() => {
+    if (year !== null && year !== '') {
+    setResetState(true);
+  }
+  else setResetState(false);
+}, [year, setResetState]); 
 
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -166,7 +187,8 @@ export const PaperYear = ({ resetCounter }) => {
     setPaperSize(initialPaperSize);
   }, []);
   PaperYear.propTypes = {
-    resetCounter: PropTypes.bool.isRequired, // Use boolean type for resetCounter
+    resetCounter: PropTypes.bool.isRequired, 
+    setResetState: PropTypes.bool.isRequired,
   };
 
   return (
@@ -200,7 +222,7 @@ export const PaperYear = ({ resetCounter }) => {
     </div>
   );
 };
-export const StartDate = ({ resetCounter }) => {
+export const StartDate = ({ resetCounter,setResetState }) => {
   const [startDate, setStartDate] = useState(null);
   useEffect(() => {
     setStartDate('');
@@ -208,6 +230,12 @@ export const StartDate = ({ resetCounter }) => {
       setStartDate(null);
     }, 0);
   }, [resetCounter]);
+  useEffect(() => {
+    if (startDate !== null && startDate !== '') {
+    setResetState(true);
+  }
+  else setResetState(false);
+}, [startDate, setResetState]); 
 
   const handleChange = (newValue) => {
     setStartDate(newValue);
@@ -229,7 +257,8 @@ export const StartDate = ({ resetCounter }) => {
     setStartDate(initialStartDate ? dayjs(initialStartDate) : null);
   }, []);
   StartDate.propTypes = {
-    resetCounter: PropTypes.bool.isRequired, // Add this prop type validation
+    resetCounter: PropTypes.bool.isRequired,
+    setResetState: PropTypes.bool.isRequired, // Add this prop type validation
   };
   return (
     <div className="h-[44px] w-[200px] ">
@@ -246,7 +275,7 @@ export const StartDate = ({ resetCounter }) => {
   );
 };
 
-export const EndDate = ({ resetCounter }) => {
+export const EndDate = ({ resetCounter,setResetState }) => {
   const [endDate, setEndDate] = useState(null);
   useEffect(() => {
     setEndDate('');
@@ -254,6 +283,12 @@ export const EndDate = ({ resetCounter }) => {
       setEndDate(null);
     }, 0);
   }, [resetCounter]);
+  useEffect(() => {
+    if (endDate !== null && endDate !== '') {
+    setResetState(true);
+    }
+    else setResetState(false);
+}, [endDate, setResetState]); 
 
   const handleChange = (newValue) => {
     setEndDate(newValue);
@@ -276,6 +311,7 @@ export const EndDate = ({ resetCounter }) => {
   }, []);
   EndDate.propTypes = {
     resetCounter: PropTypes.bool.isRequired,
+    setResetState: PropTypes.bool.isRequired,
   };
 
   return (
@@ -294,7 +330,7 @@ export const EndDate = ({ resetCounter }) => {
   );
 };
 
-export const StudentID = ({ resetCounter }) => {
+export const StudentID = ({ resetCounter,setResetState }) => {
   const initialStudentID = null;
   const [studentID, setStudentID] = useState(initialStudentID);
 
@@ -304,6 +340,12 @@ export const StudentID = ({ resetCounter }) => {
       setStudentID(null);
     }, 0);
   }, [resetCounter]);
+  useEffect(() => {
+      if (studentID !== null && studentID !== '') {
+      setResetState(true);
+    }
+    else setResetState(false);
+  }, [studentID, setResetState]); 
 
   const handleChange = (event) => {
     const newStudentID = event.target.value;
@@ -322,6 +364,7 @@ export const StudentID = ({ resetCounter }) => {
   }, []);
   StudentID.propTypes = {
     resetCounter: PropTypes.bool.isRequired,
+    setResetState: PropTypes.bool.isRequired,
   };
 
   return (
