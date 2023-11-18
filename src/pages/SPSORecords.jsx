@@ -80,28 +80,41 @@ const SPSORecords = () => {
                 Lịch sử in{' '}
               </h2>
             </div>
-            <div className="flex w-full flex-row justify-between items-start">
-              <div className="flex w-auto ml-4 rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-3 ">
-                <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
-                  <StudentID resetCounter={resetCounter} setResetState={setResetState} />
-                  <PaperSize resetCounter={resetCounter} setResetState={setResetState} />
-                  
+            <div className="flex w-full flex-row items-start justify-between">
+              <div className="ml-4 grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
+                <div className="flex h-full max-w-[200px] flex-col gap-2">
+                  <StudentID
+                    resetCounter={resetCounter}
+                    setResetState={setResetState}
+                  />
+                  <StartDate
+                    resetCounter={resetCounter}
+                    setResetState={setResetState}
+                  />
+                </div>
+                <div className="flex h-full max-w-[200px] flex-col gap-2">
+                  <PaperSize
+                    resetCounter={resetCounter}
+                    setResetState={setResetState}
+                  />
+                  <EndDate
+                    resetCounter={resetCounter}
+                    setResetState={setResetState}
+                  />
+                </div>
+                <div className="flex h-full flex-col gap-2">
                   <button
                     onClick={handleClick}
-                    className="work h-[40px]  w-[126px] rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
+                    className="work h-[40px] rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
                   >
                     Tìm kiếm
                   </button>
-                  
-                </div>
-                <div className="ml-4 flex w-full flex-row gap-3 items-end h-auto ">
-                  
-                  <StartDate resetCounter={resetCounter} setResetState={setResetState}  />
-                  <EndDate resetCounter={resetCounter} setResetState={setResetState} />
-                  
+
                   <button
                     onClick={handleReset}
-                    className={`work h-[40px]  w-[126px] rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white ${reset ? "block" : "hidden"}`}
+                    className={`work h-[40px]  rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white ${
+                      reset ? 'block' : 'hidden'
+                    }`}
                   >
                     Đặt lại
                   </button>
@@ -127,28 +140,31 @@ const SPSORecords = () => {
                 Lịch sử in{' '}
               </h2>
             </div>
-            <div className="flex w-full flex-row justify-between items-start">
-              <div className="flex w-auto ml-4 rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-2">
-                <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
-                  <PaperMonth resetCounter={resetCounter} setResetState={setResetState} />
-                  <PaperSize resetCounter={resetCounter} setResetState={setResetState}/>
-                  
+            <div className="flex w-full flex-row items-start justify-between">
+              <div className="ml-4 grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
+                <div className="flex h-full  w-[200px] flex-col gap-2">
+                  <PaperMonth
+                    resetCounter={resetCounter}
+                    setResetState={setResetState}
+                  />
+                </div>
+                <div className="flex h-full  w-[200px] flex-col gap-2">
+                  <PaperSize
+                    resetCounter={resetCounter}
+                    setResetState={setResetState}
+                  />
+                </div>
+
+                <div className="flex h-full   flex-col gap-2">
                   <button
                     onClick={handleClick}
-                    className="work h-[40px]  w-[126px] rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
+                    className="work h-[40px]  rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
                   >
                     Tìm kiếm
                   </button>
-                  
-                </div>
-                <div className="ml-4 flex w-full flex-row gap-3  items-center h-auto  ">
-                  
-                
-                  <div className='w-[200px]'></div>
-                  <div className='w-[200px]'></div>
                   <button
                     onClick={handleReset}
-                    className="work h-[40px]   w-[126px] rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white"
+                    className="work h-[40px]  rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white"
                   >
                     Đặt lại
                   </button>
@@ -174,28 +190,30 @@ const SPSORecords = () => {
                 Lịch sử in{' '}
               </h2>
             </div>
-            <div className="flex w-full flex-row justify-between items-start">
-              <div className="flex w-auto ml-4 rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-2">
-                <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
-                  <PaperYear resetCounter={resetCounter} setResetState={setResetState}/>
-                  <PaperSize resetCounter={resetCounter} setResetState={setResetState}/>
-                  
+            <div className="flex w-full flex-row items-start justify-between">
+              <div className="ml-4 grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
+                <div className="flex h-full  w-[200px] flex-col gap-2">
+                  <PaperYear
+                    resetCounter={resetCounter}
+                    setResetState={setResetState}
+                  />
+                </div>
+                <div className="flex h-full  w-[200px] flex-col gap-2">
+                  <PaperSize
+                    resetCounter={resetCounter}
+                    setResetState={setResetState}
+                  />
+                </div>
+                <div className="flex h-full   flex-col gap-2">
                   <button
                     onClick={handleClick}
-                    className="work h-[40px]  w-[126px] rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
+                    className="work h-[40px]  rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
                   >
                     Tìm kiếm
                   </button>
-                  
-                </div>
-                <div className="ml-4 flex w-full flex-row gap-3  items-center h-auto  ">
-                  
-                
-                  <div className='w-[200px]'></div>
-                  <div className='w-[200px]'></div>
                   <button
                     onClick={handleReset}
-                    className="work h-[40px]   w-[126px] rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white"
+                    className="work h-[40px]   rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white"
                   >
                     Đặt lại
                   </button>
