@@ -17,7 +17,7 @@ const paperSizeFilter = ({totalCountA3,totalCountA4,totalCountA5}) => {
             A5
           </div>
         </div>
-        <div className="flex h-1/2 w-full flex-row text-base font-bold text-customBlue">
+        <div className="flex h-1/2 w-full flex-row text-base font-bold text-black bg-white rounded-b-lg">
           {' '}
           <div className="flex w-[200px] items-center justify-start py-2 pl-4  ">
             Tổng số trang đã in{' '}

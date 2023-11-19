@@ -51,7 +51,7 @@ const StudentRecords = () => {
         </h2>
       </div>
       <div className="flex w-full flex-row justify-between items-start">
-        <div className="flex w-auto ml-4 rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-2">
+        <div className="flex w-auto  rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-2">
           <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
             
             <PaperSize resetCounter={resetCounter} />
