@@ -14,10 +14,7 @@ import 'dayjs/locale/en';
 export const PaperSize = ({ resetCounter, setResetState }) => {
   const [paperSize, setPaperSize] = useState(null);
   useEffect(() => {
-    setPaperSize('');
-    setTimeout(() => {
-      setPaperSize(null);
-    }, 0);
+    setPaperSize(null);
   }, [resetCounter]);
   useEffect(() => {
     if (paperSize !== null && paperSize !== '') {
@@ -25,19 +22,19 @@ export const PaperSize = ({ resetCounter, setResetState }) => {
     } else setResetState(false);
   }, [paperSize, setResetState]);
 
-  // const handleChange = (event) => {
-  //   const newSize = event.target.value;
-  //   setPaperSize(newSize);
+  const handleChange = (event) => {
+    const newSize = event.target.value;
+    setPaperSize(newSize);
 
-  //   const newSearchParams = new URLSearchParams(window.location.search);
-  //   newSearchParams.set('paperSize', newSize);
-  //   window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
-  //   window.dispatchEvent(new Event('popstate'));
-  // };
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('paperSize', newSize);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
+  };
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const initialPaperSize = searchParams.get('paperSize') || 'A3';
+    const initialPaperSize = searchParams.get('paperSize') || null;
     setPaperSize(initialPaperSize);
   }, []);
   PaperSize.propTypes = {
@@ -48,8 +45,14 @@ export const PaperSize = ({ resetCounter, setResetState }) => {
   return (
     <div className="">
       <FormControl fullWidth>
-        <TextField id="demo-simple-select" select label="Khổ giấy" size="small">
-          <MenuItem value={null}>None</MenuItem>
+        <TextField
+          id="demo-simple-select"
+          select
+          label="Khổ giấy"
+          size="small"
+          onChange={handleChange}
+        >
+          <MenuItem value={null}>Tất cả</MenuItem>
           <MenuItem value={'A5'}>A5</MenuItem>
           <MenuItem value={'A4'}>A4</MenuItem>
           <MenuItem value={'A3'}>A3</MenuItem>
@@ -62,10 +65,7 @@ export const PaperSize = ({ resetCounter, setResetState }) => {
 export const PaperMonth = ({ resetCounter, setResetState }) => {
   const [month, setPaperSize] = useState(null);
   useEffect(() => {
-    setPaperSize('');
-    setTimeout(() => {
-      setPaperSize(null);
-    }, 0);
+    setPaperSize(null);
   }, [resetCounter]);
   useEffect(() => {
     if (month !== null && month !== '') {
@@ -73,19 +73,19 @@ export const PaperMonth = ({ resetCounter, setResetState }) => {
     } else setResetState(false);
   }, [month, setResetState]);
 
-  // const handleChange = (event) => {
-  //   const newSize = event.target.value;
-  //   setPaperSize(newSize);
+  const handleChange = (event) => {
+    const newSize = event.target.value;
+    setPaperSize(newSize);
 
-  //   const newSearchParams = new URLSearchParams(window.location.search);
-  //   newSearchParams.set('month', newSize);
-  //   window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
-  //   window.dispatchEvent(new Event('popstate'));
-  // };
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('month', newSize);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
+  };
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const initialPaperSize = searchParams.get('month') || 'Tháng Một';
+    const initialPaperSize = searchParams.get('month') || null;
     setPaperSize(initialPaperSize);
   }, []);
   PaperMonth.propTypes = {
@@ -101,8 +101,9 @@ export const PaperMonth = ({ resetCounter, setResetState }) => {
           select
           label="Chọn tháng"
           size="small"
+          onChange={handleChange}
         >
-          <MenuItem value={null}>None</MenuItem>
+          <MenuItem value={null}>Chọn tháng</MenuItem>
           <MenuItem value={'Tháng Một'}>Tháng Một</MenuItem>
           <MenuItem value={'Tháng Hai'}>Tháng Hai</MenuItem>
           <MenuItem value={'Tháng Ba'}>Tháng Ba</MenuItem>
@@ -123,30 +124,28 @@ export const PaperMonth = ({ resetCounter, setResetState }) => {
 export const PaperYear = ({ resetCounter, setResetState }) => {
   const [year, setPaperSize] = useState(null);
   useEffect(() => {
-    setPaperSize('');
-    setTimeout(() => {
-      setPaperSize(null);
-    }, 0);
+    setPaperSize(null);
   }, [resetCounter]);
   useEffect(() => {
     if (year !== null && year !== '') {
       setResetState(true);
     } else setResetState(false);
   }, [year, setResetState]);
+  console.log('PapeYear current ', year);
 
-  // const handleChange = (event) => {
-  //   const newSize = event.target.value;
-  //   setPaperSize(newSize);
+  const handleChange = (event) => {
+    const newSize = event.target.value;
+    setPaperSize(newSize);
 
-  //   const newSearchParams = new URLSearchParams(window.location.search);
-  //   newSearchParams.set('year', newSize);
-  //   window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
-  //   window.dispatchEvent(new Event('popstate'));
-  // };
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('year', newSize);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
+  };
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const initialPaperSize = searchParams.get('year') || '2023';
+    const initialPaperSize = searchParams.get('year') || null;
     setPaperSize(initialPaperSize);
   }, []);
   PaperYear.propTypes = {
@@ -156,8 +155,14 @@ export const PaperYear = ({ resetCounter, setResetState }) => {
 
   return (
     <FormControl fullWidth>
-      <TextField id="demo-simple-select" select label="Chọn năm" size="small">
-        <MenuItem value={null}>None</MenuItem>
+      <TextField
+        id="demo-simple-select"
+        select
+        label="Chọn năm"
+        size="small"
+        onChange={handleChange}
+      >
+        <MenuItem value={null}>Chọn năm</MenuItem>
         <MenuItem value={'2023'}>2023</MenuItem>
         <MenuItem value={'2022'}>2022</MenuItem>
         <MenuItem value={'2021'}>2021</MenuItem>

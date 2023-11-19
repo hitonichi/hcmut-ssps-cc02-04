@@ -164,7 +164,9 @@ const SPSORecords = () => {
                   </button>
                   <button
                     onClick={handleReset}
-                    className="work h-[40px]  rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white"
+                    className={`work h-[40px]  rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white ${
+                      reset ? 'block' : 'hidden'
+                    }`}
                   >
                     Đặt lại
                   </button>
@@ -213,7 +215,9 @@ const SPSORecords = () => {
                   </button>
                   <button
                     onClick={handleReset}
-                    className="work h-[40px]   rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white"
+                    className={`work h-[40px]  rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white ${
+                      reset ? 'block' : 'hidden'
+                    }`}
                   >
                     Đặt lại
                   </button>
