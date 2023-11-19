@@ -11,10 +11,8 @@ const StudentRecords = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const defaultPaperSize = searchParams.get('paperSize') || null;
-  const defaultStartDate =
-    searchParams.get('startDate') || null;
-  const defaultEndDate =
-    searchParams.get('endDate') || null;
+  const defaultStartDate = searchParams.get('startDate') || null;
+  const defaultEndDate = searchParams.get('endDate') || null;
   const handleClick = () => {
     console.log('PaperSize: ', defaultPaperSize);
     console.log('Start Date: ', defaultStartDate);
@@ -35,6 +33,7 @@ const StudentRecords = () => {
   const totalCountA4 = countPages(mockData, 'A4');
   const totalCountA5 = countPages(mockData, 'A5');
   const [resetCounter, setResetCounter] = useState(0);
+  const [reset, setResetState] = useState(false);
 
   const handleReset = () => {
     // Incrementing the counter triggers a reset in child components
@@ -50,30 +49,39 @@ const StudentRecords = () => {
           Lịch sử in{' '}
         </h2>
       </div>
-      <div className="flex w-full flex-row justify-between items-start">
-        <div className="flex w-auto  rounded-lg flex-col bg-white h-[128px] justify-center items-center gap-2">
-          <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
-            
-            <PaperSize resetCounter={resetCounter} />
-            <StartDate resetCounter={resetCounter} />
-            
+      <div className="flex w-full flex-row items-start justify-between">
+        <div className="grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
+          <div className="flex h-full max-w-[200px] flex-col gap-2">
+            <StartDate
+              setResetState={setResetState}
+              resetCounter={resetCounter}
+            />
+            <PaperSize
+              setResetState={setResetState}
+              resetCounter={resetCounter}
+            />
+          </div>
+
+          <div className="flex h-full max-w-[200px] flex-col gap-2">
+            <EndDate
+              setResetState={setResetState}
+              resetCounter={resetCounter}
+            />
+          </div>
+          <div className="flex h-full max-w-[200px] flex-col gap-2">
             <button
               onClick={handleClick}
-              className="work h-[40px]  w-[126px] rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
+              className="work h-[40px]   rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
             >
               Tìm kiếm
             </button>
-            
-          </div>
-          <div className="ml-4 flex w-full flex-row gap-3 items-center h-auto  ">
-            
-            
-            <EndDate resetCounter={resetCounter} />
-            <div className='w-[200px]'></div>
-            
             <button
               onClick={handleReset}
-              className="work h-[40px]  w-[126px] rounded-lg bg-gray-800 px-2 py-1 text-sm  font-bold text-white"
+              className={`work ${
+                reset ? 'block' : 'hidden'
+              }  h-[40px] rounded-lg
+                      bg-gray-800 px-2 py-1 text-sm font-bold
+                    text-white`}
             >
               Đặt lại
             </button>

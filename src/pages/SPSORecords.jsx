@@ -81,7 +81,7 @@ const SPSORecords = () => {
               </h2>
             </div>
             <div className="flex w-full flex-row items-start justify-between">
-              <div className="ml-4 grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
+              <div className="grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
                 <div className="flex h-full max-w-[200px] flex-col gap-2">
                   <StudentID
                     resetCounter={resetCounter}
@@ -141,7 +141,7 @@ const SPSORecords = () => {
               </h2>
             </div>
             <div className="flex w-full flex-row items-start justify-between">
-              <div className="ml-4 grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
+              <div className="grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
                 <div className="flex h-full  w-[200px] flex-col gap-2">
                   <PaperMonth
                     resetCounter={resetCounter}
@@ -191,7 +191,7 @@ const SPSORecords = () => {
               </h2>
             </div>
             <div className="flex w-full flex-row items-start justify-between">
-              <div className="ml-4 grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
+              <div className=" grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
                 <div className="flex h-full  w-[200px] flex-col gap-2">
                   <PaperYear
                     resetCounter={resetCounter}
