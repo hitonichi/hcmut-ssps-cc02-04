@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
 import { useAuth } from '../../hooks/auth';
-import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user } = useAuth();
-  if (!user) {
-    return <Navigate to="/login" />;
+  if (!allowedRoles.includes(user.role)) {
+    return <div>You are not authorized to view this page</div>;
   }
   return children;
 };
 
 ProtectedRoute.propTypes = {
   children: PropTypes.element,
+  allowedRoles: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default ProtectedRoute;
