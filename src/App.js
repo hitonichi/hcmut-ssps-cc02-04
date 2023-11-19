@@ -7,6 +7,8 @@ import HomeLayout from './components/HomeLayout';
 import Printing from './pages/Printing';
 import Records from './pages/Records';
 import PrinterManagement from './pages/PrinterManagement';
+import ProtectedRoute from './components/ProtectedRoute';
+import PoliciesPage from './pages/Policies';
 
 function App() {
   return (
@@ -33,16 +35,16 @@ function App() {
           <Route path="printers" element={<PrinterManagement />} />
           <Route path="records" element={<Records />} />
           <Route
-            path="policies"
-            element={
-              <div className="h-[100vh] bg-slate-300">
-                This is Policies Page
-              </div>
-            }
-          />
-          <Route
             path="management"
             element={<div>This is Management Page</div>}
+          />
+          <Route
+            path="policies"
+            element={
+              <ProtectedRoute allowedRoles={['spso']}>
+                <PoliciesPage />
+              </ProtectedRoute>
+            }
           />
         </Route>
       </Routes>
