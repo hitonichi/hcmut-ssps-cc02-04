@@ -10,17 +10,22 @@ import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 
 import 'dayjs/locale/en';
+import { InputLabel, Select } from '@mui/material';
 
 export const PaperSize = ({ resetCounter, setResetState }) => {
-  const [paperSize, setPaperSize] = useState(null);
+  const [paperSize, setPaperSize] = useState('all');
   useEffect(() => {
-    setPaperSize(null);
+    setPaperSize('all');
   }, [resetCounter]);
   useEffect(() => {
-    if (paperSize !== null && paperSize !== '') {
+    if (paperSize !== 'all' && paperSize !== '') {
       setResetState(true);
     } else setResetState(false);
   }, [paperSize, setResetState]);
+
+  // const setResetState = (val) => dispac
+  // setReste(...)
+  // setReset  = ...
 
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -34,7 +39,7 @@ export const PaperSize = ({ resetCounter, setResetState }) => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const initialPaperSize = searchParams.get('paperSize') || null;
+    const initialPaperSize = searchParams.get('paperSize') || 'all';
     setPaperSize(initialPaperSize);
   }, []);
   PaperSize.propTypes = {
@@ -44,19 +49,20 @@ export const PaperSize = ({ resetCounter, setResetState }) => {
 
   return (
     <div className="">
-      <FormControl fullWidth>
-        <TextField
+      <FormControl fullWidth size="small">
+        <InputLabel id="demo-simple-select-label">Khổ giấy</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
           id="demo-simple-select"
-          select
+          value={paperSize}
           label="Khổ giấy"
-          size="small"
           onChange={handleChange}
         >
-          <MenuItem value={null}>Tất cả</MenuItem>
+          <MenuItem value={'all'}>Tất cả</MenuItem>
           <MenuItem value={'A5'}>A5</MenuItem>
           <MenuItem value={'A4'}>A4</MenuItem>
           <MenuItem value={'A3'}>A3</MenuItem>
-        </TextField>
+        </Select>
       </FormControl>
     </div>
   );
@@ -95,12 +101,13 @@ export const PaperMonth = ({ resetCounter, setResetState }) => {
 
   return (
     <div className="h-full ">
-      <FormControl fullWidth>
-        <TextField
+      <FormControl fullWidth size="small">
+        <InputLabel id="demo-simple-select-label">Chọn tháng</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
           id="demo-simple-select"
-          select
+          value={month}
           label="Chọn tháng"
-          size="small"
           onChange={handleChange}
         >
           <MenuItem value={null}>Chọn tháng</MenuItem>
@@ -116,7 +123,7 @@ export const PaperMonth = ({ resetCounter, setResetState }) => {
           <MenuItem value={'Tháng Mười'}>Tháng Mười</MenuItem>
           <MenuItem value={'Tháng Mười Một'}>Tháng Mười Một</MenuItem>
           <MenuItem value={'Tháng Mười Hai'}>Tháng Mười Hai</MenuItem>
-        </TextField>
+        </Select>
       </FormControl>
     </div>
   );
