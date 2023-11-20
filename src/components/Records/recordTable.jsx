@@ -7,8 +7,8 @@ const recordTable = ({ mockData }) => {
             <th className="px-4 py-3">Ngày in</th>
             <th className="px-4 py-3">Thời gian in</th>
             <th className="px-4 py-3">MSSV</th>
-            <th className="px-4 py-3">Máy in</th>
-            <th className="px-4 py-3">Tên file</th>
+            <th className="px-4 py-3">In tại</th>
+            <th className="px-4 py-3">Tên tài liệu</th>
             <th className="px-4 py-3">Khổ giấy</th>
             <th className="px-4 py-3">Số bản in</th>
             <th className="px-4 py-3">Số trang</th>
@@ -23,7 +23,7 @@ const recordTable = ({ mockData }) => {
               <td className="px-4 py-3 ">{row.date}</td>
               <td className="px-4 py-3 ">{row.time}</td>
               <td className="px-4 py-3">{row.studentID}</td>
-              <td className="px-4 py-3">{row.printer}</td>
+              <td className="px-4 py-3">{row.printer.location}</td>
               <td className="px-4 py-3">{row.fileName}</td>
               <td className="px-4 py-3">{row.paperSize}</td>
               <td className="px-4 py-3">{row.printCount}</td>
