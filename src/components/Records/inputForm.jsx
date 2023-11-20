@@ -69,12 +69,12 @@ export const PaperSize = ({ resetCounter, setResetState }) => {
 };
 
 export const PaperMonth = ({ resetCounter, setResetState }) => {
-  const [month, setPaperSize] = useState(null);
+  const [month, setPaperSize] = useState('all');
   useEffect(() => {
-    setPaperSize(null);
+    setPaperSize('all');
   }, [resetCounter]);
   useEffect(() => {
-    if (month !== null && month !== '') {
+    if (month !== 'all' && month !== '') {
       setResetState(true);
     } else setResetState(false);
   }, [month, setResetState]);
@@ -91,7 +91,7 @@ export const PaperMonth = ({ resetCounter, setResetState }) => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const initialPaperSize = searchParams.get('month') || null;
+    const initialPaperSize = searchParams.get('month') || 'all';
     setPaperSize(initialPaperSize);
   }, []);
   PaperMonth.propTypes = {
@@ -110,7 +110,7 @@ export const PaperMonth = ({ resetCounter, setResetState }) => {
           label="Chọn tháng"
           onChange={handleChange}
         >
-          <MenuItem value={null}>Chọn tháng</MenuItem>
+          <MenuItem value={'all'}>Tất cả</MenuItem>
           <MenuItem value={'Tháng Một'}>Tháng Một</MenuItem>
           <MenuItem value={'Tháng Hai'}>Tháng Hai</MenuItem>
           <MenuItem value={'Tháng Ba'}>Tháng Ba</MenuItem>
@@ -129,12 +129,12 @@ export const PaperMonth = ({ resetCounter, setResetState }) => {
   );
 };
 export const PaperYear = ({ resetCounter, setResetState }) => {
-  const [year, setPaperSize] = useState(null);
+  const [year, setPaperSize] = useState('all');
   useEffect(() => {
-    setPaperSize(null);
+    setPaperSize('all');
   }, [resetCounter]);
   useEffect(() => {
-    if (year !== null && year !== '') {
+    if (year !== 'all' && year !== '') {
       setResetState(true);
     } else setResetState(false);
   }, [year, setResetState]);
@@ -152,7 +152,7 @@ export const PaperYear = ({ resetCounter, setResetState }) => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const initialPaperSize = searchParams.get('year') || null;
+    const initialPaperSize = searchParams.get('year') || 'all';``
     setPaperSize(initialPaperSize);
   }, []);
   PaperYear.propTypes = {
@@ -169,7 +169,7 @@ export const PaperYear = ({ resetCounter, setResetState }) => {
         size="small"
         onChange={handleChange}
       >
-        <MenuItem value={null}>Chọn năm</MenuItem>
+        <MenuItem value={'all'}>Tất cả</MenuItem>
         <MenuItem value={'2023'}>2023</MenuItem>
         <MenuItem value={'2022'}>2022</MenuItem>
         <MenuItem value={'2021'}>2021</MenuItem>
