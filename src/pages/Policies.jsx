@@ -2,6 +2,9 @@
 import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import AllowedFormatForm from '../components/policy/AllowedFormatForm';
+import AllocationDateForm from '../components/policy/AllocationDateForm';
+import AllocationPageForm from '../components/policy/AllocationPaperForm';
 
 const PoliciesPage = () => {
   // const location = useLocation();
@@ -12,28 +15,13 @@ const PoliciesPage = () => {
     switch (type) {
       case 'date':
         //  TODO: Implement the form body here
-        return (
-          <>
-            <Button onClick={() => navigate(-1)}>Back</Button>
-            <div>Modifying allocation date</div>;
-          </>
-        );
+        return <AllocationDateForm />;
       case 'paper':
         //  TODO: Implement the form body here
-        return (
-          <>
-            <Button onClick={() => navigate(-1)}>Back</Button>
-            <div>Modifying default allocated paper</div>
-          </>
-        );
+        return <AllocationPageForm />;
       case 'format':
         //  TODO: Implement the form body here
-        return (
-          <>
-            <Button onClick={() => navigate(-1)}>Back</Button>
-            <div>Modifying allowed formats</div>
-          </>
-        );
+        return <AllowedFormatForm />;
       default:
         return (
           <>
@@ -60,7 +48,11 @@ const PoliciesPage = () => {
 
 const PoliciesContainer = ({ children }) => {
   // TODO: implement the layout here
-  return <div className="h-[100vh] bg-yellow-100">{children}</div>;
+  return (
+    <div className="flex h-[100vh] w-full items-center justify-center bg-yellow-100">
+      <div className=" bg-red-100">{children}</div>
+    </div>
+  );
 };
 
 PoliciesContainer.propTypes = {
