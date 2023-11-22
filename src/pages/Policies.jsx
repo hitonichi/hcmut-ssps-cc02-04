@@ -50,7 +50,7 @@ const PoliciesContainer = ({ children }) => {
   // TODO: implement the layout here
   return (
     <div className="flex h-[100vh] w-full items-center justify-center bg-yellow-100">
-      <div className=" bg-red-100">{children}</div>
+      <div className=" bg-red-100">{children}hehe</div>
     </div>
   );
 };
