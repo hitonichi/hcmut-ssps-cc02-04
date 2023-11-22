@@ -28,37 +28,40 @@ const PoliciesPage = () => {
       default:
         return (
           <>
-          <div className='min-h-screen flex flex-col items-center justify-center align-center space-y-[40px]'>
+          <div className='min-h-screen flex flex-col items-center justify-center align-center space-y-[40px] '>
             <Button onClick={() => setSearchParams({ type: 'date' })}>
-              <div className='flex items-center justify-center 
+              <div className='grid grid-cols-4 
               bg-blue-200 hover:bg-blue-300 
-              h-[100px] w-[320px] rounded-[20px]
-              space-x-[8px]' >
-                <img className='h-[50px] w-1/8' src={calender} alt="" />
-                <div className='text-black text-base font-medium' >
-                  Modify allocation date
+              h-[100px] w-[396px] rounded-[20px]' >
+                <div className='flex justify-center items-center '>
+                  <img className='h-[50px] w-[50px] ' src={calender} alt="" />
+                </div>
+                <div className='col-span-2 flex justify-self-start items-center text-black text-sm font-semibold' >
+                  Thay đổi ngày phân bố
                 </div>
               </div>
             </Button>
             <Button onClick={() => setSearchParams({ type: 'paper' })}>
-              <div className='flex items-center justify-center 
+              <div className='grid grid-cols-4
               bg-blue-200 hover:bg-blue-300 
-              h-[100px] w-[320px] rounded-[20px]
-              space-x-[8px]' >
-                <img className='h-[50px] w-1/8' src={paper} alt="" />
-                <div className='text-black text-base font-medium' >
-                  Modify allocation date
+              h-[100px] w-[396px] rounded-[20px]' >
+                <div className='flex justify-center items-center '>
+                  <img className='h-[50px] w-[50px] ' src={paper} alt="" />
+                </div>
+                <div className='col-span-3 flex justify-self-start items-center text-black text-sm font-semibold' >
+                  Thay đổi số trang mặc định
                 </div>
               </div>
             </Button>
             <Button onClick={() => setSearchParams({ type: 'format' })}>
-              <div className='flex items-center justify-center 
+              <div className='grid grid-cols-4 
               bg-blue-200 hover:bg-blue-300 
-              h-[100px] w-[320px] rounded-[20px]
-              space-x-[8px]' >
-                <img className='h-[50px] w-1/8' src={format} alt="" />
-                <div className='text-black text-base font-medium' >
-                  Modify allocation date
+              h-[100px] w-[396px] rounded-[20px]' >
+                <div className='flex justify-center items-center '>
+                  <img className='h-[50px] w-[50px] ' src={format} alt="" />
+                </div>
+                <div className='col-span-3 flex justify-self-start items-center text-black text-sm font-semibold'  >
+                  Thay đổi định dạng file được phép
                 </div>
               </div>
             </Button>
