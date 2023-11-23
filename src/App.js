@@ -7,6 +7,7 @@ import HomeLayout from './components/HomeLayout';
 import Printing from './pages/Printing';
 import Records from './pages/Records';
 import PrinterManagement from './pages/PrinterManagement';
+import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import PoliciesPage from './pages/Policies';
 
@@ -15,7 +16,7 @@ function App() {
     <div>
       <Routes>
         {/* TODO: implement a not-found page */}
-        <Route path="*" element={<div>Not found</div>} />
+        <Route path="*" element={<NotFound />} />
 
         {/* routes when not logged in */}
         <Route element={<HomeLayout />}>
