@@ -81,8 +81,20 @@ const PoliciesPage = () => {
 const PoliciesContainer = ({ children }) => {
   // TODO: implement the layout here
   return (
-    <div className="flex h-[100vh] w-full items-center justify-center bg-yellow-100">
-      <div className=" bg-red-100">{children}</div>
+    <div className="flex h-[100vh] w-full items-center justify-center white">
+      <div className=" h-3/4 w-3/4 white
+        border-4 border-blue-200 rounded-[60px]
+        flex items-top
+        ">
+        <div className='
+        flex items-center justify-center
+        h-[90px] w-full rounded-t-[56px]
+        text-[20px] font-semibold
+        bg-blue-200
+        '>
+          {children}
+        </div>
+      </div>
     </div>
   );
 };
