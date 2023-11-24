@@ -1,3 +1,7 @@
+import { HashLink } from "react-router-hash-link";
+import PrinterInformation from "../../pages/PrinterInformation";
+
+
 const printerTable = ({ mockData }) => {
     return (
       <div className="scroll h-[625px] w-auto overflow-y-scroll rounded-lg bg-secondaryContainer text-base tracking-wide">
@@ -14,8 +18,9 @@ const printerTable = ({ mockData }) => {
           </thead>
           <tbody className="roboto h-auto divide-y">
             {mockData.map((row, index) => (
-              <tr
+              <HashLink
                 key={index}
+                to ={`printers/${row.ID}`}
                 className="bg-white font-bold text-black hover:bg-primaryContainer"
               >
                 <td className="px-4 py-3">{row.ID}</td>
@@ -24,7 +29,12 @@ const printerTable = ({ mockData }) => {
                 <td className="px-4 py-3">{row.lastPrintTime}</td>
                 <td className="px-4 py-3">{row.allowedFormat}</td>
                 <td className="px-4 py-3">{row.status}</td>
-              </tr>
+                <PrinterInformation
+                printer={row}
+                />
+
+                
+              </HashLink>
             ))}
           </tbody>
         </table>
