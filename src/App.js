@@ -10,6 +10,7 @@ import PrinterManagement from './pages/PrinterManagement';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import PoliciesPage from './pages/Policies';
+import PrinterInformation from './pages/PrinterInformation';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           />
           <Route path="printing" element={<Printing />} />
           <Route path="printers" element={<PrinterManagement />} />
+          <Route path="printers/:printerId" element={<PrinterInformation />} />
           <Route path="records" element={<Records />} />
           <Route
             path="management"
