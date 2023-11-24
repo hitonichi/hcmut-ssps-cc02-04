@@ -214,7 +214,7 @@ export const mockData = [
 ];
 export const printerData = [
   {
-    ID: '123456789',
+    printerID: '123456789',
     location: 'B1-101',
     printer: 'Printer 1',
     lastPrintTime: '2023-10-28 12:30 PM',
@@ -222,7 +222,7 @@ export const printerData = [
     status: 'enabled',
   },
   {
-    ID: '987654321',
+    printerID: '987654321',
     location: 'B1-102',
     printer: 'Printer 2',
     lastPrintTime: '2023-10-27 09:45 AM',
@@ -230,7 +230,7 @@ export const printerData = [
     status: 'disabled',
   },
   {
-    ID: '345678912',
+    printerID: '345678912',
     location: 'B1-103',
     printer: 'Printer 3',
     lastPrintTime: '2023-10-26 10:00 AM',
@@ -238,7 +238,7 @@ export const printerData = [
     status: 'enabled',
   },
   {
-    ID: '789123456',
+    printerID: '789123456',
     location: 'B1-104',
     printer: 'Printer 4',
     lastPrintTime: '2023-10-25 02:15 PM',
@@ -246,7 +246,7 @@ export const printerData = [
     status: 'disabled',
   },
   {
-    ID: '234567891',
+    printerID: '234567891',
     location: 'B1-105',
     printer: 'Printer 5',
     lastPrintTime: '2023-10-24 03:30 PM',
@@ -254,7 +254,7 @@ export const printerData = [
     status: 'enabled',
   },
   {
-    ID: '891234567',
+    printerID: '891234567',
     location: 'B1-106',
     printer: 'Printer 6',
     lastPrintTime: '2023-10-23 11:00 AM',
@@ -262,7 +262,7 @@ export const printerData = [
     status: 'disabled',
   },
   {
-    ID: '456789123',
+    printerID: '456789123',
     location: 'B1-107',
     printer: 'Printer 7',
     lastPrintTime: '2023-10-22 01:45 PM',
@@ -270,7 +270,7 @@ export const printerData = [
     status: 'enabled',
   },
   {
-    ID: '678912345',
+    printerID: '678912345',
     location: 'B1-108',
     printer: 'Printer 8',
     lastPrintTime: '2023-10-21 04:00 PM',
@@ -278,7 +278,7 @@ export const printerData = [
     status: 'disabled',
   },
   {
-    ID: '123123123',
+    printerID: '123123123',
     location: 'B1-109',
     printer: 'Printer 9',
     lastPrintTime: '2023-11-01 10:30 AM',
@@ -286,7 +286,7 @@ export const printerData = [
     status: 'enabled',
   },
   {
-    ID: '456456456',
+    printerID: '456456456',
     location: 'B1-110',
     printer: 'Printer 10',
     lastPrintTime: '2023-11-02 11:45 AM',
@@ -294,7 +294,7 @@ export const printerData = [
     status: 'disabled',
   },
   {
-    ID: '123123123',
+    printerID: '123123123',
     location: 'B1-111',
     printer: 'Printer 12',
     lastPrintTime: '2023-11-01 10:30 AM',
@@ -302,7 +302,7 @@ export const printerData = [
     status: 'enabled',
   },
   {
-    ID: '456456456',
+    printerID: '456456456',
     location: 'B1-112',
     printer: 'Printer 13',
     lastPrintTime: '2023-11-02 11:45 AM',
@@ -310,7 +310,7 @@ export const printerData = [
     status: 'disabled',
   },
   {
-    ID: '789789789',
+    printerID: '789789789',
     location: 'B1-113',
     printer: 'Printer 14',
     lastPrintTime: '2023-11-03 02:00 PM',
@@ -318,7 +318,7 @@ export const printerData = [
     status: 'enabled',
   },
   {
-    ID: '111222333',
+    printerID: '111222333',
     location: 'B1-114',
     printer: 'Printer 15',
     lastPrintTime: '2023-11-04 03:15 PM',
@@ -326,7 +326,7 @@ export const printerData = [
     status: 'disabled',
   },
   {
-    ID: '444555666',
+    printerID: '444555666',
     location: 'B1-115',
     printer: 'Printer 16',
     lastPrintTime: '2023-11-05 09:30 AM',
@@ -334,7 +334,7 @@ export const printerData = [
     status: 'enabled',
   },
   {
-    ID: '777888999',
+    printerID: '777888999',
     location: 'B1-116',
     printer: 'Printer 17',
     lastPrintTime: '2023-11-06 01:00 PM',
@@ -342,7 +342,7 @@ export const printerData = [
     status: 'disabled',
   },
   {
-    ID: '123987456',
+    printerID: '123987456',
     location: 'B1-117',
     printer: 'Printer 18',
     lastPrintTime: '2023-11-07 04:30 PM',
@@ -350,7 +350,7 @@ export const printerData = [
     status: 'enabled',
   },
   {
-    ID: '456789123',
+    printerID: '456789123',
     location: 'B1-118',
     printer: 'Printer 19',
     lastPrintTime: '2023-11-08 11:00 AM',
@@ -358,7 +358,7 @@ export const printerData = [
     status: 'disabled',
   },
   {
-    ID: '789123456',
+    printerID: '789123456',
     location: 'B1-119',
     printer: 'Printer 20',
     lastPrintTime: '2023-11-09 02:45 PM',
