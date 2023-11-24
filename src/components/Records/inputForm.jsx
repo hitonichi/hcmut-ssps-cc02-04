@@ -1,5 +1,3 @@
-
-
 import { useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
@@ -62,8 +60,6 @@ export const Branch = ({ resetCounter, setResetState }) => {
     </div>
   );
 };
-
-
 
 export const PaperSize = ({ resetCounter, setResetState }) => {
   const [paperSize, setPaperSize] = useState('all');
@@ -336,7 +332,6 @@ export const EndDate = ({ resetCounter, setResetState }) => {
   );
 };
 
-
 export const Build = ({ resetCounter, setResetState }) => {
   const initialStudentID = null;
   const [Building, setBuilding] = useState(initialStudentID);
@@ -435,7 +430,6 @@ export const StatusState = ({ resetCounter, setResetState }) => {
     </div>
   );
 };
-
 
 export const StudentID = ({ resetCounter, setResetState }) => {
   const initialStudentID = null;

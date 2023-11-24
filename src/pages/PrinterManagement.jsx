@@ -1,10 +1,9 @@
 import { printerData } from '../components/recordConstant';
 import 'dayjs/locale/en';
-import PrinterTable from '../components/Records/printerTable';
+import PrinterTable from '../components/PrinterMan/printerTable';
 import { Branch } from '../components/Records/inputForm';
 import { Build } from '../components/Records/inputForm';
 import { StatusState } from '../components/Records/inputForm';
-
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 const PrinterManangement = () => {
@@ -14,18 +13,17 @@ const PrinterManangement = () => {
   const defaultBuilding = searchParams.get('Building') || null;
   const defaultBranch = searchParams.get('Branch') || null;
   const handleClick = () => {
-    console.log('PaperSize: ', defaultStatus);
-    console.log('Start Date: ', defaultBuilding);
-    console.log('End Date: ', defaultBranch);
+    console.log('Status: ', defaultStatus);
+    console.log('Building: ', defaultBuilding);
+    console.log('Branch: ', defaultBranch);
   };
 
   const widthValue = `calc(100vw - 80px)`;
-  
+
   const [resetCounter, setResetCounter] = useState(0);
   const [reset, setResetState] = useState(false);
 
   const handleReset = () => {
-    // Incrementing the counter triggers a reset in child components
     setResetCounter((prev) => prev + 1);
   };
   return (
@@ -41,14 +39,8 @@ const PrinterManangement = () => {
       <div className="flex w-full flex-row items-start justify-between">
         <div className="grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
           <div className="flex h-full max-w-[200px] flex-col gap-2">
-            <Branch
-              setResetState={setResetState}
-              resetCounter={resetCounter}
-            />
-            <Build
-              setResetState={setResetState}
-              resetCounter={resetCounter}
-            />
+            <Branch setResetState={setResetState} resetCounter={resetCounter} />
+            <Build setResetState={setResetState} resetCounter={resetCounter} />
           </div>
 
           <div className="flex h-full max-w-[200px] flex-col gap-2">
@@ -76,7 +68,6 @@ const PrinterManangement = () => {
             </button>
           </div>
         </div>
-       
       </div>
       <PrinterTable mockData={printerData} />
     </div>
