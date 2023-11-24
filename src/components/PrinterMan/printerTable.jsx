@@ -6,7 +6,7 @@ const printerTable = ({ mockData }) => {
       <table className="w-full whitespace-nowrap">
         <thead className="sticky top-0">
           <tr className="roboto border-b bg-customBlue text-left font-bold text-white">
-            <th className="px-4 py-3">MSSV</th>
+            <th className="px-4 py-3">ID</th>
             <th className="px-4 py-3">Vị trí</th>
             <th className="px-4 py-3">Máy in</th>
             <th className="px-4 py-3">Lần in cuối cùng</th>
