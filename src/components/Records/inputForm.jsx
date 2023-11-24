@@ -1,3 +1,5 @@
+
+
 import { useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
@@ -8,9 +10,60 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
-
 import 'dayjs/locale/en';
 import { InputLabel, Select } from '@mui/material';
+
+export const Branch = ({ resetCounter, setResetState }) => {
+  const [branchValue, setBranchValue] = useState('CS1');
+
+  useEffect(() => {
+    setBranchValue('CS1');
+  }, [resetCounter]);
+  useEffect(() => {
+    if (branchValue !== 'CS1' && branchValue !== '') {
+      setResetState(true);
+    } else setResetState(false);
+  }, [branchValue, setResetState]);
+
+  const handleChange = (event) => {
+    const newSize = event.target.value;
+    setBranchValue(newSize);
+
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('Branch', newSize);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
+  };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const initialBranchValue = searchParams.get('Branch') || 'CS1';
+    setBranchValue(initialBranchValue);
+  }, []);
+  Branch.propTypes = {
+    resetCounter: PropTypes.bool.isRequired,
+    setResetState: PropTypes.func.isRequired,
+  };
+  return (
+    <div className="">
+      <FormControl fullWidth size="small">
+        <InputLabel id="demo-simple-select-label">Cơ sở</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={branchValue}
+          label="Cơ sở"
+          onChange={handleChange}
+        >
+          <MenuItem value={'CS1'}>Cơ sở 1</MenuItem>
+          <MenuItem value={'CS2'}>Cơ sở 2</MenuItem>
+        </Select>
+      </FormControl>
+    </div>
+  );
+};
+
+
 
 export const PaperSize = ({ resetCounter, setResetState }) => {
   const [paperSize, setPaperSize] = useState('all');
@@ -152,7 +205,8 @@ export const PaperYear = ({ resetCounter, setResetState }) => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const initialPaperSize = searchParams.get('year') || 'all';``
+    const initialPaperSize = searchParams.get('year') || 'all';
+    ``;
     setPaperSize(initialPaperSize);
   }, []);
   PaperYear.propTypes = {
@@ -281,6 +335,107 @@ export const EndDate = ({ resetCounter, setResetState }) => {
     </div>
   );
 };
+
+
+export const Build = ({ resetCounter, setResetState }) => {
+  const initialStudentID = null;
+  const [Building, setBuilding] = useState(initialStudentID);
+
+  useEffect(() => {
+    setBuilding('');
+    setTimeout(() => {
+      setBuilding(null);
+    }, 0);
+  }, [resetCounter]);
+  useEffect(() => {
+    if (Building !== null && Building !== '') {
+      setResetState(true);
+    } else setResetState(false);
+  }, [Building, setResetState]);
+
+  const handleChange = (event) => {
+    const newStudentID = event.target.value;
+    setBuilding(newStudentID);
+
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('Building', newStudentID);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
+  };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const initialStudentID = searchParams.get('Building');
+    setBuilding(initialStudentID);
+  }, []);
+  Build.propTypes = {
+    resetCounter: PropTypes.bool.isRequired,
+    setResetState: PropTypes.bool.isRequired,
+  };
+
+  return (
+    <div className="">
+      <TextField
+        id="justatee"
+        label="Toà nhà  "
+        variant="outlined"
+        value={Building}
+        onChange={handleChange}
+        size="small"
+      />
+    </div>
+  );
+};
+export const StatusState = ({ resetCounter, setResetState }) => {
+  const [Status, setStatus] = useState('enabled');
+
+  useEffect(() => {
+    setStatus('enabled');
+  }, [resetCounter]);
+  useEffect(() => {
+    if (Status !== 'enabled' && Status !== '') {
+      setResetState(true);
+    } else setResetState(false);
+  }, [Status, setResetState]);
+
+  const handleChange = (event) => {
+    const newSize = event.target.value;
+    setStatus(newSize);
+
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('Status', newSize);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
+  };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const initialBranchValue = searchParams.get('Status') || 'enabled';
+    setStatus(initialBranchValue);
+  }, []);
+  StatusState.propTypes = {
+    resetCounter: PropTypes.bool.isRequired,
+    setResetState: PropTypes.func.isRequired,
+  };
+  return (
+    <div className="">
+      <FormControl fullWidth size="small">
+        <InputLabel id="demo-simple-select-label">Trạng thái</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={Status}
+          label="Trạng thái"
+          onChange={handleChange}
+        >
+          <MenuItem value={'enabled'}>Khả dụng</MenuItem>
+          <MenuItem value={'disabled'}>Chưa kích hoạt</MenuItem>
+        </Select>
+      </FormControl>
+    </div>
+  );
+};
+
 
 export const StudentID = ({ resetCounter, setResetState }) => {
   const initialStudentID = null;

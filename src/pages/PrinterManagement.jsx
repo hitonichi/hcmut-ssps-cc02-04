@@ -1,37 +1,26 @@
 import { printerData } from '../components/recordConstant';
 import 'dayjs/locale/en';
-import PaperSizeFilter from '../components/Records/paperSizeFilter';
 import PrinterTable from '../components/Records/printerTable';
-import { PaperSize } from '../components/Records/inputForm';
-import { StartDate } from '../components/Records/inputForm';
-import { EndDate } from '../components/Records/inputForm';
+import { Branch } from '../components/Records/inputForm';
+import { Build } from '../components/Records/inputForm';
+import { StatusState } from '../components/Records/inputForm';
+
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 const PrinterManangement = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const defaultPaperSize = searchParams.get('paperSize') || null;
-  const defaultStartDate = searchParams.get('startDate') || null;
-  const defaultEndDate = searchParams.get('endDate') || null;
+  const defaultStatus = searchParams.get('Status') || null;
+  const defaultBuilding = searchParams.get('Building') || null;
+  const defaultBranch = searchParams.get('Branch') || null;
   const handleClick = () => {
-    console.log('PaperSize: ', defaultPaperSize);
-    console.log('Start Date: ', defaultStartDate);
-    console.log('End Date: ', defaultEndDate);
+    console.log('PaperSize: ', defaultStatus);
+    console.log('Start Date: ', defaultBuilding);
+    console.log('End Date: ', defaultBranch);
   };
 
   const widthValue = `calc(100vw - 80px)`;
-  const countPages = (data, paperSize) => {
-    let pageCount = 0;
-    data.forEach((item) => {
-      if (item.paperSize === paperSize) {
-        pageCount += item.pageCount * item.printCount;
-      }
-    });
-    return pageCount;
-  };
-  const totalCountA3 = countPages(printerData, 'A3');
-  const totalCountA4 = countPages(printerData, 'A4');
-  const totalCountA5 = countPages(printerData, 'A5');
+  
   const [resetCounter, setResetCounter] = useState(0);
   const [reset, setResetState] = useState(false);
 
@@ -46,24 +35,24 @@ const PrinterManangement = () => {
     >
       <div className="flex h-[60px] w-full flex-row justify-between ">
         <h2 className="roboto ml-8 w-auto text-5xl font-bold text-black">
-          Lịch sử in{' '}
+          Quản lí máy in{' '}
         </h2>
       </div>
       <div className="flex w-full flex-row items-start justify-between">
         <div className="grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
           <div className="flex h-full max-w-[200px] flex-col gap-2">
-            <StartDate
+            <Branch
               setResetState={setResetState}
               resetCounter={resetCounter}
             />
-            <PaperSize
+            <Build
               setResetState={setResetState}
               resetCounter={resetCounter}
             />
           </div>
 
           <div className="flex h-full max-w-[200px] flex-col gap-2">
-            <EndDate
+            <StatusState
               setResetState={setResetState}
               resetCounter={resetCounter}
             />
@@ -87,11 +76,7 @@ const PrinterManangement = () => {
             </button>
           </div>
         </div>
-        <PaperSizeFilter
-          totalCountA3={totalCountA3}
-          totalCountA4={totalCountA4}
-          totalCountA5={totalCountA5}
-        />
+       
       </div>
       <PrinterTable mockData={printerData} />
     </div>
