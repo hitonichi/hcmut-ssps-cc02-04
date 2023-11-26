@@ -6,6 +6,7 @@ import { Build } from '../components/Records/inputForm';
 import { StatusState } from '../components/Records/inputForm';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import BasicModal from '../components/PrinterMan/modal';
 const PrinterManangement = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -52,7 +53,7 @@ const PrinterManangement = () => {
           <div className="flex h-full max-w-[200px] flex-col gap-2">
             <button
               onClick={handleClick}
-              className="work h-[40px]   rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
+              className="work h-[40px] w-[90px]   rounded-lg bg-customBlue px-2 py-1 text-sm font-bold  text-white"
             >
               Tìm kiếm
             </button>
@@ -61,15 +62,18 @@ const PrinterManangement = () => {
               className={`work ${
                 reset ? 'block' : 'hidden'
               }  h-[40px] rounded-lg
-                      bg-gray-800 px-2 py-1 text-sm font-bold
+                      bg-gray-800 px-2 py-1 w-[90px] text-sm font-bold
                     text-white`}
             >
               Đặt lại
             </button>
           </div>
+          
         </div>
+        <BasicModal />
       </div>
       <PrinterTable mockData={printerData} />
+      
     </div>
   );
 };

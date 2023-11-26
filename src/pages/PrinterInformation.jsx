@@ -30,7 +30,7 @@ const PrinterInformation = () => {
         </h2>
       </div>
       <div className="flex h-[232px] w-[475px] flex-col rounded-lg bg-white">
-        <div className="flex h-[176px] w-full flex-row items-center justify-center gap-4 px-5 pt-4">
+        <div className="flex h-[176px] w-full flex-row items-center justify-center gap-4 px-5 pt-4 mb-2">
           <div className="aspect-square h-auto w-[144px]">
             <img className="h-full w-full object-contain" src={printer}></img>
           </div>
@@ -65,7 +65,7 @@ const PrinterInformation = () => {
           </div>
         </div>
         <div className="flex h-[56px] w-full items-center justify-end border-t-[1px] border-black px-2 py-1">
-          <div className="flex h-[40px] w-[178px] cursor-pointer items-center justify-center rounded-lg bg-customBlue p-2 text-center ">
+          <div className="flex h-[40px] w-auto cursor-pointer items-center justify-center rounded-lg bg-customBlue p-2 text-center ">
             <h3
               className="w-auto text-base font-bold text-white"
               onClick={handleButton}

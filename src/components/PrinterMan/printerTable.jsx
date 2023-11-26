@@ -28,8 +28,8 @@ const printerTable = ({ mockData }) => {
               <td className="px-4 py-3">{row.allowedFormat}</td>
               <td className="px-4 py-3  max-w-[200px]">
                 <h2
-                  className={`flex   items-center justify-center rounded-2xl px-3 py-1 text-base  font-normal text-white ${
-                    row.status == 'enabled' ? 'bg-green-700 w-[92px]' : 'bg-red-700 w-[141px]'
+                  className={`flex   items-center justify-center rounded-2xl px-3s py-1 text-base  font-normal text-white ${
+                    row.status == 'enabled' ? 'bg-green-700 w-[112px]' : 'bg-red-700 w-[161px]'
                   }`}
                 >
                   {row.status === 'enabled' ? 'Khả dụng' : 'Không khả dụng'}
