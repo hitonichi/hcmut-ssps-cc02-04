@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import logo from '../../assets/images/HCMUT_logo.png';
 import logoutIcon from '../../assets/icon/logout.png';
-import { useAuth } from '../../hooks/auth';
 import { NavLink } from 'react-router-dom';
 
 import { DEFAULT_ROUTES } from './constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from '@mui/material';
+import { removeUser } from '../../store/slices/authSlice';
 
 const SideBar = () => {
-  const { user, logout } = useAuth();
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const routes = DEFAULT_ROUTES[user.role];
 
   const [isExpanded, setIsExpanded] = useState(false);
@@ -36,7 +39,7 @@ const SideBar = () => {
             className={`flex h-auto w-full flex-row items-center justify-center gap-4 p-2`}
           >
             <img
-              className="aspect-square w-[36px] self-center object-cover ml-2"
+              className="ml-2 aspect-square w-[36px] self-center object-cover"
               src={logo}
               alt=""
             />
@@ -55,13 +58,13 @@ const SideBar = () => {
           >
             <h3 className="ml-4 w-auto text-black  ">{user.role}</h3>
             <h3 className="ml-4 w-auto font-bold uppercase text-black">
-              {`${user.name} - ${user.uid}`}
+              {`${user.name} - ${user.orgId}`}
             </h3>
           </div>
         </div>
 
         <div className="flex h-auto w-full px-4  ">
-          <div className="flex h-full  w-full flex-col gap-4 font-bold  border-y-2 border-black py-2 ">
+          <div className="flex h-full  w-full flex-col gap-4 border-y-2  border-black py-2 font-bold ">
             {routes.map(({ path, label, icon }) => (
               // <div
               // className="flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue"
@@ -94,25 +97,36 @@ const SideBar = () => {
         </div>
 
         <div className="h-auto w-full px-4 ">
-          <div
-            onClick={logout}
-            className={`mt-2 flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue ${
-              isExpanded ? '' : 'justify-center'
-            }`}
+          <Link
+            underline="none"
+            href={
+              user.local
+                ? '#'
+                : `${process.env.REACT_APP_BACKEND_BASE_URL}/api/logout`
+            }
           >
-            <img
-              className="h-[24px] w-[24px] object-cover p-1"
-              alt=""
-              src={logoutIcon}
-            ></img>
-            <h2
-              className={`h-full w-auto text-base font-bold ${
-                isExpanded ? 'block' : ' hidden'
+            <div
+              onClick={() => {
+                if (user.local) dispatch(removeUser());
+              }}
+              className={`mt-2 flex h-auto w-full cursor-pointer flex-row items-center gap-3 rounded-lg p-2 text-black hover:bg-primaryContainer hover:text-customBlue ${
+                isExpanded ? '' : 'justify-center'
               }`}
             >
-              Đăng xuất
-            </h2>
-          </div>
+              <img
+                className="h-[24px] w-[24px] object-cover p-1"
+                alt=""
+                src={logoutIcon}
+              ></img>
+              <h2
+                className={`h-full w-auto text-base font-bold ${
+                  isExpanded ? 'block' : ' hidden'
+                }`}
+              >
+                Đăng xuất
+              </h2>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

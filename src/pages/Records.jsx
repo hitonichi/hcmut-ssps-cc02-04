@@ -1,10 +1,10 @@
 import 'dayjs/locale/en';
-import { useAuth } from '../hooks/auth';
 import StudentRecords from './StudentRecords';
 import SPSORecords from './SPSORecords';
+import { useSelector } from 'react-redux';
 
 const Records = () => {
-  const { user } = useAuth();
+  const { user } = useSelector((state) => state.auth);
 
   const renderRecordScreen = (role) => {
     switch (role) {

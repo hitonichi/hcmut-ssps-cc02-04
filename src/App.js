@@ -10,8 +10,18 @@ import PrinterManagement from './pages/PrinterManagement';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import PoliciesPage from './pages/Policies';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchUser } from './store/actions/authActions';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log('[App.js] fetching user');
+    dispatch(fetchUser());
+  }, []);
+
   return (
     <div>
       <Routes>
