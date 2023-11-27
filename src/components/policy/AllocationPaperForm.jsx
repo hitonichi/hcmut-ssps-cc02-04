@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from '@mui/material';
 import NumberInput from '../Input/NumberInputBasic';
 const AllocationPageForm = () => {
-  const [value, setValue] = useState('10');
+  const [value, setValue] = useState(10);
   const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
   const [defValue, setDefValue] = useState(value);
@@ -39,7 +39,6 @@ const AllocationPageForm = () => {
               defaultValue={defValue}
               min={1}
               // max={100}
-
               onChange={(event, val) => setValue(val)}
               error={!isValid}
             />
