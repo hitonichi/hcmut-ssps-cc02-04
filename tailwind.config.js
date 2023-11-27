@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         customBlue: '#0461A3',
         primaryContainer: '#D1E4FF',
+        secondaryContainer: '#E5EEFF',
       },
     },
   },
