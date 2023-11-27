@@ -89,17 +89,20 @@ const PoliciesContainer = ({ children, title }) => {
   const navigate = useNavigate();
   return (
     <div className="flex h-[100vh] w-full items-center justify-center white">
-      <div className=" h-3/4 w-3/4 white border-4 border-blue-200 rounded-[60px] flex flex-col items-center">
+      <div className=" h-3/4 w-3/4 white border-4 border-blue-200 rounded-[60px] flex flex-col items-center justify-between">
         {/* the header */}
         <div className='flex items-center justify-center h-[90px] w-full rounded-t-[56px] text-[20px] font-semibold bg-blue-200'>
           {title}  
         </div>
         {children}
+
         {/* Button back using navigate back router dom */}
-        <button onClick={() => navigate("/dashboard/policies")}
-                className='border-[1px] border-customBlue text-customBlue py-[8px] px-[16px] rounded-[20px] font-semibold mt-[450px] mr-[910px] w-[120px] h-[40px]'>
-          Quay lại
-        </button>      
+        <div className='flex w-full pb-[12px] pl-[24px]'>
+          <button onClick={() => navigate("/dashboard/policies")}
+                  className='border-[1px] border-customBlue text-customBlue py-[8px] px-[16px] rounded-[20px] font-semibold  w-[120px] h-[40px]'>
+            Quay lại
+          </button>      
+        </div>
       </div>
     </div> // the end of a page
   );
