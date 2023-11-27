@@ -1,20 +1,13 @@
-import { useState } from "react";
+import axios from "axios";
 
-const baseUrl = service.env.REACT_APP_BACKEND_BASE_URL;
+const baseUrl = "http://localhost:8080";
 
-export const getPrinter = () => {
-    const [containerData, setContainerData] = useState([]);
-  useEffect(() => {
-    axios
-      .get(baseUrl + "/printers")
-      .then((response) => {
-        setContainerData(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-  return(
-    <div></div>
-  );
+export const getPrinter = async () => {
+  try {
+    const {data} = await axios.get(baseUrl + "/printers");
+    return data.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 };

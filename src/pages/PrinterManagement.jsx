@@ -8,6 +8,7 @@ import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import BasicModal from '../components/PrinterMan/modal';
 const PrinterManangement = () => {
+  
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const defaultStatus = searchParams.get('Status') || null;
