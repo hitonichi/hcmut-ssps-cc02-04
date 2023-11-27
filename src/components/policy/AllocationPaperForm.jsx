@@ -1,7 +1,7 @@
 const AllocationPageForm = () => {
   return (
     <>
-      <div>Modifying default allocated paper</div>
+      <div>Thay đổi số trang mặc định</div>
     </>
   );
 };

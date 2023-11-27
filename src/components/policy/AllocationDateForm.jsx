@@ -1,7 +1,7 @@
 const AllocationDateForm = () => {
   return (
     <>
-      <div>Modifying allocation date</div>
+      <div>Thay đổi ngày phân bố</div>
     </>
   );
 };

@@ -1,7 +1,7 @@
 const AllowedFormatForm = () => {
   return (
     <>
-      <div>Modifying allowed formats</div>
+      <div>Thay đổi định dạng file được phép</div>
     </>
   );
 };
