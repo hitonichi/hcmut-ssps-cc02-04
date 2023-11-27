@@ -9,23 +9,11 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   return (
     <div className="flex flex-col items-center gap-2 p-4">
-      {/* <a href="http://localhost:8080/auth/google" ></a> */}
-      <Link className="w-[50%]" href="http://localhost:8080/auth/google">
-        <button
-          className="w-full rounded-md bg-customBlue p-2 text-white hover:bg-primaryContainer"
-          // onClick={async () => {
-          //   console.log(login);
-          //   await login(
-          //     {>
-          //       role: 'student',
-          //       uid: '1234567',
-          //       name: 'Nguyễn Văn A',
-          //     },
-          //     'local',
-          //   );
-          //   ToastService.createToast({ title: 'login toast' });
-          // }}
-        >
+      <Link
+        className="w-[50%]"
+        href={`${process.env.REACT_APP_BACKEND_BASE_URL}/auth/google`}
+      >
+        <button className="w-full rounded-md bg-customBlue p-2 text-white hover:bg-primaryContainer">
           Sign In with SSO
         </button>
       </Link>
@@ -50,10 +38,6 @@ const LoginPage = () => {
         className="w-[50%] rounded-md bg-customBlue p-2 text-white hover:bg-primaryContainer"
         onClick={async () => {
           console.log(login);
-          // await login(
-          //   { role: 'spso', uid: '7654321', name: 'Trần Văn B' },
-          //   'local',
-          // );
           dispatch(
             setUser({
               role: 'spso',

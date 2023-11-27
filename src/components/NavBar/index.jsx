@@ -25,7 +25,11 @@ const NavBar = ({ pages }) => {
       {!!user && (
         <Link
           underline="none"
-          href={user.local ? '#' : 'http://localhost:8080/api/logout'}
+          href={
+            user.local
+              ? '#'
+              : `${process.env.REACT_APP_BACKEND_BASE_URL}/api/logout`
+          }
         >
           <button
             onClick={() => {

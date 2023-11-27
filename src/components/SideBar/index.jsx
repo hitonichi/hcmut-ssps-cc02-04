@@ -99,7 +99,11 @@ const SideBar = () => {
         <div className="h-auto w-full px-4 ">
           <Link
             underline="none"
-            href={user.local ? '#' : 'http://localhost:8080/api/logout'}
+            href={
+              user.local
+                ? '#'
+                : `${process.env.REACT_APP_BACKEND_BASE_URL}/api/logout`
+            }
           >
             <div
               onClick={() => {
