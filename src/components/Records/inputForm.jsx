@@ -480,3 +480,71 @@ export const StudentID = ({ resetCounter, setResetState }) => {
     </div>
   );
 };
+
+export const PrinterBuilding = () => {
+  const initialStudentID = null;
+  const [PrinterBuilding, setPrinterBuilding] = useState(initialStudentID);
+
+  const handleChange = (event) => {
+    const newStudentID = event.target.value;
+    setPrinterBuilding(newStudentID);
+
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('PrinterBuilding', newStudentID);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
+  };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const initialStudentID = searchParams.get('PrinterBuilding');
+    setPrinterBuilding(initialStudentID);
+  }, []);
+
+  return (
+    <div className="">
+      <TextField
+        id="justatee"
+        label="Tòa nhà"
+        variant="outlined"
+        value={PrinterBuilding}
+        onChange={handleChange}
+        size="small"
+      />
+    </div>
+  );
+};
+
+export const PrinterName = () => {
+  const initialStudentID = null;
+  const [PrinterName, setPrinterName] = useState(initialStudentID);
+
+  const handleChange = (event) => {
+    const newStudentID = event.target.value;
+    setPrinterName(newStudentID);
+
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('PrinterName', newStudentID);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
+  };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const initialStudentID = searchParams.get('PrinterName');
+    setPrinterName(initialStudentID);
+  }, []);
+
+  return (
+    <div className="">
+      <TextField
+        id="justatee"
+        label="Tên máy in"
+        variant="outlined"
+        value={PrinterName}
+        onChange={handleChange}
+        size="small"
+      />
+    </div>
+  );
+};
