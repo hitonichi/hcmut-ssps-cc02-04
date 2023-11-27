@@ -42,6 +42,7 @@ const AllocationPageForm = () => {
           )}
         </div>
         <div className="mt-10 flex flex-col items-center justify-center">
+          <p className={`mb-2 text-yellow-500`}>Số trang hiện tại là</p>
           <Button
             variant="contained"
             onClick={handleSave}
