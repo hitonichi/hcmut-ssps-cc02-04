@@ -1,14 +1,13 @@
 // import { useLocation } from 'react-router';
 import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import AllowedFormatForm from '../components/policy/AllowedFormatForm';
 import AllocationDateForm from '../components/policy/AllocationDateForm';
 import AllocationPageForm from '../components/policy/AllocationPaperForm';
 
 const PoliciesPage = () => {
   // const location = useLocation();
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const renderBody = (type) => {
