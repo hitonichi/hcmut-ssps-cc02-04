@@ -1,7 +1,7 @@
 // import { useLocation } from 'react-router';
 import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
-import {useSearchParams } from 'react-router-dom';
+import {useNavigate, useSearchParams } from 'react-router-dom';
 import AllowedFormatForm from '../components/policy/AllowedFormatForm';
 import AllocationDateForm from '../components/policy/AllocationDateForm';
 import AllocationPageForm from '../components/policy/AllocationPaperForm';
@@ -18,13 +18,13 @@ const PoliciesPage = () => {
     switch (type) {
       case 'date':
         //  TODO: Implement the form body here
-        return (<PoliciesContainer><AllocationDateForm /></PoliciesContainer>);
+        return (<PoliciesContainer title={'Thay đổi ngày phân bố'} ><AllocationDateForm /></PoliciesContainer>);
       case 'paper':
         //  TODO: Implement the form body here
-        return (<PoliciesContainer> <AllocationPageForm /> </PoliciesContainer>);
+        return (<PoliciesContainer title={'Thay đổi số trang mặc định'} > <AllocationPageForm /> </PoliciesContainer>);
       case 'format':
         //  TODO: Implement the form body here
-        return (<PoliciesContainer>  <AllowedFormatForm /> </PoliciesContainer>);
+        return (<PoliciesContainer title={'Thay đổi định dạng file được phép'}>  <AllowedFormatForm /> </PoliciesContainer>);
       default:
         return (
           <>
@@ -78,29 +78,30 @@ const PoliciesPage = () => {
   );
 };
 
-const PoliciesContainer = ({ children }) => {
+const PoliciesContainer = ({ children, title }) => {
   // TODO: implement the layout here
+  const navigate = useNavigate();
   return (
     <div className="flex h-[100vh] w-full items-center justify-center white">
-      <div className=" h-3/4 w-3/4 white
-        border-4 border-blue-200 rounded-[60px]
-        flex items-top
-        ">
-        <div className='
-        flex items-center justify-center
-        h-[90px] w-full rounded-t-[56px]
-        text-[20px] font-semibold
-        bg-blue-200
-        '>
-          {children}
+      <div className=" h-3/4 w-3/4 white border-4 border-blue-200 rounded-[60px] flex flex-col items-center">
+        {/* the header */}
+        <div className='flex items-center justify-center h-[90px] w-full rounded-t-[56px] text-[20px] font-semibold bg-blue-200'>
+          {title}  
         </div>
+        {children}
+        {/* Button back using navigate back router dom */}
+        <button onClick={() => navigate("/dashboard/policies")}
+                className='border-[1px] border-customBlue text-customBlue py-[8px] px-[16px] rounded-[20px] font-semibold mt-[450px] mr-[900px]'>
+          Quay lại
+        </button>      
       </div>
-    </div>
+    </div> // the end of a page
   );
 };
 
 PoliciesContainer.propTypes = {
   children: PropTypes.element,
+  title: PropTypes.string
 };
 
 export default PoliciesPage;

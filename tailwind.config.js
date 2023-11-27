@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        customBlue: '#0461a3',
+        customBlue: '#0461A3',
         primaryContainer: '#D1E4FF',
       },
     },
