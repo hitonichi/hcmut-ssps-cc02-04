@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Unstable_NumberInput as BaseNumberInput } from '@mui/base/Unstable_NumberInput';
 import clsx from 'clsx';
-
+import './NumberInput.css';
 // const NumberInputBasic = () => {
 //   const [value, setValue] = React.useState();
 //   return (
@@ -35,9 +35,7 @@ const NumberInput = React.forwardRef(function NumberInput(props, ref) {
             ...resolvedSlotProps,
             className: clsx(
               'grid grid-cols-[1fr_8px] grid-rows-2 overflow-hidden font-sans rounded-lg text-slate-900  border border-solid  bg-white   hover:border-blue-400 focus-visible:outline-0 p-1',
-              ownerState.focused
-                ? 'border-blue-400  shadow-lg shadow-outline-blue '
-                : 'border-slate-300  shadow-md shadow-slate-100 ',
+              ownerState.focused ? 'border-blue-400  ' : 'border-slate-300 ',
               resolvedSlotProps?.className,
             ),
           };
