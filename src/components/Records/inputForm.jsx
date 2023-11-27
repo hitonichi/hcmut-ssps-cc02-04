@@ -10,6 +10,102 @@ import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import 'dayjs/locale/en';
 import { InputLabel, Select } from '@mui/material';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+export const AllowedFormat = () => {
+  return (
+    <div>
+      <FormControlLabel
+        control={<Checkbox {...label} />}
+        label="A3"
+      />
+      <FormControlLabel
+        control={<Checkbox {...label} />}
+        label="A4"
+      />
+      <FormControlLabel
+        control={<Checkbox {...label}/>}
+        label="A5"
+      />
+    </div>
+  );
+};
+
+export const BranchPrinter = () => {
+  const [value, setValue] = useState(null);
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+  return (
+    <FormControl>
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+        onChange={handleChange}
+        value={value}
+      >
+        <FormControlLabel value="CS1" control={<Radio />} label="CS1" />
+        <FormControlLabel value="CS2" control={<Radio />} label="CS2" />
+      </RadioGroup>
+    </FormControl>
+  );
+};
+
+export const PrintingType = () => {
+  const [value, setValue] = useState(null);
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+  return (
+    <FormControl>
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+        onChange={handleChange}
+        value={value}
+      >
+        <FormControlLabel value="Một mặt" control={<Radio />} label="Một mặt" />
+        <FormControlLabel value="Hai mặt" control={<Radio />} label="Hai mặt" />
+      </RadioGroup>
+    </FormControl>
+  );
+};
+
+export const PrintingStatus = () => {
+  const [value, setValue] = useState(null);
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+  return (
+    <FormControl>
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+        onChange={handleChange}
+        value={value}
+      >
+        <FormControlLabel
+          value="Được kích hoạt"
+          control={<Radio />}
+          label="Được kích hoạt"
+        />
+        <FormControlLabel
+          value="Vô hiệu hóa"
+          control={<Radio />}
+          label="Vô hiệu hóa"
+        />
+      </RadioGroup>
+    </FormControl>
+  );
+};
 
 export const Branch = ({ resetCounter, setResetState }) => {
   const [branchValue, setBranchValue] = useState('CS1');
