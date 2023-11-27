@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import { useAuth } from '../../hooks/auth';
+import { useSelector } from 'react-redux';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
-  const { user } = useAuth();
+  const { user } = useSelector((state) => state.auth);
+
   if (!allowedRoles.includes(user.role)) {
     return <div>You are not authorized to view this page</div>;
   }

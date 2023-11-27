@@ -8,14 +8,20 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage('user', null);
   const navigate = useNavigate();
 
-  const login = async (data) => {
-    setUser(data);
-    switch (data.role) {
-      case 'student':
-        navigate('/dashboard/printing');
+  const login = async (data, type) => {
+    switch (type) {
+      case 'local':
+        setUser(data);
+        switch (data.role) {
+          case 'student':
+            navigate('/dashboard/printing');
+            break;
+          default:
+            navigate('/dashboard/printers');
+            break;
+        }
         break;
       default:
-        navigate('/dashboard/printers');
         break;
     }
   };
