@@ -12,6 +12,11 @@ import RecordTable from '../components/Records/recordTable';
 import { StudentID } from '../components/Records/inputForm';
 import { PaperMonth } from '../components/Records/inputForm';
 import { PaperYear } from '../components/Records/inputForm';
+import PreviewIcon from '@mui/icons-material/Preview';
+import TodayIcon from '@mui/icons-material/Today';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+// import { DayCalendar } from '@mui/x-date-pickers/internals';
+// import { YearCalendar } from '@mui/x-date-pickers';
 const SPSORecords = () => {
   const location = useLocation();
   const searchParamss = new URLSearchParams(location.search);
@@ -235,15 +240,44 @@ const SPSORecords = () => {
       default:
         return (
           <>
-            <Button onClick={() => setSearchParams({ type: 'general' })}>
-              View Student Records
-            </Button>
-            <Button onClick={() => setSearchParams({ type: 'monthly' })}>
-              View Monthly Records
-            </Button>
-            <Button onClick={() => setSearchParams({ type: 'annual' })}>
-              View Annual Records
-            </Button>
+            <div className='min-h-screen flex flex-col items-center justify-center align-center space-y-[40px] bg-primaryContainer '>
+              <Button onClick={() => setSearchParams({ type: 'general' })}>
+                <div className='grid grid-cols-4
+                bg-customBlue hover:bg-blue-300 
+                h-[100px] w-[396px] rounded-[20px] text-white' >  
+                  <div className='flex justify-center items-center '>
+                    <PreviewIcon/>
+                  </div>                        
+                  <div className='col-span-2 flex justify-self-start items-center text-sm font-semibold' >
+                    View Student Records
+                  </div>
+                </div> 
+              </Button>
+              <Button onClick={() => setSearchParams({ type: 'monthly' })}>
+                <div className='grid grid-cols-4
+                  bg-customBlue hover:bg-blue-300 
+                  h-[100px] w-[396px] rounded-[20px] text-white' >  
+                    <div className='flex justify-center items-center '>
+                      <TodayIcon/>
+                    </div>                        
+                    <div className='col-span-2 flex justify-self-start items-center text-sm font-semibold' >
+                      View Monthly Records 
+                    </div>
+                </div>
+              </Button>
+              <Button onClick={() => setSearchParams({ type: 'annual' })}>
+                <div className='grid grid-cols-4
+                  bg-customBlue hover:bg-blue-300 
+                  h-[100px] w-[396px] rounded-[20px] text-white' >  
+                    <div className='flex justify-center items-center '>
+                      <CalendarMonthIcon/>
+                    </div>                        
+                    <div className='col-span-2 flex justify-self-start items-center text-sm font-semibold' >
+                      View Annual Records
+                    </div>
+                </div>
+              </Button>
+            </div>
           </>
         );
     }
