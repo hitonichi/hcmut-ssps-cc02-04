@@ -142,7 +142,7 @@ const SPSORecords = () => {
           >
             <div className="flex h-[60px] w-full flex-row justify-between ">
               <h2 className="roboto ml-8 w-auto text-5xl font-bold text-black">
-                Lịch sử in{' '}
+                Báo cáo in tháng{' '}
               </h2>
             </div>
             <div className="flex w-full flex-row items-start justify-between">
@@ -194,7 +194,7 @@ const SPSORecords = () => {
           >
             <div className="flex h-[60px] w-full flex-row justify-between ">
               <h2 className="roboto ml-8 w-auto text-5xl font-bold text-black">
-                Lịch sử in{' '}
+                Báo cáo in năm{' '}
               </h2>
             </div>
             <div className="flex w-full flex-row items-start justify-between">
@@ -249,7 +249,7 @@ const SPSORecords = () => {
                     <PreviewIcon/>
                   </div>                        
                   <div className='col-span-2 flex justify-self-start items-center text-sm font-semibold' >
-                    View Student Records
+                    Báo cáo in theo sinh viên
                   </div>
                 </div> 
               </Button>
@@ -261,7 +261,7 @@ const SPSORecords = () => {
                       <TodayIcon/>
                     </div>                        
                     <div className='col-span-2 flex justify-self-start items-center text-sm font-semibold' >
-                      View Monthly Records 
+                      Báo cáo in theo tháng 
                     </div>
                 </div>
               </Button>
@@ -273,7 +273,7 @@ const SPSORecords = () => {
                       <CalendarMonthIcon/>
                     </div>                        
                     <div className='col-span-2 flex justify-self-start items-center text-sm font-semibold' >
-                      View Annual Records
+                      Báo cáo in theo năm
                     </div>
                 </div>
               </Button>
