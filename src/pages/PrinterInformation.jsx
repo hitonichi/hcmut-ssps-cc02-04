@@ -1,23 +1,32 @@
 import { useParams } from 'react-router';
-import { printerData } from '../components/recordConstant';
+import { getPrinter } from '../services';
 import RecordTable from '../components/Records/recordTable';
 import { useEffect, useState } from 'react';
 import printer from '../assets/icon/printer.png';
 import { mockData } from '../components/recordConstant';
 const PrinterInformation = () => {
-  const { printerId } = useParams();
+  const [printerData, setPrinterData] = useState([]);
   const [selectedPrinter, setSelectedPrinter] = useState(null);
   const [active, setActive] = useState(false);
+  const { _id } = useParams();
+
+  useEffect(() => {
+    getPrinter().then((resData) => setPrinterData(resData));
+  }, []);
+
+  useEffect(() => {
+    const foundPrinter = printerData.find((printer) => printer._id === _id);
+
+    if (foundPrinter) {
+      setSelectedPrinter(foundPrinter);
+      setActive(foundPrinter.enabled);
+    }
+  }, [printerData, _id]);
+
   const handleButton = () => {
     setActive(!active);
   };
-  useEffect(() => {
-    const foundPrinter = printerData.find(
-      (printer) => printer.printerID === printerId,
-    );
-    setSelectedPrinter(foundPrinter);
-    setActive(foundPrinter?.status === 'enabled');
-  }, [printerId]);
+
   if (!selectedPrinter) return null;
   return (
     <div className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[60px]">
@@ -30,18 +39,18 @@ const PrinterInformation = () => {
         </h2>
       </div>
       <div className="flex h-[232px] w-[475px] flex-col rounded-lg bg-white">
-        <div className="flex h-[176px] w-full flex-row items-center justify-center gap-4 px-5 pt-4 mb-2">
+        <div className="mb-2 flex h-[176px] w-full flex-row items-center justify-center gap-4 px-5 pt-4">
           <div className="aspect-square h-auto w-[144px]">
             <img className="h-full w-full object-contain" src={printer}></img>
           </div>
           <div className="flex h-full w-full flex-col items-center justify-start gap-2">
             <h1 className="w-full text-2xl font-extrabold text-black">
-              {selectedPrinter.printer}
+              {selectedPrinter.name}
             </h1>
             <div className="flex w-full flex-row justify-between">
               <h2 className="text-xl font-semibold text-black">Vị trí:</h2>
               <h2 className="text-xl font-normal text-black">
-                {selectedPrinter.location}
+                {selectedPrinter.location.branch}
               </h2>
             </div>
             <div className="flex w-full flex-row justify-between">
@@ -49,7 +58,7 @@ const PrinterInformation = () => {
                 Kích thước cho phép:
               </h2>
               <h2 className="text-xl font-normal text-black">
-                {selectedPrinter.allowedFormat}
+                {selectedPrinter.maxSize}
               </h2>
             </div>
             <div className="flex w-full flex-row justify-between">

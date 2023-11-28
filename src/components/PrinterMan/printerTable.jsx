@@ -28,7 +28,7 @@ const printerTable = () => {
           {data.map((row, index) => (
             <HashLink
               key={index}
-              to={`${row.printerID}`}
+              to={`${row._id}`}
               className="tr bg-white font-bold text-black hover:bg-primaryContainer"
             >
               <td className="px-4 py-3">{row._id}</td>
