@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, } from 'react';
 import Modal from '@mui/material/Modal';
 import {
   PrinterName,
@@ -6,12 +6,55 @@ import {
   BranchPrinter,
   PrintingType,
   PrintingStatus,
-  AllowedFormat,
+  MaxSizeFormat,
 } from '../Records/inputForm';
+import { addPrinter } from '../../services';
 export default function BasicModal() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+
+  const searchParams = new URLSearchParams(location.search);
+  const [defaultStatus, setDefaultStatus] = useState(
+    searchParams.get('PrintingStatus') || null,
+  );
+  const [defaultBuilding, setDefaultBuilding] = useState(
+    searchParams.get('PrinterBuilding') || null,
+  );
+  const [maxSizeFormat, setMaxSizeFormat] = useState(
+    searchParams.get('MaxSizeFormat') || null,
+  );
+  const [defaultBranch, setDefaultBranch] = useState(
+    searchParams.get('BranchPrinter') || null,
+  );
+  const [defaultPrintingType, setDefaultPrintingType] = useState(
+    searchParams.get('PrintingType') || null,
+  );
+  const [defaultPrinterName, setDefaultPrinterName] = useState(
+    searchParams.get('PrinterName') || null,
+  );
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setDefaultBranch(null);
+    setDefaultStatus(null);
+    setDefaultBuilding(null);
+    setDefaultPrinterName(null);
+    setMaxSizeFormat(null);
+    setDefaultPrintingType(null);
+  };
+
+  const newData = {
+    name: defaultPrinterName,
+    location: {
+      branch: defaultBranch,
+      building: defaultBuilding,
+    },
+    maxSize: maxSizeFormat,
+    enabled: defaultStatus,
+    oneSided: defaultPrintingType == 'Một mặt' ? true : false,
+  };
+  const handlePublish = async (newData) => {
+    addPrinter(newData);
+  };
 
   return (
     <div>
@@ -55,7 +98,7 @@ export default function BasicModal() {
             </div>
             <div className="flex w-full flex-row justify-between pr-[205px]">
               <h2 className="h-auto w-auto text-xl text-black">Kiểu in</h2>
-              <AllowedFormat />
+              <MaxSizeFormat />
             </div>
             <div className="flex w-full flex-row justify-between pr-[118px]">
               <h2 className="h-auto w-auto text-xl text-black">Trạng thái</h2>
@@ -63,10 +106,16 @@ export default function BasicModal() {
             </div>
           </div>
           <div className="flex h-[72px] w-full flex-row items-center justify-end gap-[20px] border-t-2 border-customBlue pr-[30px]">
-            <div className="flex h-[40px] w-[120px] cursor-pointer items-center justify-center rounded-3xl border-2 border-customBlue bg-white px-3 py-2 text-center text-lg font-semibold text-customBlue hover:border-none hover:bg-customBlue hover:text-white" onClick={handleClose}>
+            <div
+              className="flex h-[40px] w-[120px] cursor-pointer items-center justify-center rounded-3xl border-2 border-customBlue bg-white px-3 py-2 text-center text-lg font-semibold text-customBlue hover:border-none hover:bg-customBlue hover:text-white"
+              onClick={handleClose}
+            >
               Quay lại
             </div>
-            <div className="flex h-[40px] w-[120px] cursor-pointer items-center justify-center rounded-3xl bg-customBlue px-3 py-2 text-center text-lg font-semibold text-white hover:border-2 hover:border-customBlue hover:bg-white hover:text-customBlue">
+            <div
+              onClick={handlePublish(newData)}
+              className="flex h-[40px] w-[120px] cursor-pointer items-center justify-center rounded-3xl bg-customBlue px-3 py-2 text-center text-lg font-semibold text-white hover:border-2 hover:border-customBlue hover:bg-white hover:text-customBlue"
+            >
               Tiếp tục
             </div>
           </div>

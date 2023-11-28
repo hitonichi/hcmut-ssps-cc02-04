@@ -4,18 +4,12 @@ import { useState, useEffect } from 'react';
 
 const printerTable = ({ branch, building, statuss }) => {
   const [data, setData] = useState([]);
-
   useEffect(() => {
     getPrinter().then((resData) => setData(resData));
   }, []);
-  console.log('data ', data);
-  console.log('type ', typeof data);
- 
-
 
   const filteredData = data.filter((row) => {
-    // Check if the filter values are not null or undefined before applying the conditions
-    const formatedStatus = row.enabled ? "enabled" : "disabled";
+    const formatedStatus = row.enabled ? 'enabled' : 'disabled';
     const statusCheck =
       statuss === null || statuss === 'chưa chọn' || formatedStatus == statuss;
     const branchCheck =
@@ -29,7 +23,8 @@ const printerTable = ({ branch, building, statuss }) => {
 
     return statusCheck && branchCheck && buildingCheck;
   });
-  const rowsToDisplay = filteredData.length > 0 ? filteredData : data;
+  const rowsToDisplay =
+    filteredData.length === data.length ? data : filteredData;
   return (
     <div className="scroll h-[625px] w-auto overflow-y-scroll rounded-lg bg-secondaryContainer text-base tracking-wide">
       <table className="w-full whitespace-nowrap">
@@ -63,7 +58,7 @@ const printerTable = ({ branch, building, statuss }) => {
               <td className="max-w-[200px] px-4  py-3">
                 <h2
                   className={`px-3s   flex items-center justify-center rounded-2xl py-1 text-base  font-normal text-white ${
-                    row.enabled 
+                    row.enabled
                       ? 'w-[112px] bg-green-700'
                       : 'w-[161px] bg-red-700'
                   }`}

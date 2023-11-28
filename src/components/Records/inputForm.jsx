@@ -13,34 +13,58 @@ import { InputLabel, Select } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+export const MaxSizeFormat = () => {
+  const [value, setValue] = useState(null);
+  const handleChange = (event) => {
+    const newSize = event.target.value;
+    setValue(newSize);
 
-export const AllowedFormat = () => {
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('MaxSizeFormat', newSize);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
+  };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const initialBranchValue = searchParams.get('MaxSizeFormat') || null;
+    setValue(initialBranchValue);
+  }, []);
   return (
-    <div>
-      <FormControlLabel
-        control={<Checkbox {...label} />}
-        label="A3"
-      />
-      <FormControlLabel
-        control={<Checkbox {...label} />}
-        label="A4"
-      />
-      <FormControlLabel
-        control={<Checkbox {...label}/>}
-        label="A5"
-      />
-    </div>
+    <FormControl>
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+        onChange={handleChange}
+        value={value}
+      >
+        <FormControlLabel value="A3" control={<Radio />} label="A3" />
+        <FormControlLabel value="A4" control={<Radio />} label="A4" />
+        <FormControlLabel value="A5" control={<Radio />} label="A5" />
+      </RadioGroup>
+    </FormControl>
   );
 };
 
 export const BranchPrinter = () => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
-    setValue(event.target.value);
+    const newSize = event.target.value;
+    setValue(newSize);
+
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('BranchPrinter', newSize);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
   };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const initialBranchValue = searchParams.get('BranchPrinter') || null;
+    setValue(initialBranchValue);
+  }, []);
   return (
     <FormControl>
       <RadioGroup
@@ -60,8 +84,20 @@ export const BranchPrinter = () => {
 export const PrintingType = () => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
-    setValue(event.target.value);
+    const newSize = event.target.value;
+    setValue(newSize);
+
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('PrintingType', newSize);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
   };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const initialBranchValue = searchParams.get('PrintingType') || null;
+    setValue(initialBranchValue);
+  }, []);
   return (
     <FormControl>
       <RadioGroup
@@ -81,8 +117,20 @@ export const PrintingType = () => {
 export const PrintingStatus = () => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
-    setValue(event.target.value);
+    const newSize = event.target.value;
+    setValue(newSize);
+
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.set('PrintingStatus', newSize);
+    window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
+    window.dispatchEvent(new Event('popstate'));
   };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const initialBranchValue = searchParams.get('PrintingStatus') || null;
+    setValue(initialBranchValue);
+  }, []);
   return (
     <FormControl>
       <RadioGroup
@@ -521,8 +569,8 @@ export const StatusState = ({ resetCounter, setResetState }) => {
           onChange={handleChange}
         >
           <MenuItem value={'chưa chọn'}>Chọn trạng thái</MenuItem>
-          <MenuItem value={"enabled"}>Khả dụng</MenuItem>
-          <MenuItem value={"disabled"}>Không khả dụng</MenuItem>
+          <MenuItem value={'enabled'}>Khả dụng</MenuItem>
+          <MenuItem value={'disabled'}>Không khả dụng</MenuItem>
         </Select>
       </FormControl>
     </div>
