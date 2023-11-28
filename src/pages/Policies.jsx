@@ -94,7 +94,9 @@ const PoliciesContainer = ({ children, title }) => {
         <div className='flex items-center justify-center h-[90px] w-full rounded-t-[56px] text-[20px] font-semibold bg-blue-200'>
           {title}  
         </div>
-        {children}
+        <div>
+          {children}
+        </div>
 
         {/* Button back using navigate back router dom */}
         <div className='flex w-full pb-[12px] pl-[24px]'>
