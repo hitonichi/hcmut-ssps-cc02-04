@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
 import NavBar from '../NavBar';
-import { useSelector } from 'react-redux';
 
 const HomeLayout = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useAuth();
 
   if (user) {
     return <Navigate to="/dashboard/profile" />;

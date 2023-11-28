@@ -1,9 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
+// import NavBar from '../NavBar';
 import SideBar from '../SideBar';
-import { useSelector } from 'react-redux';
 
 const ProtectedLayout = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useAuth();
 
   if (!user) {
     return <Navigate to="/login" />;
