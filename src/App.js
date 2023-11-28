@@ -11,8 +11,18 @@ import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import PoliciesPage from './pages/Policies';
 import PrinterInformation from './pages/PrinterInformation';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchUser } from './store/actions/authActions';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log('[App.js] fetching user');
+    dispatch(fetchUser());
+  }, []);
+
   return (
     <div>
       <Routes>
