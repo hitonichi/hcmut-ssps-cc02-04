@@ -45,7 +45,7 @@ function App() {
           />
           <Route path="printing" element={<Printing />} />
           <Route path="printers" element={<PrinterManagement />} />
-          <Route path="printers/:printerId" element={<PrinterInformation />} />
+          <Route path="printers/:_id" element={<PrinterInformation />} />
           <Route path="records" element={<Records />} />
           <Route
             path="management"
