@@ -1,5 +1,6 @@
 import { useParams } from 'react-router';
 import { getPrinter } from '../services';
+import { ModifyPrinter } from '../services';
 import RecordTable from '../components/Records/recordTable';
 import { useEffect, useState } from 'react';
 import printer from '../assets/icon/printer.png';
@@ -23,8 +24,17 @@ const PrinterInformation = () => {
     }
   }, [printerData, _id]);
 
-  const handleButton = () => {
-    setActive(!active);
+  const handleButton = async () => {
+    const newDataType = {
+      printerId: selectedPrinter._id,
+    };
+
+    try {
+      await ModifyPrinter(newDataType);
+      setActive(!active);
+    } catch (error) {
+      console.error('Error updating printer:', error);
+    }
   };
 
   if (!selectedPrinter) return null;
@@ -50,7 +60,7 @@ const PrinterInformation = () => {
             <div className="flex w-full flex-row justify-between">
               <h2 className="text-xl font-semibold text-black">Vị trí:</h2>
               <h2 className="text-xl font-normal text-black">
-                {selectedPrinter.location.branch} 
+                {selectedPrinter.location.branch}
               </h2>
             </div>
             <div className="flex w-full flex-row justify-between">
@@ -77,7 +87,9 @@ const PrinterInformation = () => {
           <div className="flex h-[40px] w-auto cursor-pointer items-center justify-center rounded-lg bg-customBlue p-2 text-center ">
             <h3
               className="w-auto text-base font-bold text-white"
-              onClick={handleButton}
+              onClick={() => {
+                handleButton();
+              }}
             >
               {active ? 'Vô hiệu hóa máy in' : 'Kích hoạt máy in'}
             </h3>

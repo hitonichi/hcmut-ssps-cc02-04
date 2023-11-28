@@ -12,6 +12,20 @@ export const getPrinter = async () => {
   }
 };
 
-export const addPrinter = async () => {
- 
+export const addPrinter = async (newData) => {
+  try {
+    await axios.post(baseUrl + '/printers', newData);
+    alert('Success');
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const ModifyPrinter = async (newData) => {
+  try {
+    await axios.patch(baseUrl + '/printers/updateStatus', newData);
+    alert('Success');
+  } catch (error) {
+    alert(error);
+  }
 };

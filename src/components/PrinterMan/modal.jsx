@@ -1,5 +1,6 @@
-import { useState, } from 'react';
+import { useState } from 'react';
 import Modal from '@mui/material/Modal';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   PrinterName,
   PrinterBuilding,
@@ -11,35 +12,42 @@ import {
 import { addPrinter } from '../../services';
 export default function BasicModal() {
   const [open, setOpen] = useState(false);
-
+  const navigate = useNavigate();
+  const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const [defaultStatus, setDefaultStatus] = useState(
-    searchParams.get('PrintingStatus') || null,
-  );
-  const [defaultBuilding, setDefaultBuilding] = useState(
-    searchParams.get('PrinterBuilding') || null,
-  );
-  const [maxSizeFormat, setMaxSizeFormat] = useState(
-    searchParams.get('MaxSizeFormat') || null,
-  );
-  const [defaultBranch, setDefaultBranch] = useState(
-    searchParams.get('BranchPrinter') || null,
-  );
-  const [defaultPrintingType, setDefaultPrintingType] = useState(
-    searchParams.get('PrintingType') || null,
-  );
-  const [defaultPrinterName, setDefaultPrinterName] = useState(
-    searchParams.get('PrinterName') || null,
-  );
-  const handleOpen = () => setOpen(true);
+  const defaultStatus = searchParams.get('PrintingStatus');
+  const defaultBuilding = searchParams.get('PrinterBuilding') || "";
+  const maxSizeFormat = searchParams.get('MaxSizeFormat');
+  const defaultBranch = searchParams.get('BranchPrinter');
+  const defaultPrintingType = searchParams.get('PrintingType');
+  const defaultPrinterName = searchParams.get('PrinterName') || "";
+
+  console.log('name', defaultPrinterName);
+  console.log('branch', defaultBranch);
+  console.log('build', defaultBuilding);
+  console.log('size', maxSizeFormat);
+  console.log('enable', defaultStatus);
+  console.log('onesided', defaultPrintingType);
+  const handleOpen = () => {
+    setOpen(true);
+    searchParams.set('BranchPrinter', defaultBranch);
+    searchParams.set('PrintingStatus', defaultStatus);
+    searchParams.set('PrinterBuilding', defaultBuilding);
+    searchParams.set('PrinterName', defaultPrinterName);
+    searchParams.set('MaxSizeFormat', maxSizeFormat);
+    searchParams.set('PrintingType', defaultPrintingType);
+    navigate(`${location.pathname}?${searchParams.toString()}`);
+  };
+
   const handleClose = () => {
     setOpen(false);
-    setDefaultBranch(null);
-    setDefaultStatus(null);
-    setDefaultBuilding(null);
-    setDefaultPrinterName(null);
-    setMaxSizeFormat(null);
-    setDefaultPrintingType(null);
+    searchParams.delete('BranchPrinter');
+    searchParams.delete('PrintingStatus');
+    searchParams.delete('PrinterBuilding');
+    searchParams.delete('PrinterName');
+    searchParams.delete('MaxSizeFormat');
+    searchParams.delete('PrintingType');
+    navigate(`${location.pathname}`);
   };
 
   const newData = {
@@ -49,11 +57,12 @@ export default function BasicModal() {
       building: defaultBuilding,
     },
     maxSize: maxSizeFormat,
-    enabled: defaultStatus,
+    enabled: defaultStatus == 'Được kích hoạt' ? true : false,
     oneSided: defaultPrintingType == 'Một mặt' ? true : false,
   };
-  const handlePublish = async (newData) => {
+  const handlePublish = (newData) => {
     addPrinter(newData);
+    
   };
 
   return (
@@ -108,12 +117,16 @@ export default function BasicModal() {
           <div className="flex h-[72px] w-full flex-row items-center justify-end gap-[20px] border-t-2 border-customBlue pr-[30px]">
             <div
               className="flex h-[40px] w-[120px] cursor-pointer items-center justify-center rounded-3xl border-2 border-customBlue bg-white px-3 py-2 text-center text-lg font-semibold text-customBlue hover:border-none hover:bg-customBlue hover:text-white"
-              onClick={handleClose}
+              onClick={() => {
+                handleClose();
+              }}
             >
               Quay lại
             </div>
             <div
-              onClick={handlePublish(newData)}
+              onClick={() => {
+                handlePublish(newData);
+              }}
               className="flex h-[40px] w-[120px] cursor-pointer items-center justify-center rounded-3xl bg-customBlue px-3 py-2 text-center text-lg font-semibold text-white hover:border-2 hover:border-customBlue hover:bg-white hover:text-customBlue"
             >
               Tiếp tục
