@@ -3,6 +3,7 @@ import { fetchUser } from '../actions/authActions';
 
 const initialState = {
   user: null,
+  loading: false,
 };
 
 const authSlice = createSlice({
@@ -18,8 +19,12 @@ const authSlice = createSlice({
     },
   },
   extraReducers: {
+    [fetchUser.pending]: (state) => {
+      state.loading = true;
+    },
     [fetchUser.fulfilled]: (state, action) => {
       state.user = action.payload;
+      state.loading = false;
     },
   },
 });
