@@ -2,7 +2,7 @@ import { HashLink } from 'react-router-hash-link';
 import { getPrinter } from '../../services';
 import { useState, useEffect } from 'react';
 
-const printerTable = () => {
+const printerTable = ({ branch, building, statuss }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -10,7 +10,26 @@ const printerTable = () => {
   }, []);
   console.log('data ', data);
   console.log('type ', typeof data);
+ 
 
+
+  const filteredData = data.filter((row) => {
+    // Check if the filter values are not null or undefined before applying the conditions
+    const formatedStatus = row.enabled ? "enabled" : "disabled";
+    const statusCheck =
+      statuss === null || statuss === 'chưa chọn' || formatedStatus == statuss;
+    const branchCheck =
+      branch === null ||
+      branch === 'chưa chọn' ||
+      row.location.branch === branch;
+    const buildingCheck =
+      building === null ||
+      building === undefined ||
+      row.location.building === building;
+
+    return statusCheck && branchCheck && buildingCheck;
+  });
+  const rowsToDisplay = filteredData.length > 0 ? filteredData : data;
   return (
     <div className="scroll h-[625px] w-auto overflow-y-scroll rounded-lg bg-secondaryContainer text-base tracking-wide">
       <table className="w-full whitespace-nowrap">
@@ -25,22 +44,26 @@ const printerTable = () => {
           </tr>
         </thead>
         <tbody className="roboto h-auto divide-y">
-          {data.map((row, index) => (
+          {rowsToDisplay.map((row, index) => (
             <HashLink
               key={index}
               to={`${row._id}`}
               className="tr bg-white font-bold text-black hover:bg-primaryContainer"
             >
               <td className="px-4 py-3">{row._id}</td>
-              <td className="px-4 py-3">{row.location.branch}</td>
+              <td className="px-4 py-3">
+                {row.location.branch}
+                {'-'}
+                {row.location.building}
+              </td>
               <td className="px-4 py-3">{row.name}</td>
               <td className="px-4 py-3">{row.lastUsed}</td>
               <td className="px-4 py-3">{row.maxSize}</td>
-             
+
               <td className="max-w-[200px] px-4  py-3">
                 <h2
                   className={`px-3s   flex items-center justify-center rounded-2xl py-1 text-base  font-normal text-white ${
-                    row.enabled
+                    row.enabled 
                       ? 'w-[112px] bg-green-700'
                       : 'w-[161px] bg-red-700'
                   }`}

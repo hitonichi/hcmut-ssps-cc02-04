@@ -108,13 +108,13 @@ export const PrintingStatus = () => {
 };
 
 export const Branch = ({ resetCounter, setResetState }) => {
-  const [branchValue, setBranchValue] = useState('CS1');
+  const [branchValue, setBranchValue] = useState('chưa chọn');
 
   useEffect(() => {
-    setBranchValue('CS1');
+    setBranchValue('chưa chọn');
   }, [resetCounter]);
   useEffect(() => {
-    if (branchValue !== 'CS1' && branchValue !== '') {
+    if (branchValue !== 'chưa chọn' && branchValue !== '') {
       setResetState(true);
     } else setResetState(false);
   }, [branchValue, setResetState]);
@@ -131,7 +131,7 @@ export const Branch = ({ resetCounter, setResetState }) => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const initialBranchValue = searchParams.get('Branch') || 'CS1';
+    const initialBranchValue = searchParams.get('Branch') || 'chưa chọn';
     setBranchValue(initialBranchValue);
   }, []);
   Branch.propTypes = {
@@ -149,6 +149,7 @@ export const Branch = ({ resetCounter, setResetState }) => {
           label="Cơ sở"
           onChange={handleChange}
         >
+          <MenuItem value={'chưa chọn'}>Chọn cơ sở</MenuItem>
           <MenuItem value={'CS1'}>Cơ sở 1</MenuItem>
           <MenuItem value={'CS2'}>Cơ sở 2</MenuItem>
         </Select>
@@ -478,13 +479,13 @@ export const Build = ({ resetCounter, setResetState }) => {
   );
 };
 export const StatusState = ({ resetCounter, setResetState }) => {
-  const [Status, setStatus] = useState('enabled');
+  const [Status, setStatus] = useState('chưa chọn');
 
   useEffect(() => {
-    setStatus('enabled');
+    setStatus('chưa chọn');
   }, [resetCounter]);
   useEffect(() => {
-    if (Status !== 'enabled' && Status !== '') {
+    if (Status !== 'chưa chọn' && Status !== '') {
       setResetState(true);
     } else setResetState(false);
   }, [Status, setResetState]);
@@ -501,7 +502,7 @@ export const StatusState = ({ resetCounter, setResetState }) => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const initialBranchValue = searchParams.get('Status') || 'enabled';
+    const initialBranchValue = searchParams.get('Status') || 'chưa chọn';
     setStatus(initialBranchValue);
   }, []);
   StatusState.propTypes = {
@@ -519,8 +520,9 @@ export const StatusState = ({ resetCounter, setResetState }) => {
           label="Trạng thái"
           onChange={handleChange}
         >
-          <MenuItem value={'enabled'}>Khả dụng</MenuItem>
-          <MenuItem value={'disabled'}>Chưa kích hoạt</MenuItem>
+          <MenuItem value={'chưa chọn'}>Chọn trạng thái</MenuItem>
+          <MenuItem value={"enabled"}>Khả dụng</MenuItem>
+          <MenuItem value={"disabled"}>Không khả dụng</MenuItem>
         </Select>
       </FormControl>
     </div>

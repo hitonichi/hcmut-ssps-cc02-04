@@ -50,7 +50,7 @@ const PrinterInformation = () => {
             <div className="flex w-full flex-row justify-between">
               <h2 className="text-xl font-semibold text-black">Vị trí:</h2>
               <h2 className="text-xl font-normal text-black">
-                {selectedPrinter.location.branch}
+                {selectedPrinter.location.branch} 
               </h2>
             </div>
             <div className="flex w-full flex-row justify-between">

@@ -1,14 +1,17 @@
-import { printerData } from '../components/recordConstant';
 import 'dayjs/locale/en';
 import PrinterTable from '../components/PrinterMan/printerTable';
 import { Branch } from '../components/Records/inputForm';
 import { Build } from '../components/Records/inputForm';
 import { StatusState } from '../components/Records/inputForm';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import BasicModal from '../components/PrinterMan/modal';
 const PrinterManangement = () => {
-  
+  const [status, setStatus] = useState(null);
+  const [building, setBuilding] = useState(null);
+  const [branch, setBranch] = useState(null);
+  const navigate = useNavigate();
+
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const defaultStatus = searchParams.get('Status') || null;
@@ -18,6 +21,9 @@ const PrinterManangement = () => {
     console.log('Status: ', defaultStatus);
     console.log('Building: ', defaultBuilding);
     console.log('Branch: ', defaultBranch);
+    setBranch(defaultBranch);
+    setBuilding(defaultBuilding);
+    setStatus(defaultStatus);
   };
 
   const widthValue = `calc(100vw - 80px)`;
@@ -27,6 +33,10 @@ const PrinterManangement = () => {
 
   const handleReset = () => {
     setResetCounter((prev) => prev + 1);
+    setBranch(null);
+    setBuilding(null);
+    setStatus(null);
+    navigate(location.pathname);
   };
   return (
     <div
@@ -60,21 +70,17 @@ const PrinterManangement = () => {
             </button>
             <button
               onClick={handleReset}
-              className={`work ${
-                reset ? 'block' : 'hidden'
-              }  h-[40px] rounded-lg
-                      bg-gray-800 px-2 py-1 w-[90px] text-sm font-bold
+              className={`work ${reset ? 'block' : 'hidden'}  h-[40px] w-[90px]
+                      rounded-lg bg-gray-800 px-2 py-1 text-sm font-bold
                     text-white`}
             >
               Đặt lại
             </button>
           </div>
-          
         </div>
         <BasicModal />
       </div>
-      <PrinterTable mockData={printerData} />
-      
+      <PrinterTable statuss={status} branch={branch} building={building} />
     </div>
   );
 };
