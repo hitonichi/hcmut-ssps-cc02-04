@@ -1,5 +1,5 @@
-import { mockData } from '../components/recordConstant';
 import 'dayjs/locale/en';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PaperSizeFilter from '../components/Records/paperSizeFilter';
 import RecordTable from '../components/Records/recordTable';
@@ -8,6 +8,7 @@ import { StartDate } from '../components/Records/inputForm';
 import { EndDate } from '../components/Records/inputForm';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import { getRecords } from '../services/records.service';
 const StudentRecords = () => {
   const [paperSize, setpaperSize] = useState(null);
   const [startDate, setstartDate] = useState(null);
@@ -26,6 +27,10 @@ const StudentRecords = () => {
     setstartDate(defaultStartDate);
     setendDate(defaultEndDate);
   };
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getRecords().then((resData) => setData(resData));
+  }, []);
 
   const widthValue = `calc(100vw - 80px)`;
   const countPages = (data, paperSize) => {
@@ -37,9 +42,10 @@ const StudentRecords = () => {
     });
     return pageCount;
   };
-  const totalCountA3 = countPages(mockData, 'A3');
-  const totalCountA4 = countPages(mockData, 'A4');
-  const totalCountA5 = countPages(mockData, 'A5');
+
+  const totalCountA3 = countPages(data, 'A3');
+  const totalCountA4 = countPages(data, 'A4');
+  const totalCountA5 = countPages(data, 'A5');
   const [resetCounter, setResetCounter] = useState(0);
   const [reset, setResetState] = useState(false);
 
@@ -108,6 +114,7 @@ const StudentRecords = () => {
         paperSize={paperSize}
         startDate={startDate}
         endDate={endDate}
+        variant={"student"}
       />
     </div>
   );

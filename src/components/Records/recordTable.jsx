@@ -3,44 +3,96 @@ import { useState, useEffect } from 'react';
 import { getRecords } from '../../services/records.service';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc'; // Import UTC plugin for handling UTC dates
+import { StudentID } from './inputForm';
 dayjs.extend(utc);
-const recordTable = ({ paperSize, startDate, endDate }) => {
+const recordTable = ({
+  paperSize,
+  startDate,
+  endDate,
+  selectedMonth,
+  selectedYear,
+  studentID,
+  variant,
+}) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     getRecords().then((resData) => setData(resData));
   }, []);
+  console.log('ok', selectedMonth);
+  let filteredData;
+  console.log('variant', variant);
 
-  const filteredData = data.filter((row) => {
-    if (startDate !== null && endDate !== null) {
-      const formatedStartDate = dayjs.utc(startDate).startOf('day'); // Assuming startDate is available
-      const formatedEndDate = dayjs.utc(endDate).endOf('day'); // Assuming endDate is available
+  if (variant == 'student') {
+    filteredData = data.filter((row) => {
+      if (startDate !== null && endDate !== null) {
+        const formatedStartDate = dayjs.utc(startDate).startOf('day'); // Assuming startDate is available
+        const formatedEndDate = dayjs.utc(endDate).endOf('day'); // Assuming endDate is available
 
-      const rowDate = dayjs.utc(row.date);
+        const rowDate = dayjs.utc(row.date);
 
-      const startDateCheck =
-        rowDate.isAfter(formatedStartDate) ||
-        rowDate.isSame(formatedStartDate) ||
-        startDate === null;
-      const endDateCheck =
-        rowDate.isBefore(formatedEndDate) ||
-        rowDate.isSame(formatedEndDate) ||
-        endDate === null;
+        const startDateCheck =
+          rowDate.isAfter(formatedStartDate) ||
+          rowDate.isSame(formatedStartDate) ||
+          startDate === null;
+        const endDateCheck =
+          rowDate.isBefore(formatedEndDate) ||
+          rowDate.isSame(formatedEndDate) ||
+          endDate === null;
 
-      const paperSizeCheck =
-        paperSize === null ||
-        paperSize === 'all' ||
-        row.paperSize === paperSize;
+        const paperSizeCheck =
+          paperSize === null ||
+          paperSize === 'all' ||
+          row.paperSize === paperSize;
 
-      return paperSizeCheck && startDateCheck && endDateCheck;
-    } else {
-      const paperSizeCheck =
-        paperSize === null ||
-        paperSize === 'all' ||
-        row.paperSize === paperSize;
+        return paperSizeCheck && startDateCheck && endDateCheck;
+      } else {
+        const paperSizeCheck =
+          paperSize === null ||
+          paperSize === 'all' ||
+          row.paperSize === paperSize;
 
-      return paperSizeCheck;
-    }
-  });
+        return paperSizeCheck;
+      }
+    });
+  } else if (variant == 'general') {
+    filteredData = data.filter((row) => {
+      if (startDate !== null && endDate !== null) {
+        const formatedStartDate = dayjs.utc(startDate).startOf('day'); // Assuming startDate is available
+        const formatedEndDate = dayjs.utc(endDate).endOf('day'); // Assuming endDate is available
+
+        const rowDate = dayjs.utc(row.date);
+
+        const startDateCheck =
+          rowDate.isAfter(formatedStartDate) ||
+          rowDate.isSame(formatedStartDate) ||
+          startDate === null;
+        const endDateCheck =
+          rowDate.isBefore(formatedEndDate) ||
+          rowDate.isSame(formatedEndDate) ||
+          endDate === null;
+        const studentidCheck =
+          studentID === null || studentID === '' || row.author === studentID;
+
+        const paperSizeCheck =
+          paperSize === null ||
+          paperSize === 'all' ||
+          row.paperSize === paperSize;
+
+        return (
+          paperSizeCheck && startDateCheck && endDateCheck && studentidCheck
+        );
+      } else {
+        const paperSizeCheck =
+          paperSize === null ||
+          paperSize === 'all' ||
+          row.paperSize === paperSize;
+        const studentidCheck =
+          studentID === null || studentID === '' || row.author === studentID;
+
+        return paperSizeCheck && studentidCheck;
+      }
+    });
+  }
 
   console.log('dasddata', filteredData);
   return (
