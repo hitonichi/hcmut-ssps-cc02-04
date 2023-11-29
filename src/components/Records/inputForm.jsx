@@ -346,18 +346,18 @@ export const PaperMonth = ({ resetCounter, setResetState }) => {
           onChange={handleChange}
         >
           <MenuItem value={'all'}>Tất cả</MenuItem>
-          <MenuItem value={'Tháng Một'}>Tháng Một</MenuItem>
-          <MenuItem value={'Tháng Hai'}>Tháng Hai</MenuItem>
-          <MenuItem value={'Tháng Ba'}>Tháng Ba</MenuItem>
-          <MenuItem value={'Tháng Tư'}>Tháng Tư</MenuItem>
-          <MenuItem value={'Tháng Năm'}>Tháng Năm</MenuItem>
-          <MenuItem value={'Tháng Sáu'}>Tháng Sáu</MenuItem>
-          <MenuItem value={'Tháng Bảy'}>Tháng Bảy</MenuItem>
-          <MenuItem value={'Tháng Tám'}>Tháng Tám</MenuItem>
-          <MenuItem value={'Tháng Chín'}>Tháng Chín</MenuItem>
-          <MenuItem value={'Tháng Mười'}>Tháng Mười</MenuItem>
-          <MenuItem value={'Tháng Mười Một'}>Tháng Mười Một</MenuItem>
-          <MenuItem value={'Tháng Mười Hai'}>Tháng Mười Hai</MenuItem>
+          <MenuItem value={1}>Tháng Một</MenuItem>
+          <MenuItem value={2}>Tháng Hai</MenuItem>
+          <MenuItem value={3}>Tháng Ba</MenuItem>
+          <MenuItem value={4}>Tháng Tư</MenuItem>
+          <MenuItem value={5}>Tháng Năm</MenuItem>
+          <MenuItem value={6}>Tháng Sáu</MenuItem>
+          <MenuItem value={7}>Tháng Bảy</MenuItem>
+          <MenuItem value={8}>Tháng Tám</MenuItem>
+          <MenuItem value={9}>Tháng Chín</MenuItem>
+          <MenuItem value={10}>Tháng Mười</MenuItem>
+          <MenuItem value={11}>Tháng Mười Một</MenuItem>
+          <MenuItem value={12}>Tháng Mười Hai</MenuItem>
         </Select>
       </FormControl>
     </div>
@@ -397,12 +397,13 @@ export const PaperYear = ({ resetCounter, setResetState }) => {
   };
 
   return (
-    <FormControl fullWidth>
-      <TextField
+    <FormControl fullWidth size="small">
+      <InputLabel id="demo-simple-select-label">Chọn năm</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
         id="demo-simple-select"
-        select
-        label="Chọn năm"
-        size="small"
+        value={year}
+        label="Chọn tháng"
         onChange={handleChange}
       >
         <MenuItem value={'all'}>Tất cả</MenuItem>
@@ -411,7 +412,7 @@ export const PaperYear = ({ resetCounter, setResetState }) => {
         <MenuItem value={'2021'}>2021</MenuItem>
         <MenuItem value={'2020'}>2020</MenuItem>
         <MenuItem value={'2019'}>2019</MenuItem>
-      </TextField>
+      </Select>
     </FormControl>
   );
 };

@@ -15,6 +15,7 @@ import PreviewIcon from '@mui/icons-material/Preview';
 import TodayIcon from '@mui/icons-material/Today';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { getRecords } from '../services/records.service';
+import { useNavigate } from 'react-router-dom';
 // import { DayCalendar } from '@mui/x-date-pickers/internals';
 // import { YearCalendar } from '@mui/x-date-pickers';
 const SPSORecords = () => {
@@ -24,6 +25,7 @@ const SPSORecords = () => {
   const [studentID, setstudentID] = useState(null);
   const [selectedMonth, setselectedMonth] = useState(null);
   const [selectedYear, setselectedYear] = useState(null);
+  const navigate = useNavigate();
   const location = useLocation();
   const searchParamss = new URLSearchParams(location.search);
   const defaultPaperSize = searchParamss.get('paperSize') || null;
@@ -72,7 +74,7 @@ const SPSORecords = () => {
         console.log('SelectedMonth: ', defaultselectMonth);
         console.log('Size: ', defaultPaperSize);
         setselectedMonth(defaultselectMonth);
-        setselectedYear(defaultselectYear);
+        setpaperSize(defaultPaperSize);
         break;
       case 'annual':
         console.log('SelectedYear: ', defaultselectYear);
@@ -85,7 +87,19 @@ const SPSORecords = () => {
   const [resetCounter, setResetCounter] = useState(0);
 
   const handleReset = () => {
-    // Incrementing the counter triggers a reset in child components
+    setpaperSize(null);
+    setstartDate(null);
+    setendDate(null);
+    setselectedMonth(null);
+    setselectedYear(null);
+    setstudentID(null);
+
+    const queryParams = new URLSearchParams(location.search);
+    const currentType = queryParams.get('type') || 'default';
+
+    const newPath = `${location.pathname}?type=${currentType}`;
+
+    navigate(newPath);
     setResetCounter((prev) => prev + 1);
   };
   const [reset, setResetState] = useState(false);
@@ -154,7 +168,7 @@ const SPSORecords = () => {
               studentID={studentID}
               startDate={startDate}
               endDate={endDate}
-              variant={"general"}
+              variant={'general'}
             />
           </div>
         );
@@ -210,7 +224,7 @@ const SPSORecords = () => {
             <RecordTable
               selectedMonth={selectedMonth}
               paperSize={paperSize}
-              variant={"monthly"}
+              variant={'monthly'}
             />
           </div>
         );
@@ -262,7 +276,11 @@ const SPSORecords = () => {
                 totalCountA5={totalCountA5}
               />
             </div>
-            <RecordTable selectedYear={selectedYear} paperSize={paperSize} variant={"annual"} />
+            <RecordTable
+              selectedYear={selectedYear}
+              paperSize={paperSize}
+              variant={'annual'}
+            />
           </div>
         );
       default:

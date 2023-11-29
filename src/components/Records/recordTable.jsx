@@ -1,9 +1,7 @@
-/* eslint-disable */
 import { useState, useEffect } from 'react';
 import { getRecords } from '../../services/records.service';
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc'; // Import UTC plugin for handling UTC dates
-import { StudentID } from './inputForm';
+import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 const recordTable = ({
   paperSize,
@@ -18,15 +16,12 @@ const recordTable = ({
   useEffect(() => {
     getRecords().then((resData) => setData(resData));
   }, []);
-  console.log('ok', selectedMonth);
   let filteredData;
-  console.log('variant', variant);
-
   if (variant == 'student') {
     filteredData = data.filter((row) => {
       if (startDate !== null && endDate !== null) {
-        const formatedStartDate = dayjs.utc(startDate).startOf('day'); // Assuming startDate is available
-        const formatedEndDate = dayjs.utc(endDate).endOf('day'); // Assuming endDate is available
+        const formatedStartDate = dayjs.utc(startDate).startOf('day');
+        const formatedEndDate = dayjs.utc(endDate).endOf('day');
 
         const rowDate = dayjs.utc(row.date);
 
@@ -57,8 +52,8 @@ const recordTable = ({
   } else if (variant == 'general') {
     filteredData = data.filter((row) => {
       if (startDate !== null && endDate !== null) {
-        const formatedStartDate = dayjs.utc(startDate).startOf('day'); // Assuming startDate is available
-        const formatedEndDate = dayjs.utc(endDate).endOf('day'); // Assuming endDate is available
+        const formatedStartDate = dayjs.utc(startDate).startOf('day');
+        const formatedEndDate = dayjs.utc(endDate).endOf('day');
 
         const rowDate = dayjs.utc(row.date);
 
@@ -92,9 +87,33 @@ const recordTable = ({
         return paperSizeCheck && studentidCheck;
       }
     });
-  }
+  } else if (variant == 'monthly') {
+    filteredData = data.filter((row) => {
+      const paperSizeCheck =
+        paperSize === null ||
+        paperSize === 'all' ||
+        row.paperSize === paperSize;
+      const selectedMonthCheck =
+        selectedMonth === null ||
+        selectedMonth === 'all' ||
+        dayjs.utc(row.date).month() + 1 == selectedMonth;
 
-  console.log('dasddata', filteredData);
+      return paperSizeCheck && selectedMonthCheck;
+    });
+  } else if (variant == 'annual') {
+    filteredData = data.filter((row) => {
+      const paperSizeCheck =
+        paperSize === null ||
+        paperSize === 'all' ||
+        row.paperSize === paperSize;
+      const selectedYearCheck =
+        selectedYear === null ||
+        selectedYear === 'all' ||
+        dayjs.utc(row.date).year() == selectedYear;
+
+      return paperSizeCheck && selectedYearCheck;
+    });
+  }
   return (
     <div className="scroll h-[625px] w-auto overflow-y-scroll rounded-lg bg-secondaryContainer text-base tracking-wide">
       <table className="w-full whitespace-nowrap">

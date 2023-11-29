@@ -54,6 +54,7 @@ const StudentRecords = () => {
     setpaperSize(null);
     setstartDate(null);
     setendDate(null);
+  
     navigate(location.pathname);
   };
   return (
