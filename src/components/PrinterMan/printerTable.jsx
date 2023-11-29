@@ -2,6 +2,8 @@ import { HashLink } from 'react-router-hash-link';
 import { getPrinter } from '../../services/printer.service';
 import { useState, useEffect } from 'react';
 
+import { formatDate } from '../../utils/date';
+
 const printerTable = ({ branch, building, statuss }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -19,7 +21,7 @@ const printerTable = ({ branch, building, statuss }) => {
     const buildingCheck =
       building === null ||
       building === undefined ||
-      row.location.building === building;
+      row.location.building.includes(building);
 
     return statusCheck && branchCheck && buildingCheck;
   });
@@ -27,15 +29,17 @@ const printerTable = ({ branch, building, statuss }) => {
     filteredData.length === data.length ? data : filteredData;
   return (
     <div className="scroll h-[625px] w-auto overflow-y-scroll rounded-lg bg-secondaryContainer text-base tracking-wide">
-      <table className="w-full whitespace-nowrap">
+      <table className="w-full table-fixed whitespace-nowrap">
         <thead className="sticky top-0">
           <tr className="roboto border-b bg-customBlue text-left font-bold text-white">
-            <th className="px-4 py-3">ID</th>
+            <th className="w-[20%] px-4 py-3">ID</th>
             <th className="px-4 py-3">Vị trí</th>
             <th className="px-4 py-3">Máy in</th>
-            <th className="px-4 py-3">Lần in cuối cùng</th>
-            <th className="px-4 py-3">Khổ giấy cho phép</th>
-            <th className="px-4 py-3 translate-x-10">Trạng thái</th>
+            <th className="w-[20%] px-4 py-3">Lần in cuối cùng</th>
+            <th className="flex  justify-center px-4 py-3">
+              Khổ giấy cho phép
+            </th>
+            <th className="translate-x-10 px-4 py-3">Trạng thái</th>
           </tr>
         </thead>
         <tbody className="roboto h-auto divide-y">
@@ -47,13 +51,15 @@ const printerTable = ({ branch, building, statuss }) => {
             >
               <td className="px-4 py-3">{row._id}</td>
               <td className="px-4 py-3">
-                {row.location.branch}
-                {'-'}
-                {row.location.building}
+                {row.location.branch} {row.location.building}
               </td>
               <td className="px-4 py-3">{row.name}</td>
-              <td className="px-4 py-3">{row.lastUsed}</td>
-              <td className="px-4 py-3">{row.maxSize}</td>
+              <td className="px-4 py-3">
+                {row.lastUsed ? formatDate(row.lastUsed) : 'Has not been used'}
+              </td>
+              <td className="flex w-full justify-center px-4 py-3">
+                {row.maxSize}
+              </td>
 
               <td className="max-w-[200px] px-4  py-3">
                 <h2

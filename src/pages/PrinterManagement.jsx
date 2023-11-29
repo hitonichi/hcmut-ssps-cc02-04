@@ -49,7 +49,7 @@ const PrinterManangement = () => {
         </h2>
       </div>
       <div className="flex w-full flex-row items-start justify-between">
-        <div className="grid grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
+        <div className="grid w-[40%] grid-cols-[40%_40%_20%] flex-col items-center justify-center gap-x-2  rounded-lg bg-white px-5 py-4 ">
           <div className="flex h-full max-w-[200px] flex-col gap-2">
             <Branch setResetState={setResetState} resetCounter={resetCounter} />
             <Build setResetState={setResetState} resetCounter={resetCounter} />
