@@ -63,13 +63,13 @@ const printerTable = ({ branch, building, statuss }) => {
 
               <td className="max-w-[200px] px-4  py-3">
                 <h2
-                  className={`px-3s   flex items-center justify-center rounded-2xl py-1 text-base  font-normal text-white ${
+                  className={`flex    items-center justify-center  rounded-2xl px-3 py-1 text-base  font-normal text-white ${
                     row.enabled
-                      ? 'ml-6 w-[112px] bg-green-700'
-                      : 'w-[161px] bg-red-700'
+                      ? ' ml-16 w-[112px] bg-green-700'
+                      : 'ml-10 w-[161px] bg-red-700 '
                   }`}
                 >
-                  {row.enabled ? 'Khả dụng' : 'Không khả dụng'}
+                  {row.enabled ? 'Khả dụng' : 'Không khả dụng '}
                 </h2>
               </td>
             </HashLink>
