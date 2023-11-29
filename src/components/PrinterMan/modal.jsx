@@ -61,7 +61,24 @@ export default function BasicModal() {
     oneSided: defaultPrintingType == 'Một mặt' ? true : false,
   };
   const handlePublish = (newData) => {
-    addPrinter(newData);
+    if (validateData()) {
+      addPrinter(newData);
+    } else {
+      // Handle incomplete data scenario (e.g., show a message to the user)
+      alert('Please fill in all fields before publishing.');
+    }
+  };
+  const validateData = () => {
+    // Add your validation logic here
+    // For example, check if all fields are non-empty
+    return (
+      newData.name !== '' &&
+      newData.location.branch !== '' &&
+      newData.location.building !== '' &&
+      newData.maxSize !== '' &&
+      newData.enabled !== undefined &&
+      newData.oneSided !== undefined
+    );
   };
 
   return (
@@ -105,7 +122,9 @@ export default function BasicModal() {
               <PrintingType />
             </div>
             <div className="flex w-full flex-row justify-between pr-[405px]">
-              <h2 className="h-auto w-auto text-xl text-black">Khổ giấy tối đa</h2>
+              <h2 className="h-auto w-auto text-xl text-black">
+                Khổ giấy tối đa
+              </h2>
               <MaxSizeFormat />
             </div>
             <div className="flex w-full flex-row justify-between pr-[318px]">

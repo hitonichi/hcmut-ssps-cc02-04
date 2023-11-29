@@ -31,4 +31,8 @@ code {
   display: table-row;
   vertical-align: inherit;
     border-color: inherit;
+    text-align: center;
+}
+th{
+  text-align: center !important;
 }
