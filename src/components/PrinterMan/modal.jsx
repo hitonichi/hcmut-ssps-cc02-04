@@ -88,27 +88,27 @@ export default function BasicModal() {
             <h2 className="h-auto w-auto text-start text-2xl font-bold text-black">
               Thông số máy in{' '}
             </h2>
-            <div className="flex w-full flex-row justify-between pr-[200px]">
+            <div className="flex w-full flex-row justify-between pr-[400px]">
               <h2 className="h-auto w-auto text-xl text-black">Tên</h2>
               <PrinterName />
             </div>
-            <div className="flex w-full flex-row justify-between pr-[255px]">
+            <div className="flex w-full flex-row justify-between pr-[455px]">
               <h2 className="h-auto w-auto text-xl text-black">Cơ sở</h2>
               <BranchPrinter />
             </div>
-            <div className="flex w-full flex-row justify-between pr-[200px]">
+            <div className="flex w-full flex-row justify-between pr-[400px]">
               <h2 className="h-auto w-auto text-xl text-black">Tòa nhà</h2>
               <PrinterBuilding />
             </div>
-            <div className="flex w-full flex-row justify-between pr-[195px]">
+            <div className="flex w-full flex-row justify-between pr-[395px]">
               <h2 className="h-auto w-auto text-xl text-black">Kiểu in</h2>
               <PrintingType />
             </div>
-            <div className="flex w-full flex-row justify-between pr-[205px]">
-              <h2 className="h-auto w-auto text-xl text-black">Kiểu in</h2>
+            <div className="flex w-full flex-row justify-between pr-[405px]">
+              <h2 className="h-auto w-auto text-xl text-black">Khổ giấy tối đa</h2>
               <MaxSizeFormat />
             </div>
-            <div className="flex w-full flex-row justify-between pr-[118px]">
+            <div className="flex w-full flex-row justify-between pr-[318px]">
               <h2 className="h-auto w-auto text-xl text-black">Trạng thái</h2>
               <PrintingStatus />
             </div>

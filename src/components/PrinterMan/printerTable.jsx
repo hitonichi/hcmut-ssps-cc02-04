@@ -59,7 +59,7 @@ const printerTable = ({ branch, building, statuss }) => {
                 <h2
                   className={`px-3s   flex items-center justify-center rounded-2xl py-1 text-base  font-normal text-white ${
                     row.enabled
-                      ? 'w-[112px] bg-green-700'
+                      ? 'w-[112px] bg-green-700 ml-6'
                       : 'w-[161px] bg-red-700'
                   }`}
                 >
