@@ -39,7 +39,7 @@ const printerTable = ({ branch, building, statuss }) => {
             <th className="flex  justify-center px-4 py-3">
               Khổ giấy cho phép
             </th>
-            <th className="translate-x-10 px-4 py-3">Trạng thái</th>
+            <th className=" px-4 py-3">Trạng thái</th>
           </tr>
         </thead>
         <tbody className="roboto h-auto divide-y">
@@ -65,8 +65,8 @@ const printerTable = ({ branch, building, statuss }) => {
                 <h2
                   className={`flex    items-center justify-center  rounded-2xl px-3 py-1 text-base  font-normal text-white ${
                     row.enabled
-                      ? ' ml-16 w-[112px] bg-green-700'
-                      : 'ml-10 w-[161px] bg-red-700 '
+                      ? ' ml-12 w-[112px] bg-green-700'
+                      : 'ml-5 w-[161px] bg-red-700 '
                   }`}
                 >
                   {row.enabled ? 'Khả dụng' : 'Không khả dụng '}
