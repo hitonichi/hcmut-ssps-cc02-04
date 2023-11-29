@@ -135,8 +135,8 @@ const recordTable = ({
               key={index}
               className="bg-white font-bold text-black hover:bg-primaryContainer"
             >
-              <td className="px-4 py-3 ">{row.date}</td>
-              <td className="px-4 py-3 ">dasdasd</td>
+              <td className="px-4 py-3">{row.date.substring(0, 10)}</td>
+              <td className="px-4 py-3 ">{row.date.substring(11, 19)}</td>
               <td className="px-4 py-3">{row.author}</td>
               <td className="px-4 py-3">{row.printer.location.building}</td>
               <td className="px-4 py-3">{row.fileName}</td>
