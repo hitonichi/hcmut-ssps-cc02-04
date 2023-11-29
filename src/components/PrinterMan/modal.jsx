@@ -16,11 +16,11 @@ export default function BasicModal() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const defaultStatus = searchParams.get('PrintingStatus');
-  const defaultBuilding = searchParams.get('PrinterBuilding') || "";
+  const defaultBuilding = searchParams.get('PrinterBuilding') || '';
   const maxSizeFormat = searchParams.get('MaxSizeFormat');
   const defaultBranch = searchParams.get('BranchPrinter');
   const defaultPrintingType = searchParams.get('PrintingType');
-  const defaultPrinterName = searchParams.get('PrinterName') || "";
+  const defaultPrinterName = searchParams.get('PrinterName') || '';
 
   console.log('name', defaultPrinterName);
   console.log('branch', defaultBranch);
@@ -62,7 +62,6 @@ export default function BasicModal() {
   };
   const handlePublish = (newData) => {
     addPrinter(newData);
-    
   };
 
   return (

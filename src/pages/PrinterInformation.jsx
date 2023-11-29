@@ -26,7 +26,7 @@ const PrinterInformation = () => {
 
   const handleButton = async () => {
     const newDataType = {
-      printerId: selectedPrinter._id,
+      id: selectedPrinter._id,
     };
 
     try {
