@@ -1,4 +1,4 @@
-/* eslint-disable */ 
+/* eslint-disable */
 import { useState, useEffect } from 'react';
 import { getRecords } from '../../services/records.service';
 import dayjs from 'dayjs';
@@ -11,21 +11,38 @@ const recordTable = ({ paperSize, startDate, endDate }) => {
   }, []);
 
   const filteredData = data.filter((row) => {
-    const formatedStartDate = dayjs(startDate).startOf('day').utc(); // Assuming startDate is available
-    const formatedEndDate = dayjs(endDate).endOf('day').utc();     // Assuming endDate is available
-  
-    const rowDate = dayjs(row.date).utc();
-  
-    const startDateCheck = rowDate.isAfter(formatedStartDate) || rowDate.isSame(formatedStartDate) || startDate === null;
-    const endDateCheck = rowDate.isBefore(formatedEndDate) || rowDate.isSame(formatedEndDate) || endDate === null;
-  
-    const paperSizeCheck =
-      paperSize === null || paperSize === 'all' || row.paperSize === paperSize;
-  
-    return paperSizeCheck && startDateCheck && endDateCheck;
+    if (startDate !== null && endDate !== null) {
+      const formatedStartDate = dayjs.utc(startDate).startOf('day'); // Assuming startDate is available
+      const formatedEndDate = dayjs.utc(endDate).endOf('day'); // Assuming endDate is available
+
+      const rowDate = dayjs.utc(row.date);
+
+      const startDateCheck =
+        rowDate.isAfter(formatedStartDate) ||
+        rowDate.isSame(formatedStartDate) ||
+        startDate === null;
+      const endDateCheck =
+        rowDate.isBefore(formatedEndDate) ||
+        rowDate.isSame(formatedEndDate) ||
+        endDate === null;
+
+      const paperSizeCheck =
+        paperSize === null ||
+        paperSize === 'all' ||
+        row.paperSize === paperSize;
+
+      return paperSizeCheck && startDateCheck && endDateCheck;
+    } else {
+      const paperSizeCheck =
+        paperSize === null ||
+        paperSize === 'all' ||
+        row.paperSize === paperSize;
+
+      return paperSizeCheck;
+    }
   });
 
-  console.log("dasddata",filteredData);
+  console.log('dasddata', filteredData);
   return (
     <div className="scroll h-[625px] w-auto overflow-y-scroll rounded-lg bg-secondaryContainer text-base tracking-wide">
       <table className="w-full whitespace-nowrap">

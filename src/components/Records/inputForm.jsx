@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
+
 import PropTypes from 'prop-types';
 import 'dayjs/locale/en';
 import { InputLabel, Select } from '@mui/material';
@@ -419,7 +419,7 @@ export const StartDate = ({ resetCounter, setResetState }) => {
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const initialStartDate = searchParams.get('startDate') || null;
-    setStartDate(initialStartDate ? dayjs(initialStartDate) : null);
+    setStartDate(initialStartDate);
   }, []);
   StartDate.propTypes = {
     resetCounter: PropTypes.bool.isRequired,
@@ -470,7 +470,7 @@ export const EndDate = ({ resetCounter, setResetState }) => {
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const initialEndDate = searchParams.get('endDate') || null;
-    setEndDate(initialEndDate ? dayjs(initialEndDate) : null);
+    setEndDate(initialEndDate);
   }, []);
   EndDate.propTypes = {
     resetCounter: PropTypes.bool.isRequired,
