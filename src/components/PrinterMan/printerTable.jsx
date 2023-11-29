@@ -35,7 +35,7 @@ const printerTable = ({ branch, building, statuss }) => {
             <th className="px-4 py-3">Máy in</th>
             <th className="px-4 py-3">Lần in cuối cùng</th>
             <th className="px-4 py-3">Khổ giấy cho phép</th>
-            <th className="px-4 py-3">Trạng thái</th>
+            <th className="px-4 py-3 translate-x-10">Trạng thái</th>
           </tr>
         </thead>
         <tbody className="roboto h-auto divide-y">
@@ -59,7 +59,7 @@ const printerTable = ({ branch, building, statuss }) => {
                 <h2
                   className={`px-3s   flex items-center justify-center rounded-2xl py-1 text-base  font-normal text-white ${
                     row.enabled
-                      ? 'w-[112px] bg-green-700 ml-6'
+                      ? 'ml-6 w-[112px] bg-green-700'
                       : 'w-[161px] bg-red-700'
                   }`}
                 >
