@@ -14,7 +14,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-export const MaxSizeFormat = ({errorState}) => {
+export const MaxSizeFormat = ({ errorState }) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -43,15 +43,27 @@ export const MaxSizeFormat = ({errorState}) => {
         onChange={handleChange}
         value={value}
       >
-        <FormControlLabel value="A3" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="A3" />
-        <FormControlLabel value="A4" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="A4" />
-        <FormControlLabel value="A5" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="A5" />
+        <FormControlLabel
+          value="A3"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="A3"
+        />
+        <FormControlLabel
+          value="A4"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="A4"
+        />
+        <FormControlLabel
+          value="A5"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="A5"
+        />
       </RadioGroup>
     </FormControl>
   );
 };
 
-export const BranchPrinter = ({errorState}) => {
+export const BranchPrinter = ({ errorState }) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -80,14 +92,22 @@ export const BranchPrinter = ({errorState}) => {
         onChange={handleChange}
         value={value}
       >
-        <FormControlLabel value="CS1" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="CS1" />
-        <FormControlLabel value="CS2" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="CS2" />
+        <FormControlLabel
+          value="CS1"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="CS1"
+        />
+        <FormControlLabel
+          value="CS2"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="CS2"
+        />
       </RadioGroup>
     </FormControl>
   );
 };
 
-export const PrintingType = ({errorState}) => {
+export const PrintingType = ({ errorState }) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -116,14 +136,22 @@ export const PrintingType = ({errorState}) => {
         onChange={handleChange}
         value={value}
       >
-        <FormControlLabel value="Một mặt" control={<Radio style={{ color: errorState ? 'red' : '' }}  />} label="Một mặt" />
-        <FormControlLabel value="Hai mặt" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="Hai mặt" />
+        <FormControlLabel
+          value="Một mặt"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="Một mặt"
+        />
+        <FormControlLabel
+          value="Hai mặt"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="Hai mặt"
+        />
       </RadioGroup>
     </FormControl>
   );
 };
 
-export const PrintingStatus = ({errorState}) => {
+export const PrintingStatus = ({ errorState }) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -134,7 +162,7 @@ export const PrintingStatus = ({errorState}) => {
     window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
     window.dispatchEvent(new Event('popstate'));
   };
-  console.log("ry state", errorState);
+  console.log('ry state', errorState);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -160,9 +188,8 @@ export const PrintingStatus = ({errorState}) => {
         />
         <FormControlLabel
           value="Vô hiệu hóa"
-          control={<Radio style={{ color: errorState ? 'red' : '' }}/>}
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
           label="Vô hiệu hóa"
-          
         />
       </RadioGroup>
     </FormControl>
@@ -391,10 +418,10 @@ export const PaperYear = ({ resetCounter, setResetState }) => {
 export const StartDate = ({ resetCounter, setResetState }) => {
   const [startDate, setStartDate] = useState(null);
   useEffect(() => {
-    setStartDate('');
-    setTimeout(() => {
-      setStartDate(null);
-    }, 0);
+    setStartDate(null);
+    // setTimeout(() => {
+    //   setStartDate(null);
+    // }, 0);
   }, [resetCounter]);
   useEffect(() => {
     if (startDate !== null && startDate !== '') {
@@ -442,10 +469,10 @@ export const StartDate = ({ resetCounter, setResetState }) => {
 export const EndDate = ({ resetCounter, setResetState }) => {
   const [endDate, setEndDate] = useState(null);
   useEffect(() => {
-    setEndDate('');
-    setTimeout(() => {
-      setEndDate(null);
-    }, 0);
+    setEndDate(null);
+    // setTimeout(() => {
+    //   setEndDate(null);
+    // }, 0);
   }, [resetCounter]);
   useEffect(() => {
     if (endDate !== null && endDate !== '') {
@@ -496,10 +523,10 @@ export const Build = ({ resetCounter, setResetState }) => {
   const [Building, setBuilding] = useState(initialStudentID);
 
   useEffect(() => {
-    setBuilding('');
-    setTimeout(() => {
-      setBuilding(null);
-    }, 0);
+    setBuilding(null);
+    // setTimeout(() => {
+    //   setBuilding(null);
+    // }, 0);
   }, [resetCounter]);
   useEffect(() => {
     if (Building !== null && Building !== '') {
@@ -596,10 +623,10 @@ export const StudentID = ({ resetCounter, setResetState }) => {
   const [studentID, setStudentID] = useState(initialStudentID);
 
   useEffect(() => {
-    setStudentID('');
-    setTimeout(() => {
-      setStudentID(null);
-    }, 0);
+    setStudentID(null);
+    // setTimeout(() => {
+    //   setStudentID(null);
+    // }, 0);
   }, [resetCounter]);
   useEffect(() => {
     if (studentID !== null && studentID !== '') {
@@ -641,7 +668,7 @@ export const StudentID = ({ resetCounter, setResetState }) => {
   );
 };
 
-export const PrinterBuildingg = ({errorState}) => {
+export const PrinterBuildingg = ({ errorState }) => {
   const initialStudentID = null;
   const [PrinterBuilding, setPrinterBuilding] = useState(initialStudentID);
 
@@ -667,7 +694,7 @@ export const PrinterBuildingg = ({errorState}) => {
   return (
     <div className="">
       <TextField
-      error={errorState}
+        error={errorState}
         id="justatee"
         label="Tòa nhà"
         variant="outlined"
@@ -679,7 +706,7 @@ export const PrinterBuildingg = ({errorState}) => {
   );
 };
 
-export const PrinterNamee = ({errorState}) => {
+export const PrinterNamee = ({ errorState }) => {
   const initialStudentID = null;
   const [PrinterName, setPrinterName] = useState(initialStudentID);
 
