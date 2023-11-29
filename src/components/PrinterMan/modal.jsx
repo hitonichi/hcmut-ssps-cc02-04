@@ -9,7 +9,7 @@ import {
   PrintingStatus,
   MaxSizeFormat,
 } from '../Records/inputForm';
-import { addPrinter } from '../../services';
+import { addPrinter } from '../../services/printer.service';
 export default function BasicModal() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();

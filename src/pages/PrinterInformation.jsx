@@ -1,6 +1,6 @@
 import { useParams } from 'react-router';
-import { getPrinter } from '../services';
-import { ModifyPrinter } from '../services';
+import { getPrinter } from '../services/printer.service';
+import { ModifyPrinter } from '../services/printer.service';
 import RecordTable from '../components/Records/recordTable';
 import { useEffect, useState } from 'react';
 import printer from '../assets/icon/printer.png';

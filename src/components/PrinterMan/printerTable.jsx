@@ -1,5 +1,5 @@
 import { HashLink } from 'react-router-hash-link';
-import { getPrinter } from '../../services';
+import { getPrinter } from '../../services/printer.service';
 import { useState, useEffect } from 'react';
 
 const printerTable = ({ branch, building, statuss }) => {
