@@ -2,8 +2,8 @@ import { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
-  PrinterName,
-  PrinterBuilding,
+  PrinterNamee,
+  PrinterBuildingg,
   BranchPrinter,
   PrintingType,
   PrintingStatus,
@@ -15,12 +15,18 @@ export default function BasicModal() {
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const defaultStatus = searchParams.get('PrintingStatus');
+  const defaultStatus = searchParams.get('PrintingStatus') || null;
   const defaultBuilding = searchParams.get('PrinterBuilding') || '';
-  const maxSizeFormat = searchParams.get('MaxSizeFormat');
-  const defaultBranch = searchParams.get('BranchPrinter');
-  const defaultPrintingType = searchParams.get('PrintingType');
+  const maxSizeFormat = searchParams.get('MaxSizeFormat') || null;
+  const defaultBranch = searchParams.get('BranchPrinter') || null;
+  const defaultPrintingType = searchParams.get('PrintingType') || null;
   const defaultPrinterName = searchParams.get('PrinterName') || '';
+  const [error, setErrorName] = useState(false);
+  const [errorBuilding, setErrorBuilding] = useState(false);
+  const [errorBranch, setErrorBranch] = useState(false);
+  const [errorMaxSize, setErrorMaxSize] = useState(false);
+  const [errorEnabled, setErrorEnabled] = useState(false);
+  const [errorOneSided, setErrorOneSided] = useState(false);
 
   console.log('name', defaultPrinterName);
   console.log('branch', defaultBranch);
@@ -48,6 +54,12 @@ export default function BasicModal() {
     searchParams.delete('MaxSizeFormat');
     searchParams.delete('PrintingType');
     navigate(`${location.pathname}`);
+    setErrorName(false);
+    setErrorBranch(false);
+    setErrorBuilding(false);
+    setErrorEnabled(false);
+    setErrorMaxSize(false);
+    setErrorOneSided(false);
   };
 
   const newData = {
@@ -60,25 +72,48 @@ export default function BasicModal() {
     enabled: defaultStatus == 'Được kích hoạt' ? true : false,
     oneSided: defaultPrintingType == 'Một mặt' ? true : false,
   };
-  const handlePublish = (newData) => {
-    if (validateData()) {
-      addPrinter(newData);
-    } else {
-      // Handle incomplete data scenario (e.g., show a message to the user)
-      alert('Please fill in all fields before publishing.');
-    }
-  };
+
   const validateData = () => {
-    // Add your validation logic here
-    // For example, check if all fields are non-empty
-    return (
-      newData.name !== '' &&
-      newData.location.branch !== '' &&
-      newData.location.building !== '' &&
-      newData.maxSize !== '' &&
-      newData.enabled !== undefined &&
-      newData.oneSided !== undefined
-    );
+    const errors = {
+      name: defaultPrinterName == '',
+      branch: defaultBranch == 'null',
+      building: defaultBuilding == '',
+      maxSize: maxSizeFormat == 'null',
+      enabled: defaultStatus == 'null',
+      oneSided: defaultPrintingType == 'null',
+    };
+    console.log('errors: ', errors);
+
+    return errors;
+  };
+  const handlePublish = (newData) => {
+    const errors = validateData();
+
+    if (
+      errors.name ||
+      errors.maxSize ||
+      errors.branch ||
+      errors.building ||
+      errors.maxSize ||
+      errors.enabled ||
+      errors.oneSided
+    ) {
+      setErrorName(errors.name);
+      setErrorBranch(errors.branch);
+      setErrorBuilding(errors.building);
+      setErrorMaxSize(errors.maxSize);
+      setErrorEnabled(errors.enabled);
+      setErrorOneSided(errors.oneSided);
+      alert('Vui lòng kiểm tra tất cả các mục cần được điền');
+    } else {
+      setErrorName(false);
+      setErrorBranch(false);
+      setErrorBuilding(false);
+      setErrorMaxSize(false);
+      setErrorEnabled(false);
+      setErrorOneSided(false);
+      addPrinter(newData);
+    }
   };
 
   return (
@@ -106,30 +141,30 @@ export default function BasicModal() {
               Thông số máy in{' '}
             </h2>
             <div className="flex w-full flex-row justify-between pr-[400px]">
-              <h2 className="h-auto w-auto text-xl text-black">Tên</h2>
-              <PrinterName />
+              <h2 className={`h-auto w-auto text-xl text-black `}>Tên</h2>
+              <PrinterNamee errorState={error} />
             </div>
             <div className="flex w-full flex-row justify-between pr-[455px]">
               <h2 className="h-auto w-auto text-xl text-black">Cơ sở</h2>
-              <BranchPrinter />
+              <BranchPrinter errorState={errorBranch} />
             </div>
             <div className="flex w-full flex-row justify-between pr-[400px]">
               <h2 className="h-auto w-auto text-xl text-black">Tòa nhà</h2>
-              <PrinterBuilding />
+              <PrinterBuildingg errorState={errorBuilding} />
             </div>
             <div className="flex w-full flex-row justify-between pr-[395px]">
               <h2 className="h-auto w-auto text-xl text-black">Kiểu in</h2>
-              <PrintingType />
+              <PrintingType errorState={errorOneSided} />
             </div>
             <div className="flex w-full flex-row justify-between pr-[405px]">
               <h2 className="h-auto w-auto text-xl text-black">
                 Khổ giấy tối đa
               </h2>
-              <MaxSizeFormat />
+              <MaxSizeFormat errorState={errorMaxSize} />
             </div>
             <div className="flex w-full flex-row justify-between pr-[318px]">
               <h2 className="h-auto w-auto text-xl text-black">Trạng thái</h2>
-              <PrintingStatus />
+              <PrintingStatus errorState={errorEnabled} />
             </div>
           </div>
           <div className="flex h-[72px] w-full flex-row items-center justify-end gap-[20px] border-t-2 border-customBlue pr-[30px]">

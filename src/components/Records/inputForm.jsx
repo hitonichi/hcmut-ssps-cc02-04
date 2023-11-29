@@ -14,7 +14,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-export const MaxSizeFormat = () => {
+export const MaxSizeFormat = ({errorState}) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -31,8 +31,11 @@ export const MaxSizeFormat = () => {
     const initialBranchValue = searchParams.get('MaxSizeFormat') || null;
     setValue(initialBranchValue);
   }, []);
+  MaxSizeFormat.propTypes = {
+    errorState: PropTypes.bool.isRequired,
+  };
   return (
-    <FormControl>
+    <FormControl error={errorState}>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -40,15 +43,15 @@ export const MaxSizeFormat = () => {
         onChange={handleChange}
         value={value}
       >
-        <FormControlLabel value="A3" control={<Radio />} label="A3" />
-        <FormControlLabel value="A4" control={<Radio />} label="A4" />
-        <FormControlLabel value="A5" control={<Radio />} label="A5" />
+        <FormControlLabel value="A3" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="A3" />
+        <FormControlLabel value="A4" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="A4" />
+        <FormControlLabel value="A5" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="A5" />
       </RadioGroup>
     </FormControl>
   );
 };
 
-export const BranchPrinter = () => {
+export const BranchPrinter = ({errorState}) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -65,8 +68,11 @@ export const BranchPrinter = () => {
     const initialBranchValue = searchParams.get('BranchPrinter') || null;
     setValue(initialBranchValue);
   }, []);
+  BranchPrinter.propTypes = {
+    errorState: PropTypes.bool.isRequired,
+  };
   return (
-    <FormControl>
+    <FormControl error={errorState}>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -74,14 +80,14 @@ export const BranchPrinter = () => {
         onChange={handleChange}
         value={value}
       >
-        <FormControlLabel value="CS1" control={<Radio />} label="CS1" />
-        <FormControlLabel value="CS2" control={<Radio />} label="CS2" />
+        <FormControlLabel value="CS1" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="CS1" />
+        <FormControlLabel value="CS2" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="CS2" />
       </RadioGroup>
     </FormControl>
   );
 };
 
-export const PrintingType = () => {
+export const PrintingType = ({errorState}) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -98,8 +104,11 @@ export const PrintingType = () => {
     const initialBranchValue = searchParams.get('PrintingType') || null;
     setValue(initialBranchValue);
   }, []);
+  PrintingType.propTypes = {
+    errorState: PropTypes.bool.isRequired,
+  };
   return (
-    <FormControl>
+    <FormControl error={errorState}>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -107,14 +116,14 @@ export const PrintingType = () => {
         onChange={handleChange}
         value={value}
       >
-        <FormControlLabel value="Một mặt" control={<Radio />} label="Một mặt" />
-        <FormControlLabel value="Hai mặt" control={<Radio />} label="Hai mặt" />
+        <FormControlLabel value="Một mặt" control={<Radio style={{ color: errorState ? 'red' : '' }}  />} label="Một mặt" />
+        <FormControlLabel value="Hai mặt" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="Hai mặt" />
       </RadioGroup>
     </FormControl>
   );
 };
 
-export const PrintingStatus = () => {
+export const PrintingStatus = ({errorState}) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -125,12 +134,16 @@ export const PrintingStatus = () => {
     window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
     window.dispatchEvent(new Event('popstate'));
   };
+  console.log("ry state", errorState);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const initialBranchValue = searchParams.get('PrintingStatus') || null;
     setValue(initialBranchValue);
   }, []);
+  PrintingStatus.propTypes = {
+    errorState: PropTypes.bool.isRequired,
+  };
   return (
     <FormControl>
       <RadioGroup
@@ -142,13 +155,14 @@ export const PrintingStatus = () => {
       >
         <FormControlLabel
           value="Được kích hoạt"
-          control={<Radio />}
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
           label="Được kích hoạt"
         />
         <FormControlLabel
           value="Vô hiệu hóa"
-          control={<Radio />}
+          control={<Radio style={{ color: errorState ? 'red' : '' }}/>}
           label="Vô hiệu hóa"
+          
         />
       </RadioGroup>
     </FormControl>
@@ -627,7 +641,7 @@ export const StudentID = ({ resetCounter, setResetState }) => {
   );
 };
 
-export const PrinterBuilding = () => {
+export const PrinterBuildingg = ({errorState}) => {
   const initialStudentID = null;
   const [PrinterBuilding, setPrinterBuilding] = useState(initialStudentID);
 
@@ -646,10 +660,14 @@ export const PrinterBuilding = () => {
     const initialStudentID = searchParams.get('PrinterBuilding');
     setPrinterBuilding(initialStudentID);
   }, []);
+  PrinterBuildingg.propTypes = {
+    errorState: PropTypes.bool.isRequired,
+  };
 
   return (
     <div className="">
       <TextField
+      error={errorState}
         id="justatee"
         label="Tòa nhà"
         variant="outlined"
@@ -661,7 +679,7 @@ export const PrinterBuilding = () => {
   );
 };
 
-export const PrinterName = () => {
+export const PrinterNamee = ({errorState}) => {
   const initialStudentID = null;
   const [PrinterName, setPrinterName] = useState(initialStudentID);
 
@@ -680,10 +698,15 @@ export const PrinterName = () => {
     const initialStudentID = searchParams.get('PrinterName');
     setPrinterName(initialStudentID);
   }, []);
+  PrinterNamee.propTypes = {
+    errorState: PropTypes.bool.isRequired,
+  };
+  console.log(errorState);
 
   return (
     <div className="">
       <TextField
+        error={errorState}
         id="justatee"
         label="Tên máy in"
         variant="outlined"
