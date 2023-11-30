@@ -114,6 +114,9 @@ const recordTable = ({
       return paperSizeCheck && selectedYearCheck;
     });
   }
+  else{
+    filteredData=data;
+  }
   return (
     <div className="scroll h-[625px] w-auto overflow-y-scroll rounded-lg bg-secondaryContainer text-base tracking-wide">
       <table className="w-full whitespace-nowrap">

@@ -4,11 +4,19 @@ import { ModifyPrinter } from '../services/printer.service';
 import RecordTable from '../components/Records/recordTable';
 import { useEffect, useState } from 'react';
 import printer from '../assets/icon/printer.png';
-import { mockData } from '../components/recordConstant';
+import Modal from '@mui/material/Modal';
 const PrinterInformation = () => {
   const [printerData, setPrinterData] = useState([]);
   const [selectedPrinter, setSelectedPrinter] = useState(null);
   const [active, setActive] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const { _id } = useParams();
 
   useEffect(() => {
@@ -28,6 +36,7 @@ const PrinterInformation = () => {
     const newDataType = {
       id: selectedPrinter._id,
     };
+    handleOpen();
 
     try {
       await ModifyPrinter(newDataType);
@@ -40,6 +49,25 @@ const PrinterInformation = () => {
   if (!selectedPrinter) return null;
   return (
     <div className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[60px]">
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="absolute left-1/2 top-1/2 flex h-[233px] w-[400px] -translate-x-[50%] -translate-y-[50%] flex-col rounded-[26px] bg-white">
+          <div className="flex h-[72px] w-full flex-row items-center justify-end gap-[20px] border-t-2 border-customBlue pr-[30px]">
+            <div
+              className="flex h-[40px] w-[120px] cursor-pointer items-center justify-center rounded-3xl border-2 border-customBlue bg-white px-3 py-2 text-center text-lg font-semibold text-customBlue hover:border-none hover:bg-customBlue hover:text-white"
+              onClick={() => {
+                handleClose();
+              }}
+            >
+              Quay lại
+            </div>
+          </div>
+        </div>
+      </Modal>
       <div className="flex h-[60px] w-auto flex-row items-center justify-start">
         <div className="h-[30px] w-[30px]">
           <img className="object-contain"></img>
@@ -96,7 +124,7 @@ const PrinterInformation = () => {
           </div>
         </div>
       </div>
-      <RecordTable mockData={mockData} />
+      <RecordTable variant="default" />
     </div>
   );
 };
