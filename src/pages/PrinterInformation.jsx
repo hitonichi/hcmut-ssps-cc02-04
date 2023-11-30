@@ -66,7 +66,7 @@ const PrinterInformation = () => {
             } `}
           ></div>
           <h2
-            className={`mt-7 w-auto text-2xl ${
+            className={`mt-7 w-auto text-2xl font-bold ${
               active ? 'text-customBlue' : 'text-red-700'
             }`}
           >
@@ -105,7 +105,7 @@ const PrinterInformation = () => {
             } `}
           ></div>
           <h2
-            className={`mt-7 w-auto text-2xl ${
+            className={`mt-7 w-auto text-2xl font-bold ${
               active ? 'text-customBlue' : 'text-red-700'
             }`}
           >
@@ -169,7 +169,7 @@ const PrinterInformation = () => {
         <div className="flex h-[56px] w-full items-center justify-end border-t-[1px] border-black px-2 py-1">
           <div className="flex h-[40px] w-auto cursor-pointer items-center justify-center rounded-lg bg-customBlue p-2 text-center ">
             <h3
-              className="w-auto text-base font-bold text-white"
+              className="w-auto text-base font-semibold text-white"
               onClick={() => {
                 handlecOpen();
               }}
