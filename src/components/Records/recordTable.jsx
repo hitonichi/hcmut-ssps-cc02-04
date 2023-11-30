@@ -11,6 +11,7 @@ const recordTable = ({
   selectedYear,
   studentID,
   variant,
+  id,
 }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -113,9 +114,12 @@ const recordTable = ({
 
       return paperSizeCheck && selectedYearCheck;
     });
-  }
-  else{
-    filteredData=data;
+  } else {
+    filteredData = data.filter((row) => {
+      const idCheck = row.printer.id == id;
+
+      return idCheck;
+    });
   }
   return (
     <div className="scroll h-[625px] w-auto overflow-y-scroll rounded-lg bg-secondaryContainer text-base tracking-wide">
