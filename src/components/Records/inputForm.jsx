@@ -520,11 +520,11 @@ export const EndDate = ({ resetCounter, setResetState }) => {
 };
 
 export const Build = ({ resetCounter, setResetState }) => {
-  const initialStudentID = null;
+  const initialStudentID = '';
   const [Building, setBuilding] = useState(initialStudentID);
 
   useEffect(() => {
-    setBuilding(null);
+    setBuilding('');
     // setTimeout(() => {
     //   setBuilding(null);
     // }, 0);
@@ -620,11 +620,11 @@ export const StatusState = ({ resetCounter, setResetState }) => {
 };
 
 export const StudentID = ({ resetCounter, setResetState }) => {
-  const initialStudentID = null;
+  const initialStudentID = '';
   const [studentID, setStudentID] = useState(initialStudentID);
 
   useEffect(() => {
-    setStudentID(null);
+    setStudentID('');
     // setTimeout(() => {
     //   setStudentID(null);
     // }, 0);

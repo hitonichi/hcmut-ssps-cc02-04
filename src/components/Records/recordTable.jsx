@@ -126,14 +126,14 @@ const recordTable = ({
       <table className="w-full table-fixed whitespace-nowrap">
         <thead className="sticky top-0">
           <tr className="roboto border-b bg-customBlue text-left font-bold text-white">
-            <th className="px-4 py-3">Ngày in</th>
-            <th className="px-4 py-3">Thời gian in</th>
-            <th className="px-4 py-3">MSSV</th>
-            <th className="px-4 py-3">In tại</th>
+            <th className="w-[12%] px-4 py-3">Ngày in</th>
+            <th className="w-[12%] px-4 py-3">Thời gian in</th>
+            <th className="w-[12%] px-4 py-3">MSSV</th>
+            <th className="w-[12%] px-4 py-3">In tại</th>
             <th className="px-4 py-3">Tên tài liệu</th>
-            <th className="px-4 py-3">Khổ giấy</th>
-            <th className="px-4 py-3">Số bản in</th>
-            <th className="px-4 py-3">Số trang</th>
+            <th className="w-[8%] px-4 py-3">Khổ giấy</th>
+            <th className="w-[8%] px-4 py-3">Số bản in</th>
+            <th className="w-[10%] px-4 py-3">Số trang</th>
           </tr>
         </thead>
         <tbody className="roboto h-auto divide-y">
