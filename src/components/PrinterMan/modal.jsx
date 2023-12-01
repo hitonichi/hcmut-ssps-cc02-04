@@ -10,7 +10,9 @@ import {
   MaxSizeFormat,
 } from '../Records/inputForm';
 import { addPrinter } from '../../services/printer.service';
+
 export default function BasicModal() {
+  
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -140,29 +142,29 @@ export default function BasicModal() {
             <h2 className="h-auto w-auto text-start text-2xl font-bold text-black">
               Thông số máy in{' '}
             </h2>
-            <div className="flex w-full flex-row justify-between pr-[400px]">
+            <div className="flex w-full flex-row justify-between items-center pr-[400px]">
               <h2 className={`h-auto w-auto text-xl text-black `}>Tên</h2>
               <PrinterNamee errorState={error} />
             </div>
-            <div className="flex w-full flex-row justify-between pr-[455px]">
+            <div className="flex w-full flex-row justify-between items-center pr-[455px]">
               <h2 className="h-auto w-auto text-xl text-black">Cơ sở</h2>
               <BranchPrinter errorState={errorBranch} />
             </div>
-            <div className="flex w-full flex-row justify-between pr-[400px]">
+            <div className="flex w-full flex-row justify-between items-center pr-[400px]">
               <h2 className="h-auto w-auto text-xl text-black">Tòa nhà</h2>
               <PrinterBuildingg errorState={errorBuilding} />
             </div>
-            <div className="flex w-full flex-row justify-between pr-[395px]">
+            <div className="flex w-full flex-row justify-between items-center pr-[395px]">
               <h2 className="h-auto w-auto text-xl text-black">Kiểu in</h2>
               <PrintingType errorState={errorOneSided} />
             </div>
-            <div className="flex w-full flex-row justify-between pr-[405px]">
+            <div className="flex w-full flex-row justify-between items-center pr-[405px]">
               <h2 className="h-auto w-auto text-xl text-black">
                 Khổ giấy tối đa
               </h2>
               <MaxSizeFormat errorState={errorMaxSize} />
             </div>
-            <div className="flex w-full flex-row justify-between pr-[318px]">
+            <div className="flex w-full flex-row justify-between items-center pr-[318px]">
               <h2 className="h-auto w-auto text-xl text-black">Trạng thái</h2>
               <PrintingStatus errorState={errorEnabled} />
             </div>
