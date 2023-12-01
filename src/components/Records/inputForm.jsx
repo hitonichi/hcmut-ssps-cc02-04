@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
+
 import PropTypes from 'prop-types';
 import 'dayjs/locale/en';
 import { InputLabel, Select } from '@mui/material';
@@ -14,7 +14,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-export const MaxSizeFormat = ({errorState}) => {
+export const MaxSizeFormat = ({ errorState }) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -43,15 +43,27 @@ export const MaxSizeFormat = ({errorState}) => {
         onChange={handleChange}
         value={value}
       >
-        <FormControlLabel value="A3" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="A3" />
-        <FormControlLabel value="A4" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="A4" />
-        <FormControlLabel value="A5" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="A5" />
+        <FormControlLabel
+          value="A3"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="A3"
+        />
+        <FormControlLabel
+          value="A4"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="A4"
+        />
+        <FormControlLabel
+          value="A5"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="A5"
+        />
       </RadioGroup>
     </FormControl>
   );
 };
 
-export const BranchPrinter = ({errorState}) => {
+export const BranchPrinter = ({ errorState }) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -80,14 +92,22 @@ export const BranchPrinter = ({errorState}) => {
         onChange={handleChange}
         value={value}
       >
-        <FormControlLabel value="CS1" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="CS1" />
-        <FormControlLabel value="CS2" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="CS2" />
+        <FormControlLabel
+          value="CS1"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="CS1"
+        />
+        <FormControlLabel
+          value="CS2"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="CS2"
+        />
       </RadioGroup>
     </FormControl>
   );
 };
 
-export const PrintingType = ({errorState}) => {
+export const PrintingType = ({ errorState }) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -116,14 +136,22 @@ export const PrintingType = ({errorState}) => {
         onChange={handleChange}
         value={value}
       >
-        <FormControlLabel value="Một mặt" control={<Radio style={{ color: errorState ? 'red' : '' }}  />} label="Một mặt" />
-        <FormControlLabel value="Hai mặt" control={<Radio style={{ color: errorState ? 'red' : '' }}/>} label="Hai mặt" />
+        <FormControlLabel
+          value="Một mặt"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="Một mặt"
+        />
+        <FormControlLabel
+          value="Hai mặt"
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
+          label="Hai mặt"
+        />
       </RadioGroup>
     </FormControl>
   );
 };
 
-export const PrintingStatus = ({errorState}) => {
+export const PrintingStatus = ({ errorState }) => {
   const [value, setValue] = useState(null);
   const handleChange = (event) => {
     const newSize = event.target.value;
@@ -134,7 +162,7 @@ export const PrintingStatus = ({errorState}) => {
     window.history.replaceState(null, '', `?${newSearchParams.toString()}`);
     window.dispatchEvent(new Event('popstate'));
   };
-  console.log("ry state", errorState);
+  console.log('ry state', errorState);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -160,9 +188,8 @@ export const PrintingStatus = ({errorState}) => {
         />
         <FormControlLabel
           value="Vô hiệu hóa"
-          control={<Radio style={{ color: errorState ? 'red' : '' }}/>}
+          control={<Radio style={{ color: errorState ? 'red' : '' }} />}
           label="Vô hiệu hóa"
-          
         />
       </RadioGroup>
     </FormControl>
@@ -319,18 +346,18 @@ export const PaperMonth = ({ resetCounter, setResetState }) => {
           onChange={handleChange}
         >
           <MenuItem value={'all'}>Tất cả</MenuItem>
-          <MenuItem value={'Tháng Một'}>Tháng Một</MenuItem>
-          <MenuItem value={'Tháng Hai'}>Tháng Hai</MenuItem>
-          <MenuItem value={'Tháng Ba'}>Tháng Ba</MenuItem>
-          <MenuItem value={'Tháng Tư'}>Tháng Tư</MenuItem>
-          <MenuItem value={'Tháng Năm'}>Tháng Năm</MenuItem>
-          <MenuItem value={'Tháng Sáu'}>Tháng Sáu</MenuItem>
-          <MenuItem value={'Tháng Bảy'}>Tháng Bảy</MenuItem>
-          <MenuItem value={'Tháng Tám'}>Tháng Tám</MenuItem>
-          <MenuItem value={'Tháng Chín'}>Tháng Chín</MenuItem>
-          <MenuItem value={'Tháng Mười'}>Tháng Mười</MenuItem>
-          <MenuItem value={'Tháng Mười Một'}>Tháng Mười Một</MenuItem>
-          <MenuItem value={'Tháng Mười Hai'}>Tháng Mười Hai</MenuItem>
+          <MenuItem value={1}>Tháng Một</MenuItem>
+          <MenuItem value={2}>Tháng Hai</MenuItem>
+          <MenuItem value={3}>Tháng Ba</MenuItem>
+          <MenuItem value={4}>Tháng Tư</MenuItem>
+          <MenuItem value={5}>Tháng Năm</MenuItem>
+          <MenuItem value={6}>Tháng Sáu</MenuItem>
+          <MenuItem value={7}>Tháng Bảy</MenuItem>
+          <MenuItem value={8}>Tháng Tám</MenuItem>
+          <MenuItem value={9}>Tháng Chín</MenuItem>
+          <MenuItem value={10}>Tháng Mười</MenuItem>
+          <MenuItem value={11}>Tháng Mười Một</MenuItem>
+          <MenuItem value={12}>Tháng Mười Hai</MenuItem>
         </Select>
       </FormControl>
     </div>
@@ -370,12 +397,13 @@ export const PaperYear = ({ resetCounter, setResetState }) => {
   };
 
   return (
-    <FormControl fullWidth>
-      <TextField
+    <FormControl fullWidth size="small">
+      <InputLabel id="demo-simple-select-label">Chọn năm</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
         id="demo-simple-select"
-        select
-        label="Chọn năm"
-        size="small"
+        value={year}
+        label="Chọn tháng"
         onChange={handleChange}
       >
         <MenuItem value={'all'}>Tất cả</MenuItem>
@@ -384,17 +412,17 @@ export const PaperYear = ({ resetCounter, setResetState }) => {
         <MenuItem value={'2021'}>2021</MenuItem>
         <MenuItem value={'2020'}>2020</MenuItem>
         <MenuItem value={'2019'}>2019</MenuItem>
-      </TextField>
+      </Select>
     </FormControl>
   );
 };
 export const StartDate = ({ resetCounter, setResetState }) => {
   const [startDate, setStartDate] = useState(null);
   useEffect(() => {
-    setStartDate('');
-    setTimeout(() => {
-      setStartDate(null);
-    }, 0);
+    setStartDate(null);
+    // setTimeout(() => {
+    //   setStartDate(null);
+    // }, 0);
   }, [resetCounter]);
   useEffect(() => {
     if (startDate !== null && startDate !== '') {
@@ -419,7 +447,7 @@ export const StartDate = ({ resetCounter, setResetState }) => {
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const initialStartDate = searchParams.get('startDate') || null;
-    setStartDate(initialStartDate ? dayjs(initialStartDate) : null);
+    setStartDate(initialStartDate);
   }, []);
   StartDate.propTypes = {
     resetCounter: PropTypes.bool.isRequired,
@@ -442,10 +470,10 @@ export const StartDate = ({ resetCounter, setResetState }) => {
 export const EndDate = ({ resetCounter, setResetState }) => {
   const [endDate, setEndDate] = useState(null);
   useEffect(() => {
-    setEndDate('');
-    setTimeout(() => {
-      setEndDate(null);
-    }, 0);
+    setEndDate(null);
+    // setTimeout(() => {
+    //   setEndDate(null);
+    // }, 0);
   }, [resetCounter]);
   useEffect(() => {
     if (endDate !== null && endDate !== '') {
@@ -470,7 +498,7 @@ export const EndDate = ({ resetCounter, setResetState }) => {
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const initialEndDate = searchParams.get('endDate') || null;
-    setEndDate(initialEndDate ? dayjs(initialEndDate) : null);
+    setEndDate(initialEndDate);
   }, []);
   EndDate.propTypes = {
     resetCounter: PropTypes.bool.isRequired,
@@ -492,14 +520,14 @@ export const EndDate = ({ resetCounter, setResetState }) => {
 };
 
 export const Build = ({ resetCounter, setResetState }) => {
-  const initialStudentID = null;
+  const initialStudentID = '';
   const [Building, setBuilding] = useState(initialStudentID);
 
   useEffect(() => {
     setBuilding('');
-    setTimeout(() => {
-      setBuilding(null);
-    }, 0);
+    // setTimeout(() => {
+    //   setBuilding(null);
+    // }, 0);
   }, [resetCounter]);
   useEffect(() => {
     if (Building !== null && Building !== '') {
@@ -592,14 +620,14 @@ export const StatusState = ({ resetCounter, setResetState }) => {
 };
 
 export const StudentID = ({ resetCounter, setResetState }) => {
-  const initialStudentID = null;
+  const initialStudentID = '';
   const [studentID, setStudentID] = useState(initialStudentID);
 
   useEffect(() => {
     setStudentID('');
-    setTimeout(() => {
-      setStudentID(null);
-    }, 0);
+    // setTimeout(() => {
+    //   setStudentID(null);
+    // }, 0);
   }, [resetCounter]);
   useEffect(() => {
     if (studentID !== null && studentID !== '') {
@@ -641,7 +669,7 @@ export const StudentID = ({ resetCounter, setResetState }) => {
   );
 };
 
-export const PrinterBuildingg = ({errorState}) => {
+export const PrinterBuildingg = ({ errorState }) => {
   const initialStudentID = null;
   const [PrinterBuilding, setPrinterBuilding] = useState(initialStudentID);
 
@@ -667,7 +695,7 @@ export const PrinterBuildingg = ({errorState}) => {
   return (
     <div className="">
       <TextField
-      error={errorState}
+        error={errorState}
         id="justatee"
         label="Tòa nhà"
         variant="outlined"
@@ -679,7 +707,7 @@ export const PrinterBuildingg = ({errorState}) => {
   );
 };
 
-export const PrinterNamee = ({errorState}) => {
+export const PrinterNamee = ({ errorState }) => {
   const initialStudentID = null;
   const [PrinterName, setPrinterName] = useState(initialStudentID);
 

@@ -24,7 +24,7 @@ export const addPrinter = async (newData) => {
 export const ModifyPrinter = async (newData) => {
   try {
     await axios.patch(baseUrl + '/printers/updateStatus', newData);
-    alert('Update status success');
+    
   } catch (error) {
     alert(error);
   }

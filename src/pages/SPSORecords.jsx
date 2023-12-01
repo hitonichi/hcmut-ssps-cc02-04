@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 import { PaperSize } from '../components/Records/inputForm';
 import { StartDate } from '../components/Records/inputForm';
 import { EndDate } from '../components/Records/inputForm';
-import { mockData } from '../components/recordConstant';
 import 'dayjs/locale/en';
 import PaperSizeFilter from '../components/Records/paperSizeFilter';
 import RecordTable from '../components/Records/recordTable';
@@ -15,9 +14,18 @@ import { PaperYear } from '../components/Records/inputForm';
 import PreviewIcon from '@mui/icons-material/Preview';
 import TodayIcon from '@mui/icons-material/Today';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { getRecords } from '../services/records.service';
+import { useNavigate } from 'react-router-dom';
 // import { DayCalendar } from '@mui/x-date-pickers/internals';
 // import { YearCalendar } from '@mui/x-date-pickers';
 const SPSORecords = () => {
+  const [paperSize, setpaperSize] = useState(null);
+  const [startDate, setstartDate] = useState(null);
+  const [endDate, setendDate] = useState(null);
+  const [studentID, setstudentID] = useState(null);
+  const [selectedMonth, setselectedMonth] = useState(null);
+  const [selectedYear, setselectedYear] = useState(null);
+  const navigate = useNavigate();
   const location = useLocation();
   const searchParamss = new URLSearchParams(location.search);
   const defaultPaperSize = searchParamss.get('paperSize') || null;
@@ -26,6 +34,10 @@ const SPSORecords = () => {
   const defaultStudentID = searchParamss.get('StudentID') || null;
   const defaultselectMonth = searchParamss.get('month') || null;
   const defaultselectYear = searchParamss.get('year') || null;
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getRecords().then((resData) => setData(resData));
+  }, []);
 
   const countPages = (data, paperSize) => {
     let pageCount = 0;
@@ -36,9 +48,9 @@ const SPSORecords = () => {
     });
     return pageCount;
   };
-  const totalCountA3 = countPages(mockData, 'A3');
-  const totalCountA4 = countPages(mockData, 'A4');
-  const totalCountA5 = countPages(mockData, 'A5');
+  const totalCountA3 = countPages(data, 'A3');
+  const totalCountA4 = countPages(data, 'A4');
+  const totalCountA5 = countPages(data, 'A5');
   const [searchParams, setSearchParams] = useSearchParams();
   const widthValue = `calc(100vw - 80px)`;
 
@@ -53,21 +65,41 @@ const SPSORecords = () => {
         console.log('Size: ', defaultPaperSize);
         console.log('Start Date:', defaultStartDate);
         console.log('End date: ', defaultEndDate);
+        setstudentID(defaultStudentID);
+        setpaperSize(defaultPaperSize);
+        setstartDate(defaultStartDate);
+        setendDate(defaultEndDate);
         break;
       case 'monthly':
         console.log('SelectedMonth: ', defaultselectMonth);
         console.log('Size: ', defaultPaperSize);
+        setselectedMonth(defaultselectMonth);
+        setpaperSize(defaultPaperSize);
         break;
       case 'annual':
         console.log('SelectedYear: ', defaultselectYear);
         console.log('Size: ', defaultPaperSize);
+        setselectedYear(defaultselectYear);
+        setpaperSize(defaultPaperSize);
         break;
     }
   };
   const [resetCounter, setResetCounter] = useState(0);
 
   const handleReset = () => {
-    // Incrementing the counter triggers a reset in child components
+    setpaperSize(null);
+    setstartDate(null);
+    setendDate(null);
+    setselectedMonth(null);
+    setselectedYear(null);
+    setstudentID(null);
+
+    const queryParams = new URLSearchParams(location.search);
+    const currentType = queryParams.get('type') || 'default';
+
+    const newPath = `${location.pathname}?type=${currentType}`;
+
+    navigate(newPath);
     setResetCounter((prev) => prev + 1);
   };
   const [reset, setResetState] = useState(false);
@@ -131,7 +163,13 @@ const SPSORecords = () => {
                 totalCountA5={totalCountA5}
               />
             </div>
-            <RecordTable mockData={mockData} />
+            <RecordTable
+              paperSize={paperSize}
+              studentID={studentID}
+              startDate={startDate}
+              endDate={endDate}
+              variant={'general'}
+            />
           </div>
         );
       case 'monthly':
@@ -183,7 +221,11 @@ const SPSORecords = () => {
                 totalCountA5={totalCountA5}
               />
             </div>
-            <RecordTable mockData={mockData} />
+            <RecordTable
+              selectedMonth={selectedMonth}
+              paperSize={paperSize}
+              variant={'monthly'}
+            />
           </div>
         );
       case 'annual':
@@ -234,47 +276,57 @@ const SPSORecords = () => {
                 totalCountA5={totalCountA5}
               />
             </div>
-            <RecordTable mockData={mockData} />
+            <RecordTable
+              selectedYear={selectedYear}
+              paperSize={paperSize}
+              variant={'annual'}
+            />
           </div>
         );
       default:
         return (
           <>
-            <div className='min-h-screen flex flex-col items-center justify-center align-center space-y-[40px] bg-primaryContainer '>
+            <div className="align-center flex min-h-screen flex-col items-center justify-center space-y-[40px] bg-primaryContainer ">
               <Button onClick={() => setSearchParams({ type: 'general' })}>
-                <div className='grid grid-cols-4
-                bg-customBlue hover:bg-blue-300 
-                h-[100px] w-[396px] rounded-[20px] text-white' >  
-                  <div className='flex justify-center items-center '>
-                    <PreviewIcon/>
-                  </div>                        
-                  <div className='col-span-2 flex justify-self-start items-center text-sm font-semibold' >
+                <div
+                  className="grid h-[100px]
+                w-[396px] grid-cols-4 
+                rounded-[20px] bg-customBlue text-white hover:bg-blue-300"
+                >
+                  <div className="flex items-center justify-center ">
+                    <PreviewIcon />
+                  </div>
+                  <div className="col-span-2 flex items-center justify-self-start text-sm font-semibold">
                     Báo cáo in theo sinh viên
                   </div>
-                </div> 
+                </div>
               </Button>
               <Button onClick={() => setSearchParams({ type: 'monthly' })}>
-                <div className='grid grid-cols-4
-                  bg-customBlue hover:bg-blue-300 
-                  h-[100px] w-[396px] rounded-[20px] text-white' >  
-                    <div className='flex justify-center items-center '>
-                      <TodayIcon/>
-                    </div>                        
-                    <div className='col-span-2 flex justify-self-start items-center text-sm font-semibold' >
-                      Báo cáo in theo tháng 
-                    </div>
+                <div
+                  className="grid h-[100px]
+                  w-[396px] grid-cols-4 
+                  rounded-[20px] bg-customBlue text-white hover:bg-blue-300"
+                >
+                  <div className="flex items-center justify-center ">
+                    <TodayIcon />
+                  </div>
+                  <div className="col-span-2 flex items-center justify-self-start text-sm font-semibold">
+                    Báo cáo in theo tháng
+                  </div>
                 </div>
               </Button>
               <Button onClick={() => setSearchParams({ type: 'annual' })}>
-                <div className='grid grid-cols-4
-                  bg-customBlue hover:bg-blue-300 
-                  h-[100px] w-[396px] rounded-[20px] text-white' >  
-                    <div className='flex justify-center items-center '>
-                      <CalendarMonthIcon/>
-                    </div>                        
-                    <div className='col-span-2 flex justify-self-start items-center text-sm font-semibold' >
-                      Báo cáo in theo năm
-                    </div>
+                <div
+                  className="grid h-[100px]
+                  w-[396px] grid-cols-4 
+                  rounded-[20px] bg-customBlue text-white hover:bg-blue-300"
+                >
+                  <div className="flex items-center justify-center ">
+                    <CalendarMonthIcon />
+                  </div>
+                  <div className="col-span-2 flex items-center justify-self-start text-sm font-semibold">
+                    Báo cáo in theo năm
+                  </div>
                 </div>
               </Button>
             </div>

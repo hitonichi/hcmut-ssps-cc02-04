@@ -12,6 +12,7 @@ const printerTable = ({ branch, building, statuss }) => {
 
   const filteredData = data.filter((row) => {
     const formatedStatus = row.enabled ? 'enabled' : 'disabled';
+    
     const statusCheck =
       statuss === null || statuss === 'chưa chọn' || formatedStatus == statuss;
     const branchCheck =
