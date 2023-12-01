@@ -4,11 +4,37 @@ import { ModifyPrinter } from '../services/printer.service';
 import RecordTable from '../components/Records/recordTable';
 import { useEffect, useState } from 'react';
 import printer from '../assets/icon/printer.png';
-import { mockData } from '../components/recordConstant';
+import Modal from '@mui/material/Modal';
 const PrinterInformation = () => {
   const [printerData, setPrinterData] = useState([]);
   const [selectedPrinter, setSelectedPrinter] = useState(null);
   const [active, setActive] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [copen, csetOpen] = useState(false);
+  const handleOpen = async () => {
+    const newDataType = {
+      id: selectedPrinter._id,
+    };
+
+    try {
+      await ModifyPrinter(newDataType);
+      setActive(!active);
+    } catch (error) {
+      console.error('Error updating printer:', error);
+    }
+    csetOpen(false);
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handlecOpen = () => {
+    csetOpen(true);
+  };
+  const handlecClose = () => {
+    csetOpen(false);
+  };
+
   const { _id } = useParams();
 
   useEffect(() => {
@@ -24,22 +50,79 @@ const PrinterInformation = () => {
     }
   }, [printerData, _id]);
 
-  const handleButton = async () => {
-    const newDataType = {
-      id: selectedPrinter._id,
-    };
-
-    try {
-      await ModifyPrinter(newDataType);
-      setActive(!active);
-    } catch (error) {
-      console.error('Error updating printer:', error);
-    }
-  };
-
   if (!selectedPrinter) return null;
   return (
     <div className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[60px]">
+      <Modal
+        open={copen}
+        onClose={handlecClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="absolute left-1/2 top-1/2 flex h-[200px] w-[420px] -translate-x-[50%] -translate-y-[50%] flex-col items-center justify-center rounded-[26px] bg-white">
+          <div
+            className={`mx-10 h-1 w-[40%] border-2 ${
+              active ? 'border-customBlue' : 'border-red-700'
+            } `}
+          ></div>
+          <h2
+            className={`mt-7 w-auto text-2xl font-bold ${
+              active ? 'text-customBlue' : 'text-red-700'
+            }`}
+          >
+            {active ? 'Xác nhận vô hiệu hóa máy in' : 'Xác nhận kích hoạt máy in'}
+          </h2>
+          <div className="flex h-[72px] w-full flex-row gap-6 items-center justify-center">
+            <div
+              className="flex h-[40px] w-[120px] cursor-pointer items-center justify-center rounded-3xl border-2 border-customBlue bg-white px-3 py-2 text-center text-lg font-semibold text-customBlue hover:border-none hover:bg-customBlue hover:text-white"
+              onClick={() => {
+                handlecClose();
+              }}
+            >
+              Quay về
+            </div>
+            <div
+              className="flex h-[40px] w-[120px] cursor-pointer items-center justify-center rounded-3xl border-2 border-customBlue bg-white px-3 py-2 text-center text-lg font-semibold text-customBlue hover:border-none hover:bg-customBlue hover:text-white"
+              onClick={() => {
+                handleOpen();
+              }}
+            >
+              Xác nhận
+            </div>
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="absolute left-1/2 top-1/2 flex h-[200px] w-[420px] -translate-x-[50%] -translate-y-[50%] flex-col items-center justify-center rounded-[26px] bg-white">
+          <div
+            className={`mx-10 h-1 w-[40%] border-2 ${
+              active ? 'border-customBlue' : 'border-red-700'
+            } `}
+          ></div>
+          <h2
+            className={`mt-7 w-auto text-2xl font-bold ${
+              active ? 'text-customBlue' : 'text-red-700'
+            }`}
+          >
+            {active ? 'Máy in đã được kích hoạt' : 'Máy in đã được vô hiệu hóa'}
+          </h2>
+          <div className="flex h-[72px] w-full  items-center justify-center">
+            <div
+              className="flex h-[40px] w-[120px] cursor-pointer items-center justify-center rounded-3xl border-2 border-customBlue bg-white px-3 py-2 text-center text-lg font-semibold text-customBlue hover:border-none hover:bg-customBlue hover:text-white"
+              onClick={() => {
+                handleClose();
+              }}
+            >
+              Quay về
+            </div>
+          </div>
+        </div>
+      </Modal>
       <div className="flex h-[60px] w-auto flex-row items-center justify-start">
         <div className="h-[30px] w-[30px]">
           <img className="object-contain"></img>
@@ -86,9 +169,9 @@ const PrinterInformation = () => {
         <div className="flex h-[56px] w-full items-center justify-end border-t-[1px] border-black px-2 py-1">
           <div className="flex h-[40px] w-auto cursor-pointer items-center justify-center rounded-lg bg-customBlue p-2 text-center ">
             <h3
-              className="w-auto text-base font-bold text-white"
+              className="w-auto text-base font-semibold text-white"
               onClick={() => {
-                handleButton();
+                handlecOpen();
               }}
             >
               {active ? 'Vô hiệu hóa máy in' : 'Kích hoạt máy in'}
@@ -96,7 +179,7 @@ const PrinterInformation = () => {
           </div>
         </div>
       </div>
-      <RecordTable mockData={mockData} />
+      <RecordTable variant="default" id={selectedPrinter._id} />
     </div>
   );
 };
