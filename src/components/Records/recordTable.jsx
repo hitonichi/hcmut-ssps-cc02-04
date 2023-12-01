@@ -123,7 +123,7 @@ const recordTable = ({
   }
   return (
     <div className="scroll h-[625px] w-auto overflow-y-scroll rounded-lg bg-secondaryContainer text-base tracking-wide">
-      <table className="w-full whitespace-nowrap">
+      <table className="w-full table-fixed whitespace-nowrap">
         <thead className="sticky top-0">
           <tr className="roboto border-b bg-customBlue text-left font-bold text-white">
             <th className="px-4 py-3">Ngày in</th>
