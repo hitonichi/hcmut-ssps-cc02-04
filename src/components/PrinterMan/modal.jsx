@@ -130,7 +130,7 @@ export default function BasicModal() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div className="absolute left-1/2 top-1/2 flex h-[733px] w-[900px] -translate-x-[50%] -translate-y-[50%] flex-col rounded-[26px] bg-white">
+        <div className="absolute left-1/2 top-1/2 flex h-[633px] w-[900px] -translate-x-[50%] -translate-y-[50%] flex-col rounded-[26px] bg-white">
           <div className="flex h-[72px] w-full items-center justify-center rounded-t-[26px] bg-customBlue ">
             <h1 className="h-auto w-auto text-3xl font-bold text-white">
               Thêm máy in
