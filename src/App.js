@@ -10,6 +10,7 @@ import PrinterManagement from './pages/PrinterManagement';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import PoliciesPage from './pages/Policies';
+import PrinterInformation from './pages/PrinterInformation';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchUser } from './store/actions/authActions';
@@ -44,6 +45,7 @@ function App() {
           />
           <Route path="printing" element={<Printing />} />
           <Route path="printers" element={<PrinterManagement />} />
+          <Route path="printers/:_id" element={<PrinterInformation />} />
           <Route path="records" element={<Records />} />
           <Route
             path="management"

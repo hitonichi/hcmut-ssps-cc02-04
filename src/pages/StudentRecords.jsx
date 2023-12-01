@@ -1,5 +1,6 @@
-import { mockData } from '../components/recordConstant';
 import 'dayjs/locale/en';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PaperSizeFilter from '../components/Records/paperSizeFilter';
 import RecordTable from '../components/Records/recordTable';
 import { PaperSize } from '../components/Records/inputForm';
@@ -7,17 +8,29 @@ import { StartDate } from '../components/Records/inputForm';
 import { EndDate } from '../components/Records/inputForm';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import { getRecords } from '../services/records.service';
 const StudentRecords = () => {
+  const [paperSize, setpaperSize] = useState(null);
+  const [startDate, setstartDate] = useState(null);
+  const [endDate, setendDate] = useState(null);
+  const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const defaultPaperSize = searchParams.get('paperSize') || null;
   const defaultStartDate = searchParams.get('startDate') || null;
   const defaultEndDate = searchParams.get('endDate') || null;
   const handleClick = () => {
-    console.log('PaperSize: ', defaultPaperSize);
-    console.log('Start Date: ', defaultStartDate);
-    console.log('End Date: ', defaultEndDate);
+    console.log('Status: ', defaultPaperSize);
+    console.log('Building: ', defaultStartDate);
+    console.log('Branch: ', defaultEndDate);
+    setpaperSize(defaultPaperSize);
+    setstartDate(defaultStartDate);
+    setendDate(defaultEndDate);
   };
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getRecords().then((resData) => setData(resData));
+  }, []);
 
   const widthValue = `calc(100vw - 80px)`;
   const countPages = (data, paperSize) => {
@@ -29,15 +42,20 @@ const StudentRecords = () => {
     });
     return pageCount;
   };
-  const totalCountA3 = countPages(mockData, 'A3');
-  const totalCountA4 = countPages(mockData, 'A4');
-  const totalCountA5 = countPages(mockData, 'A5');
+
+  const totalCountA3 = countPages(data, 'A3');
+  const totalCountA4 = countPages(data, 'A4');
+  const totalCountA5 = countPages(data, 'A5');
   const [resetCounter, setResetCounter] = useState(0);
   const [reset, setResetState] = useState(false);
 
   const handleReset = () => {
-    // Incrementing the counter triggers a reset in child components
     setResetCounter((prev) => prev + 1);
+    setpaperSize(null);
+    setstartDate(null);
+    setendDate(null);
+  
+    navigate(location.pathname);
   };
   return (
     <div
@@ -93,7 +111,12 @@ const StudentRecords = () => {
           totalCountA5={totalCountA5}
         />
       </div>
-      <RecordTable mockData={mockData} />
+      <RecordTable
+        paperSize={paperSize}
+        startDate={startDate}
+        endDate={endDate}
+        variant={"student"}
+      />
     </div>
   );
 };
