@@ -16,6 +16,7 @@ const recordTable = ({
 }) => {
   const { user } = useSelector((state) => state.auth);
   const userId = user.orgId;
+  console.log("idd ",userId);
   const [data, setData] = useState([]);
   useEffect(() => {
     getRecords().then((resData) => setData(resData));
