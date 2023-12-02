@@ -12,7 +12,7 @@ const printerTable = ({ branch, building, statuss }) => {
 
   const filteredData = data.filter((row) => {
     const formatedStatus = row.enabled ? 'enabled' : 'disabled';
-    
+
     const statusCheck =
       statuss === null || statuss === 'chưa chọn' || formatedStatus == statuss;
     const branchCheck =
@@ -62,16 +62,16 @@ const printerTable = ({ branch, building, statuss }) => {
                 {row.maxSize}
               </td>
 
-              <td className="max-w-[200px] px-4  py-3">
-                <h2
-                  className={`flex    items-center justify-center  rounded-2xl px-3 py-1 text-base  font-normal text-white ${
-                    row.enabled
-                      ? ' ml-12 w-[112px] bg-green-700'
-                      : 'ml-5 w-[161px] bg-red-700 '
-                  }`}
-                >
-                  {row.enabled ? 'Khả dụng' : 'Không khả dụng '}
-                </h2>
+              <td className="w-full max-w-[200px] px-4  py-3">
+                <div className="flex items-center justify-center">
+                  <h2
+                    className={`flex w-fit items-center justify-center rounded-2xl px-3 py-1 text-base  font-normal text-white ${
+                      row.enabled ? '   bg-green-700' : '  bg-red-700 '
+                    }`}
+                  >
+                    {row.enabled ? 'Khả dụng' : 'Không khả dụng '}
+                  </h2>
+                </div>
               </td>
             </HashLink>
           ))}
