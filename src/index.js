@@ -8,6 +8,15 @@ import { AuthProvider } from './hooks/auth';
 import Toaster from './components/Toast/Toaster';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import { ThemeProvider, createTheme } from '@mui/material';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0461a3',
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,8 +24,10 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <AuthProvider>
-          <App />
-          <Toaster />
+          <ThemeProvider theme={theme}>
+            <App />
+            <Toaster />
+          </ThemeProvider>
         </AuthProvider>
       </BrowserRouter>
     </Provider>
