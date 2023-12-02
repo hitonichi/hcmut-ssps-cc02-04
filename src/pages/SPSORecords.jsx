@@ -29,8 +29,8 @@ const SPSORecords = () => {
   const location = useLocation();
   const searchParamss = new URLSearchParams(location.search);
   const defaultPaperSize = searchParamss.get('paperSize') || null;
-  const defaultStartDate = searchParamss.get('startDate') || null;
-  const defaultEndDate = searchParamss.get('endDate') || null;
+  const defaultStartDate = searchParamss.get('startDate') || '2000-01-01';
+  const defaultEndDate = searchParamss.get('endDate') || Date.now();
   const defaultStudentID = searchParamss.get('StudentID') || null;
   const defaultselectMonth = searchParamss.get('month') || null;
   const defaultselectYear = searchParamss.get('year') || null;
@@ -110,7 +110,7 @@ const SPSORecords = () => {
         return (
           <div
             style={{ width: widthValue }}
-            className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[60px]"
+            className="flex h-screen flex-col gap-[30px] overflow-hidden bg-primaryContainer py-[50px] pl-[40px] pr-[40px]"
           >
             <div className="flex h-[60px] w-full flex-row justify-between ">
               <h2 className="roboto ml-8 w-auto text-5xl font-bold text-black">
