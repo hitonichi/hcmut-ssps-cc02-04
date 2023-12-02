@@ -36,15 +36,17 @@ const SideBar = () => {
       >
         <div className="flex h-[126px] w-full flex-col  p-2">
           <div
-            className={`flex h-auto w-full flex-row items-center justify-center gap-4 p-2`}
+            className={`flex h-auto w-full flex-row items-center justify-start py-2 pl-4 pr-2`}
           >
             <img
-              className="ml-2 aspect-square w-[36px] self-center object-cover"
+              className={`${
+                isExpanded ? '' : ''
+              } aspect-square w-[36px] self-center object-cover`}
               src={logo}
               alt=""
             />
             <h2
-              className={`flex h-full w-full items-center text-start font-serif text-2xl uppercase  text-black ${
+              className={`ml-4 flex h-full w-full items-center text-start font-serif text-3xl uppercase  text-black ${
                 isExpanded ? 'block' : ' hidden'
               }`}
             >
@@ -56,7 +58,9 @@ const SideBar = () => {
               isExpanded ? 'block' : ' hidden'
             }`}
           >
-            <h3 className="ml-4 w-auto text-black  ">{user.role}</h3>
+            <h3 className="ml-4 w-fit rounded-md  text-black  ">
+              {user.role.toUpperCase()}
+            </h3>
             <h3 className="ml-4 w-auto font-bold uppercase text-black">
               {`${user.name} - ${user.orgId}`}
             </h3>
