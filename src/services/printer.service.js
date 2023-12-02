@@ -15,7 +15,7 @@ export const getPrinter = async () => {
 export const addPrinter = async (newData) => {
   try {
     await axios.post(baseUrl + '/printers', newData);
-    alert('Success');
+    alert('Máy in đã được thêm thành công!');
   } catch (error) {
     alert(error);
   }
@@ -24,7 +24,6 @@ export const addPrinter = async (newData) => {
 export const ModifyPrinter = async (newData) => {
   try {
     await axios.patch(baseUrl + '/printers/updateStatus', newData);
-    
   } catch (error) {
     alert(error);
   }

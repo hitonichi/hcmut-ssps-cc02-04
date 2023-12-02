@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getRecords } from '../../services/records.service';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
+import { useSelector } from 'react-redux';
 dayjs.extend(utc);
 const recordTable = ({
   paperSize,
@@ -13,6 +14,9 @@ const recordTable = ({
   variant,
   id,
 }) => {
+  const { user } = useSelector((state) => state.auth);
+  const userId = user.orgId;
+  console.log("idd ",userId);
   const [data, setData] = useState([]);
   useEffect(() => {
     getRecords().then((resData) => setData(resData));
@@ -40,14 +44,18 @@ const recordTable = ({
           paperSize === 'all' ||
           row.paperSize === paperSize;
 
-        return paperSizeCheck && startDateCheck && endDateCheck;
+        const userIdCheck = row.author === userId;
+
+        return paperSizeCheck && startDateCheck && endDateCheck && userIdCheck;
       } else {
         const paperSizeCheck =
           paperSize === null ||
           paperSize === 'all' ||
           row.paperSize === paperSize;
 
-        return paperSizeCheck;
+        const userIdCheck = row.author === userId;
+
+        return paperSizeCheck && userIdCheck;
       }
     });
   } else if (variant == 'general') {
