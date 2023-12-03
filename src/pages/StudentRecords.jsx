@@ -34,12 +34,14 @@ const StudentRecords = () => {
   }, []);
   const { user } = useSelector((state) => state.auth);
   const userId = user.orgId;
+  console.log("userId", userId);
 
   const filteredData = data.filter((row) => {
-    const idCheck = row.printer.id == userId;
+    const idCheck = row.author == userId;
 
     return idCheck;
   });
+  console.log("filter", filteredData);
 
   const widthValue = `calc(100vw - 80px)`;
   const countPages = (data, paperSize) => {
