@@ -9,6 +9,7 @@ import { EndDate } from '../components/Records/inputForm';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { getRecords } from '../services/records.service';
+import { useSelector } from 'react-redux';
 const StudentRecords = () => {
   const [paperSize, setpaperSize] = useState(null);
   const [startDate, setstartDate] = useState(null);
@@ -31,6 +32,14 @@ const StudentRecords = () => {
   useEffect(() => {
     getRecords().then((resData) => setData(resData));
   }, []);
+  const { user } = useSelector((state) => state.auth);
+  const userId = user.orgId;
+
+  const filteredData = data.filter((row) => {
+    const idCheck = row.printer.id == userId;
+
+    return idCheck;
+  });
 
   const widthValue = `calc(100vw - 80px)`;
   const countPages = (data, paperSize) => {
@@ -43,9 +52,9 @@ const StudentRecords = () => {
     return pageCount;
   };
 
-  const totalCountA3 = countPages(data, 'A3');
-  const totalCountA4 = countPages(data, 'A4');
-  const totalCountA5 = countPages(data, 'A5');
+  const totalCountA3 = countPages(filteredData, 'A3');
+  const totalCountA4 = countPages(filteredData, 'A4');
+  const totalCountA5 = countPages(filteredData, 'A5');
   const [resetCounter, setResetCounter] = useState(0);
   const [reset, setResetState] = useState(false);
 

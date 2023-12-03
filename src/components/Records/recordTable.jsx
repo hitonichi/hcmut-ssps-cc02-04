@@ -12,7 +12,6 @@ const recordTable = ({
   selectedYear,
   studentID,
   variant,
-  id,
 }) => {
   const { user } = useSelector((state) => state.auth);
   const userId = user.orgId;
@@ -124,7 +123,7 @@ const recordTable = ({
     });
   } else {
     filteredData = data.filter((row) => {
-      const idCheck = row.printer.id == id;
+      const idCheck = row.printer.id == userId;
 
       return idCheck;
     });
