@@ -12,10 +12,11 @@ const recordTable = ({
   selectedYear,
   studentID,
   variant,
+  id,
 }) => {
   const { user } = useSelector((state) => state.auth);
   const userId = user.orgId;
-  console.log("idd ",userId);
+  console.log('idd ', userId);
   const [data, setData] = useState([]);
   useEffect(() => {
     getRecords().then((resData) => setData(resData));
@@ -123,7 +124,7 @@ const recordTable = ({
     });
   } else {
     filteredData = data.filter((row) => {
-      const idCheck = row.printer.id == userId;
+      const idCheck = row.printer.id == id;
 
       return idCheck;
     });
