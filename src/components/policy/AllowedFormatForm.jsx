@@ -76,31 +76,29 @@ const AllowedFormatForm = () => {
 
   return (
     <div className="flex h-full w-full flex-1 flex-col items-center justify-between">
-      <div className="ml-[10%] flex h-full flex-col">
-        {formData.map((data) => (
-          <FormControlLabel
-            key={data.name}
-            control={
-              <Checkbox
-                checked={data.permitted}
-                onChange={handleCheckboxChange(data.name)}
-                name={data.name}
-                color="primary"
-              />
-            }
-            label={data.name}
-          />
-        ))}
+      <div className="flex h-full w-full flex-col items-center pt-4">
+        <div className="flex w-full flex-col pl-[45%]">
+          {formData.map((data) => (
+            <FormControlLabel
+              key={data.name}
+              control={
+                <Checkbox
+                  checked={data.permitted}
+                  onChange={handleCheckboxChange(data.name)}
+                  name={data.name}
+                  color="primary"
+                />
+              }
+              label={data.name}
+            />
+          ))}
+        </div>
         {message && (
           <p className={`${isValid ? 'text-blue-800' : 'text-red-500'}`}>
             {message}
           </p>
         )}
-        {change && (
-          <p className={'text-yellow-500'}>
-            {change}
-          </p>
-        )}
+        {change && <p className={'text-yellow-500'}>{change}</p>}
       </div>
       <Button
         variant="contained"
