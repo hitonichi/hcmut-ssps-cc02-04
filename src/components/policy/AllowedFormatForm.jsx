@@ -19,10 +19,23 @@ const mockData = [
 
 const AllowedFormatForm = () => {
   const [formData, setFormData] = useState(mockData);
+  const [message, setMessage] = useState('');
+  const [isValid, setIsValid] = useState(true);
+  const [change, setChange] = useState('');
 
   const handleSave = () => {
-    console.log(formData);
-  }
+    if (isValid) {
+      const permittedNames = formData
+        .filter((data) => data.permitted)
+        .map((data) => data.name)
+        .join(', ')
+        .toUpperCase();
+
+      setMessage(
+        `Cập nhật thành công. Các định dạng được chọn: ${permittedNames}.`,
+      );
+    }
+  };
 
   const handleCheckboxChange = (name) => (event) => {
     const updatedFormData = formData.map((data) => {
@@ -31,11 +44,38 @@ const AllowedFormatForm = () => {
       }
       return data;
     });
+
+    const checked = updatedFormData.some((data) => data.permitted);
+    setIsValid(checked);
+    setMessage(
+      checked
+        ? ''
+        : 'Có lỗi xảy ra. Chọn ít nhất 1 (một) định dạng trước khi “Lưu”.',
+    );
+
+    const hasChanges = updatedFormData.some((item) =>
+      mockData.some(
+        (origin) =>
+          origin.name === item.name && origin.permitted !== item.permitted,
+      ),
+    );
+
+    if (hasChanges) {
+      const originalFormats = mockData
+        .filter((data) => data.permitted)
+        .map((data) => data.name)
+        .join(', ')
+        .toUpperCase();
+      setChange(`Các định dạng trước đó: ${originalFormats}.`);
+    } else {
+      setChange('');
+    }
+
     setFormData(updatedFormData);
-  }
+  };
 
   return (
-    <>
+    <div className="flex h-full w-full flex-1 flex-col items-center justify-between">
       <div className="ml-[10%] flex h-full flex-col">
         {formData.map((data) => (
           <FormControlLabel
@@ -51,6 +91,16 @@ const AllowedFormatForm = () => {
             label={data.name}
           />
         ))}
+        {message && (
+          <p className={`${isValid ? 'text-blue-800' : 'text-red-500'}`}>
+            {message}
+          </p>
+        )}
+        {change && (
+          <p className={'text-yellow-500'}>
+            {change}
+          </p>
+        )}
       </div>
       <Button
         variant="contained"
@@ -68,7 +118,7 @@ const AllowedFormatForm = () => {
           Lưu
         </Typography>
       </Button>
-    </>
+    </div>
   );
 };
 
