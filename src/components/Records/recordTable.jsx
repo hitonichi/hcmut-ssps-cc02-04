@@ -24,11 +24,11 @@ const recordTable = ({
   let filteredData;
   if (variant == 'student') {
     filteredData = data.filter((row) => {
-      const formatedStartDate = dayjs.utc(startDate).startOf('day');
-      const formatedEndDate = dayjs.utc(endDate).endOf('day');
+      const formatedStartDate = utc(startDate).startOf('day');
+      const formatedEndDate = utc(endDate).endOf('day');
       console.log("start", formatedStartDate);
       console.log("end", formatedEndDate);
-      const rowDate = dayjs.utc(row.date);
+      const rowDate = utc(row.date);
 
       const startDateCheck =
         rowDate.isAfter(formatedStartDate) ||
@@ -119,6 +119,7 @@ const recordTable = ({
       return idCheck;
     });
   }
+  console.log('data', data);
   console.log('filterdata', filteredData);
   return (
     <div className="scroll h-[625px] w-auto overflow-y-scroll rounded-lg bg-secondaryContainer text-base tracking-wide">
